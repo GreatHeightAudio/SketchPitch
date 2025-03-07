@@ -21,7 +21,7 @@ void PitchShiftEffectProcessor::processBuffer(juce::AudioBuffer<float> & buffer,
             fftBufferIndex = 0;
         }
         juce::dsp::Complex<float>* fftData = reinterpret_cast<juce::dsp::Complex<float>*>(fftBuffer.getWritePointer(0));
-        fft.perform(fftData, false);
+        fft.perform(fftData, fftOutput.data(), false);
         
     }
 }
@@ -29,8 +29,13 @@ void PitchShiftEffectProcessor::processBuffer(juce::AudioBuffer<float> & buffer,
 
 void PitchShiftEffectProcessor::prepare(float sampleRate)
 {
-    Fs = sampleRate;
+    int fftSize = fft.getSize();
+    fftBuffer.setSize(1, fftSize);
+    fftBuffer.clear();
+    
+    fftOutput.resize(fftSize); // ✅ Allocate memory for output buffer
 }
+
 
 void PitchShiftEffectProcessor::setPitchAmount(float newAmount)
 {

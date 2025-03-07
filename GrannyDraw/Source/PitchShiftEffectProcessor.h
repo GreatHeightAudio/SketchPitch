@@ -30,6 +30,6 @@ private:
     juce::AudioBuffer<float> fftBuffer;
     int fftBufferIndex = 0;
     float pitchShiftFactor = 1.0f; // [1 = no shift, 2 = octave up, 0.5 = octave down]
-    
+    std::vector<juce::dsp::Complex<float>> fftOutput;
     
 };

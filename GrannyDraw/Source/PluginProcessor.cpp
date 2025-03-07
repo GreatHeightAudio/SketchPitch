@@ -143,6 +143,8 @@ void GrannyDrawAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     // this code if your algorithm always overwrites all the output channels.
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
+    
+    pitchShiftEffect.setPitchAmount(5.0);
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...

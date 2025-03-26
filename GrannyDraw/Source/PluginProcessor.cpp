@@ -1,7 +1,9 @@
 /*
   ==============================================================================
 
-    This file contains the basic framework code for a JUCE plugin processor.
+    This file was auto-generated!
+
+    It contains the basic framework code for a JUCE plugin processor.
 
   ==============================================================================
 */
@@ -13,31 +15,31 @@ using namespace juce;
 
 //==============================================================================
 GrannyDrawAudioProcessor::GrannyDrawAudioProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
                       #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
+                       .withInput  ("Input",  AudioChannelSet::stereo(), true)
                       #endif
-                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
+                       .withOutput ("Output", AudioChannelSet::stereo(), true)
                      #endif
-                       ),state(*this,nullptr,Identifier("PitchParameters"),createParameterLayout())
-#endif
+                       )
 {
 }
 
 GrannyDrawAudioProcessor::~GrannyDrawAudioProcessor()
 {
 }
-AudioProcessorValueTreeState::ParameterLayout PitchShifterAudioProcessor::createParameterLayout(){
-    std::vector<std::unique_ptr<RangedAudioParameter>> params;
-    
-    params.push_back (std::make_unique<AudioParameterFloat>("PITCH","Pitch",-12.f,12.f,0.f));
-    
-    return {params.begin() , params.end()};
-}
+
+
+//AudioProcessorValueTreeState::ParameterLayout GrannyDrawAudioProcessor::createParameterLayout(){
+//    std::vector<std::unique_ptr<RangedAudioParameter>> params;
+//    
+//    params.push_back (std::make_unique<AudioParameterFloat>("PITCH","Pitch",-12.f,12.f,0.f));
+//    
+//    return {params.begin() , params.end()};
+//}
 //==============================================================================
-const juce::String GrannyDrawAudioProcessor::getName() const
+const String GrannyDrawAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
@@ -89,20 +91,19 @@ void GrannyDrawAudioProcessor::setCurrentProgram (int index)
 {
 }
 
-const juce::String GrannyDrawAudioProcessor::getProgramName (int index)
+const String GrannyDrawAudioProcessor::getProgramName (int index)
 {
     return {};
 }
 
-void GrannyDrawAudioProcessor::changeProgramName (int index, const juce::String& newName)
+void GrannyDrawAudioProcessor::changeProgramName (int index, const String& newName)
 {
 }
 
 //==============================================================================
 void GrannyDrawAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    pitchShiftEffect.setFs(sampleRate);
 }
 
 void GrannyDrawAudioProcessor::releaseResources()
@@ -115,15 +116,13 @@ void GrannyDrawAudioProcessor::releaseResources()
 bool GrannyDrawAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
   #if JucePlugin_IsMidiEffect
-    juce::ignoreUnused (layouts);
+    ignoreUnused (layouts);
     return true;
   #else
     // This is the place where you check if the layout is supported.
     // In this template code we only support mono or stereo.
-    // Some plugin hosts, such as certain GarageBand versions, will only
-    // load plugins that support stereo bus layouts.
-    if (layouts.getMainOutputChannelSet() != juce::AudioChannelSet::mono()
-     && layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
+    if (layouts.getMainOutputChannelSet() != AudioChannelSet::mono()
+     && layouts.getMainOutputChannelSet() != AudioChannelSet::stereo())
         return false;
 
     // This checks if the input layout matches the output layout
@@ -137,36 +136,43 @@ bool GrannyDrawAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 }
 #endif
 
-void GrannyDrawAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+void GrannyDrawAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
-    juce::ScopedNoDenormals noDenormals;
+    ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
+    const int numSamples = buffer.getNumSamples();
 
-    // In case we have more outputs than inputs, this code clears any output
-    // channels that didn't contain input data, (because these aren't
-    // guaranteed to be empty - they may contain garbage).
-    // This is here to avoid people getting screaming feedback
-    // when they first compile a plugin, but obviously you don't need to keep
-    // this code if your algorithm always overwrites all the output channels.
+    
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
     
-    pitchShiftEffect.setPitchAmount(5.0);
+    if (pitchCurve.empty())
+        return;
+    
+//    pitchValue = *state.getRawParameterValue("PITCH");
+//    pitchShiftEffect.setPitch(pitchValue);
+    for (int sample = 0; sample < numSamples; ++sample)
+        {
+            // Map current sample to a position on the pitch curve
+            int curveIndex = juce::jmap(sample,
+                                        0, numSamples - 1,
+                                        0, static_cast<int>(pitchCurve.size()) - 1);
 
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    // Make sure to reset the state if your inner loop is processing
-    // the samples and the outer loop is handling the channels.
-    // Alternatively, you can process the samples with the channels
-    // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        auto* channelData = buffer.getWritePointer (channel);
+            float pitch = pitchCurve[curveIndex]; // -12 to +12 semitones
 
-        // ..do something to the data...
+            pitchShiftEffect.setPitch(pitch); // Set current pitch shift
+
+            for (int channel = 0; channel < totalNumInputChannels; ++channel)
+            {
+                float* channelData = buffer.getWritePointer(channel);
+                float inputSample = channelData[sample];
+
+                float outputSample = pitchShiftEffect.processSample(inputSample, channel);
+                channelData[sample] = outputSample;
+            }
+        }
     }
-}
 
 //==============================================================================
 bool GrannyDrawAudioProcessor::hasEditor() const
@@ -174,34 +180,44 @@ bool GrannyDrawAudioProcessor::hasEditor() const
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-juce::AudioProcessorEditor* GrannyDrawAudioProcessor::createEditor()
+AudioProcessorEditor* GrannyDrawAudioProcessor::createEditor()
 {
     return new GrannyDrawAudioProcessorEditor (*this);
 }
 
 //==============================================================================
-void GrannyDrawAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
+void GrannyDrawAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
-    auto currentState = state.copyState();
-    std::unique_ptr<XmlElement> xml(currentState.createXml());
-    copyXmlToBinary(*xml, destData);
+//    auto currentState = state.copyState();
+//    std::unique_ptr<XmlElement> xml(currentState.createXml());
+//    copyXmlToBinary(*xml, destData);
 }
 
 void GrannyDrawAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-    std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
-    if (xmlState && xmlState->hasTagName(state.state.getType())){
-        state.replaceState(ValueTree::fromXml(*xmlState));
+    //MemoryBlock data_block (data, (size_t) sizeInBytes);
+//    std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+//    if (xmlState && xmlState->hasTagName(state.state.getType())){
+//        state.replaceState(ValueTree::fromXml(*xmlState));
+    }
+
+void GrannyDrawAudioProcessor::setPitchCurve(const std::vector<float>& newCurve)
+{
+    pitchCurve = newCurve;
+}
+std::vector<float> GrannyDrawAudioProcessor::getPitchCurve() const
+{
+    return pitchCurve;
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
-juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new GrannyDrawAudioProcessor();
 }

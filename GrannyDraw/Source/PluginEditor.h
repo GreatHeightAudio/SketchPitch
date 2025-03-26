@@ -10,30 +10,37 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "DrawGrid.h"
 
 //==============================================================================
 /**
 */
-class GrannyDrawAudioProcessorEditor  : public juce::AudioProcessorEditor;
-                                        public Slider::Listener
+class GrannyDrawAudioProcessorEditor  : public juce::AudioProcessorEditor
+//                                        public juce::Slider::Listener
 {
 public:
     GrannyDrawAudioProcessorEditor (GrannyDrawAudioProcessor&);
     ~GrannyDrawAudioProcessorEditor();
 
     //==============================================================================
-    void paint (Graphics&) override;
+    void paint (juce::Graphics&) override;
     void resized() override;
-    void sliderValueChanged(Slider *slider) override;
+//    void sliderValueChanged(juce::Slider *slider) override;
 
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
+    float refWidth = 450.f;
+    float refHeight = 300.f;
+    
     GrannyDrawAudioProcessor& processor;
     
-    Slider pitchKnob;
-    
-    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> sliderAttachments;
+//    juce::Slider pitchKnob;
+//    
+//    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> sliderAttachments;
 
+    DrawGrid pitchGrid;
+    void sendPitchCurve();
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GrannyDrawAudioProcessorEditor)
 };

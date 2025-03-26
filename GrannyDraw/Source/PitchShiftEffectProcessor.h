@@ -57,17 +57,6 @@ private:
     float tr = 1.f; // momentary trasposition
     float delta = 0.f; // rate of change for delay (samples)
     
-//    float pitchAmount = 0.0f; // Pitch Shift Amount
-//    float pitchTarget = 0.0f; // Pitch Target for smooth and snap
-//    float timeSnap = 0.0f; // [0-100] [0 = free, 100 = quanitze to beat]
-//    float pitchCorrect = 0.0f; //[0-100] [0 = free, 100 = snap to scale notes]
-//    int currentKey = 0; // 0=C, 1=C#, 2=D, etc.
-//    
-//    juce::dsp::FFT fft{11};
-//    juce::AudioBuffer<float> fftBuffer;
-//    int fftBufferIndex = 0;
-//    float pitchShiftFactor = 1.0f; // [1 = no shift, 2 = octave up, 0.5 = octave down]
-//    std::vector<juce::dsp::Complex<float>> fftOutput;
     
 };
 

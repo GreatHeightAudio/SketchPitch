@@ -15,6 +15,7 @@
 /**
 */
 class GrannyDrawAudioProcessor  : public juce::AudioProcessor
+
 {
 public:
     //==============================================================================
@@ -54,13 +55,20 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    float pitchValue = 0.0f;
+//    float pitchValue = 0.0f;
     
-    juce::AudioProcessorValueTreeState state;
-    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+//    juce::AudioProcessorValueTreeState state;
+//    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    
+    void setPitchCurve(const std::vector<float>& newCurve);
+    std::vector<float> getPointCruve() const;
     
 private:
     PitchShiftEffectProcessor pitchShiftEffect;
+    
+    std::vector<float> pitchCurve;
+    std::vector<float> getPitchCurve() const;
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GrannyDrawAudioProcessor)
 };

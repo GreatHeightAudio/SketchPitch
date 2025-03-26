@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <JuceHeader.h>
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "PitchShiftEffectProcessor.h"
 
 //==============================================================================
@@ -54,6 +54,11 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    float pitchValue = 0.0f;
+    
+    juce::AudioProcessorValueTreeState state;
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    
 private:
     PitchShiftEffectProcessor pitchShiftEffect;
     //==============================================================================

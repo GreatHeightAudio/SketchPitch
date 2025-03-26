@@ -4,6 +4,8 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="Vx8DUz" name="GrannyDraw">
     <GROUP id="{609D3F17-C20B-70D9-1029-FDDC85300F6F}" name="Source">
+      <FILE id="s38zuo" name="PitchDelay.cpp" compile="1" resource="0" file="Source/PitchDelay.cpp"/>
+      <FILE id="Z6I9m2" name="PitchDelay.h" compile="0" resource="0" file="Source/PitchDelay.h"/>
       <FILE id="ZNILJd" name="PitchShiftEffectProcessor.cpp" compile="1"
             resource="0" file="Source/PitchShiftEffectProcessor.cpp"/>
       <FILE id="dMJRMu" name="PitchShiftEffectProcessor.h" compile="0" resource="0"

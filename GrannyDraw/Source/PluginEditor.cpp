@@ -16,6 +16,17 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor (GrannyDrawAudioP
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (400, 300);
+    
+    pitchKnob.addListener(this);
+    pitchKnob.setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
+    pitchKnob.setBounds(50,74,100,100);
+    pitchKnob.setTextBoxStyle(Slider::TextBoxBelow, false, 50, 30);
+    pitchKnob.setRange(-12.0f,12.f,0.1f);
+    pitchKnob.setValue(0.f);
+    addAndMakeVisible(pitchKnob);
+    
+    sliderAttachments = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(
+            processor.state,"PITCH",pitchKnob);
 }
 
 GrannyDrawAudioProcessorEditor::~GrannyDrawAudioProcessorEditor()
@@ -23,14 +34,14 @@ GrannyDrawAudioProcessorEditor::~GrannyDrawAudioProcessorEditor()
 }
 
 //==============================================================================
-void GrannyDrawAudioProcessorEditor::paint (juce::Graphics& g)
+void GrannyDrawAudioProcessorEditor::paint (Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+    g.fillAll (juce::Colours::black);
 
     g.setColour (juce::Colours::white);
-    g.setFont (juce::FontOptions (15.0f));
-    g.drawFittedText ("GrannyDraw", getLocalBounds(), juce::Justification::centred, 1);
+    g.setFont (15.0f);
+    //g.drawFittedText ("Hello World!", getLocalBounds(), Justification::centred, 1);
 }
 
 void GrannyDrawAudioProcessorEditor::resized()

@@ -9,6 +9,8 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+using namespace juce;
+
 //==============================================================================
 GrannyDrawAudioProcessor::GrannyDrawAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -19,7 +21,7 @@ GrannyDrawAudioProcessor::GrannyDrawAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),state(*this,nullptr,Identifier("PitchParameters"),createParameterLayout())
 #endif
 {
 }
@@ -27,7 +29,13 @@ GrannyDrawAudioProcessor::GrannyDrawAudioProcessor()
 GrannyDrawAudioProcessor::~GrannyDrawAudioProcessor()
 {
 }
-
+AudioProcessorValueTreeState::ParameterLayout PitchShifterAudioProcessor::createParameterLayout(){
+    std::vector<std::unique_ptr<RangedAudioParameter>> params;
+    
+    params.push_back (std::make_unique<AudioParameterFloat>("PITCH","Pitch",-12.f,12.f,0.f));
+    
+    return {params.begin() , params.end()};
+}
 //==============================================================================
 const juce::String GrannyDrawAudioProcessor::getName() const
 {
@@ -177,12 +185,18 @@ void GrannyDrawAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    auto currentState = state.copyState();
+    std::unique_ptr<XmlElement> xml(currentState.createXml());
+    copyXmlToBinary(*xml, destData);
 }
 
 void GrannyDrawAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+    std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+    if (xmlState && xmlState->hasTagName(state.state.getType())){
+        state.replaceState(ValueTree::fromXml(*xmlState));
 }
 
 //==============================================================================

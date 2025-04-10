@@ -22,10 +22,10 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor (GrannyDrawAudioP
     int windowHeight = (int) (scalar * refHeight);
     setSize (windowWidth, windowHeight);
     
-    int xPos = (int) ((50.f / refWidth) * windowWidth);
-    int yPos = (int) ((70.f / refHeight) * windowHeight);
-    int width = (int) ((100.f / refWidth) * windowWidth);
-    int height = (int) ((100.f / refHeight) * windowHeight);
+//    int xPos = (int) ((50.f / refWidth) * windowWidth);
+//    int yPos = (int) ((70.f / refHeight) * windowHeight);
+//    int width = (int) ((100.f / refWidth) * windowWidth);
+//    int height = (int) ((100.f / refHeight) * windowHeight);
     
 //    pitchKnob.addListener(this);
 //    pitchKnob.setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
@@ -38,12 +38,18 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor (GrannyDrawAudioP
 //    sliderAttachments = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(
 //            processor.state,"PITCH",pitchKnob);
     
+    
     addAndMakeVisible(pitchGrid);
+    pitchGrid.onCurveFinished = [this]{
+        sendPitchCurve();
+    };
 
+Timer::startTimerHz (60);
 }
 
 GrannyDrawAudioProcessorEditor::~GrannyDrawAudioProcessorEditor()
 {
+    Timer::stopTimer();
 }
 
 //==============================================================================
@@ -64,6 +70,19 @@ void GrannyDrawAudioProcessorEditor::resized()
 
 }
 
+void GrannyDrawAudioProcessorEditor::timerCallback()
+{
+        size_t curveLength = processor.getPitchCurveLength();
+        if (curveLength == 0)
+            return;
+
+        int index = processor.getPitchPlayheadIndex();
+        index = (index + 1) % curveLength; // loop back at end
+
+        processor.setPitchPlayheadIndex(index);
+
+}
+
 //void GrannyDrawAudioProcessorEditor::sliderValueChanged(Slider * slider)
 //{
 //    if (slider == &pitchKnob){
@@ -75,4 +94,9 @@ void GrannyDrawAudioProcessorEditor::sendPitchCurve()
 {
     auto newCurve = pitchGrid.getPitchCurve();
     processor.setPitchCurve(newCurve);
+    
+    auto curveLength = processor.getPitchCurveLength();
+    startTimerHz(static_cast<int>(curveLength / 2));
+
 }
+

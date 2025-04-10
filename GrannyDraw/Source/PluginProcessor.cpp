@@ -136,43 +136,60 @@ bool GrannyDrawAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 }
 #endif
 
-void GrannyDrawAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
+void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
     ScopedNoDenormals noDenormals;
-    auto totalNumInputChannels  = getTotalNumInputChannels();
-    auto totalNumOutputChannels = getTotalNumOutputChannels();
+    const int totalNumInputChannels  = getTotalNumInputChannels();
+    const int totalNumOutputChannels = getTotalNumOutputChannels();
     const int numSamples = buffer.getNumSamples();
+    const double sampleRate = getSampleRate(); // Get sample rate for accurate time-based calculations
 
-    
-    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-        buffer.clear (i, 0, buffer.getNumSamples());
-    
+    for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+        buffer.clear(i, 0, numSamples);
+
     if (pitchCurve.empty())
         return;
     
-//    pitchValue = *state.getRawParameterValue("PITCH");
-//    pitchShiftEffect.setPitch(pitchValue);
-    for (int sample = 0; sample < numSamples; ++sample)
+    playHead = this->getPlayHead();
+    if (playHead != nullptr)
+    {
+    playHead->getPosition();
+    }
+    auto bpm = cpi.bpm;
+
+//    const double bpm = 120.0;
+    const double timeSigNumerator = 4.0; // 4/4 time
+    const double secondsPerBeat = 60.0 / bpm;
+    const double samplesPerBar = secondsPerBeat * sampleRate * timeSigNumerator;
+
+    // Track sample count over time
+    static double sampleCounter = 0;
+
+    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    {
+        float* channelData = buffer.getWritePointer(channel);
+
+        for (int sample = 0; sample < numSamples; ++sample)
         {
-            // Map current sample to a position on the pitch curve
-            int curveIndex = juce::jmap(sample,
-                                        0, numSamples - 1,
-                                        0, static_cast<int>(pitchCurve.size()) - 1);
+            // Calculate phase of the current bar (0.0 to 1.0)
+            double phase = fmod(sampleCounter, samplesPerBar) / samplesPerBar; 
+            int curveIndex = juce::jlimit(0, static_cast<int>(pitchCurve.size()) - 1,
+                                          static_cast<int>(phase * pitchCurve.size()));
+            float pitch = pitchCurve[curveIndex];
+            pitchShiftEffect.setPitch(pitch);
 
-            float pitch = pitchCurve[curveIndex]; // -12 to +12 semitones
+            float inputSample = channelData[sample];
+            float outputSample = pitchShiftEffect.processSample(inputSample, channel);
+            channelData[sample] = outputSample;
 
-            pitchShiftEffect.setPitch(pitch); // Set current pitch shift
-
-            for (int channel = 0; channel < totalNumInputChannels; ++channel)
-            {
-                float* channelData = buffer.getWritePointer(channel);
-                float inputSample = channelData[sample];
-
-                float outputSample = pitchShiftEffect.processSample(inputSample, channel);
-                channelData[sample] = outputSample;
-            }
+            sampleCounter += 1.0;
         }
     }
+}
+
+
+
+
 
 //==============================================================================
 bool GrannyDrawAudioProcessor::hasEditor() const
@@ -214,6 +231,22 @@ std::vector<float> GrannyDrawAudioProcessor::getPitchCurve() const
 {
     return pitchCurve;
 }
+void GrannyDrawAudioProcessor::setPitchPlayheadIndex(int index)
+{
+    pitchPlayhead = index;
+}
+
+int GrannyDrawAudioProcessor::getPitchPlayheadIndex() const
+{
+    return pitchPlayhead;
+}
+
+size_t GrannyDrawAudioProcessor::getPitchCurveLength() const
+{
+    return pitchCurve.size();
+}
+
+
 
 //==============================================================================
 // This creates new instances of the plugin..

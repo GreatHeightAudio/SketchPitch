@@ -25,6 +25,7 @@ public:
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
+    
 
    #ifndef JucePlugin_PreferredChannelConfigurations
     bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
@@ -63,11 +64,25 @@ public:
     void setPitchCurve(const std::vector<float>& newCurve);
     std::vector<float> getPointCruve() const;
     
+    void setPitchPlayheadIndex(int index);
+    int getPitchPlayheadIndex() const;
+    size_t getPitchCurveLength() const;
+
+
+    
 private:
     PitchShiftEffectProcessor pitchShiftEffect;
     
     std::vector<float> pitchCurve;
     std::vector<float> getPitchCurve() const;
+    
+    int pitchPlayhead;
+    double pitchCurveDuration = 2; //(seconds)
+    static double sampleCounter;
+    
+    juce::AudioPlayHead *playHead;
+    juce::AudioPlayHead::CurrentPositionInfo cpi;
+//    juce::AudioPlayHead::PositionInfo::getTimeSignature();
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GrannyDrawAudioProcessor)

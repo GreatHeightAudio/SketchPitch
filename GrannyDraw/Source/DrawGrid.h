@@ -20,6 +20,7 @@ public:
     void mouseDown(const juce::MouseEvent&) override;
     void mouseDrag(const juce::MouseEvent&) override;
     void mouseUp(const juce::MouseEvent&) override;
+    juce::Point<int> getClampedPoint(juce::Point<int> p) const;
 
     std::vector<juce::Point<int>> getDrawnPoints() const;
 

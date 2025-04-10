@@ -15,8 +15,9 @@
 //==============================================================================
 /**
 */
-class GrannyDrawAudioProcessorEditor  : public juce::AudioProcessorEditor
+class GrannyDrawAudioProcessorEditor  : public juce::AudioProcessorEditor,
 //                                        public juce::Slider::Listener
+                                        public juce::Timer
 {
 public:
     GrannyDrawAudioProcessorEditor (GrannyDrawAudioProcessor&);
@@ -25,6 +26,7 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
+    void timerCallback() override;
 //    void sliderValueChanged(juce::Slider *slider) override;
 
 private:
@@ -41,6 +43,7 @@ private:
 
     DrawGrid pitchGrid;
     void sendPitchCurve();
+    
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GrannyDrawAudioProcessorEditor)
 };

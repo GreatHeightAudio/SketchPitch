@@ -17,16 +17,16 @@ DrawGrid::DrawGrid()
 
 void DrawGrid::paint(juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::blue);
+    g.fillAll(juce::Colours::darkslateblue);
 
-    g.setColour(juce::Colours::darkgrey);
+    g.setColour(juce::Colours::darkblue);
     for (int x = 0; x < getWidth(); x += cellSize)
         g.drawLine((float)x, 0.f, (float)x, (float)getHeight());
 
     for (int y = 0; y < getHeight(); y += cellSize)
         g.drawLine(0.f, (float)y, (float)getWidth(), (float)y);
 
-    g.setColour(juce::Colours::cyan);
+    g.setColour(juce::Colours::lightcyan);
     for (size_t i = 1; i < drawnPoints.size(); ++i)
     {
         auto p1 = drawnPoints[i - 1].toFloat();
@@ -38,15 +38,27 @@ void DrawGrid::paint(juce::Graphics& g)
 void DrawGrid::mouseDown(const juce::MouseEvent& e)
 {
     drawnPoints.clear();
-    drawnPoints.push_back(e.getPosition());
+
+    auto clampedPos = getClampedPoint(e.getPosition());
+    drawnPoints.push_back(clampedPos);
     repaint();
 }
 
 void DrawGrid::mouseDrag(const juce::MouseEvent& e)
 {
-    drawnPoints.push_back(e.getPosition());
+    auto clampedPos = getClampedPoint(e.getPosition());
+    drawnPoints.push_back(clampedPos);
     repaint();
 }
+
+juce::Point<int> DrawGrid::getClampedPoint(juce::Point<int> p) const
+{
+    auto bounds = getLocalBounds();
+    int clampedX = juce::jlimit(bounds.getX(), bounds.getRight() - 1, p.getX());
+    int clampedY = juce::jlimit(bounds.getY(), bounds.getBottom() - 1, p.getY());
+    return { clampedX, clampedY };
+}
+
 
 void DrawGrid::mouseUp(const juce::MouseEvent&)
 {

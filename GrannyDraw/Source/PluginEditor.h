@@ -22,6 +22,8 @@ class GrannyDrawAudioProcessorEditor  : public juce::AudioProcessorEditor,
 public:
     GrannyDrawAudioProcessorEditor (GrannyDrawAudioProcessor&);
     ~GrannyDrawAudioProcessorEditor();
+    
+    
 
     //==============================================================================
     void paint (juce::Graphics&) override;

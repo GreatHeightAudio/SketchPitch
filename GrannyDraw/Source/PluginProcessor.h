@@ -14,7 +14,8 @@
 //==============================================================================
 /**
 */
-class GrannyDrawAudioProcessor  : public juce::AudioProcessor
+class GrannyDrawAudioProcessor  :   public juce::AudioProcessor,
+                                    public juce::HighResolutionTimer
 
 {
 public:
@@ -24,6 +25,7 @@ public:
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
+    void getNextAduioBlock (const juce::AudioSourceChannelInfo& bufferToFill);
     void releaseResources() override;
     
 
@@ -68,7 +70,8 @@ public:
     int getPitchPlayheadIndex() const;
     size_t getPitchCurveLength() const;
 
-
+    void hiResTimerCallback() override;
+    void countSamples (int bufferSize);
     
 private:
     PitchShiftEffectProcessor pitchShiftEffect;
@@ -78,10 +81,18 @@ private:
     
     int pitchPlayhead;
     double pitchCurveDuration = 2; //(seconds)
-    static double sampleCounter;
+    int totalSamples { 0 };
+    double sampleRate { 0 };
+    int interval { 0 };
+    int bpm {static_cast<int>(60.0) };
+    
+    
     
     juce::AudioPlayHead *playHead;
     juce::AudioPlayHead::CurrentPositionInfo cpi;
+    
+    
+    
 //    juce::AudioPlayHead::PositionInfo::getTimeSignature();
 
     //==============================================================================

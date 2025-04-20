@@ -19,6 +19,8 @@
       <FILE id="f8fT2i" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="wCeYO2" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="HuxkXG" name="CursorBall.cpp" compile="1" resource="0" file="Source/CursorBall.cpp"/>
+      <FILE id="e6ypBC" name="CursorBall.h" compile="0" resource="0" file="Source/CursorBall.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>

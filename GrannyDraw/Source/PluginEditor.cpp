@@ -8,6 +8,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "KnobStrip.h"
 
 using namespace juce;
 
@@ -21,27 +22,38 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor (GrannyDrawAudioP
     int windowWidth = (int) (scalar * refWidth);
     int windowHeight = (int) (scalar * refHeight);
     setSize (windowWidth, windowHeight);
+    setResizable(true, true);
+    getConstrainer()->setFixedAspectRatio(728.0 / 600.0);
     
-//    int xPos = (int) ((50.f / refWidth) * windowWidth);
-//    int yPos = (int) ((70.f / refHeight) * windowHeight);
-//    int width = (int) ((100.f / refWidth) * windowWidth);
-//    int height = (int) ((100.f / refHeight) * windowHeight);
+    sketchFrame = juce::ImageCache::getFromMemory(BinaryData::Sketch__Pitch_png, BinaryData::Sketch__Pitch_pngSize);
+
     
-//    pitchKnob.addListener(this);
-//    pitchKnob.setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
-//    pitchKnob.setBounds(xPos,yPos, width, height);
-//    pitchKnob.setTextBoxStyle(Slider::TextBoxBelow, false, 50, 30);
-//    pitchKnob.setRange(-12.0f,12.f,0.1f);
-//    pitchKnob.setValue(0.f);
-//    addAndMakeVisible(pitchKnob);
-//    
-//    sliderAttachments = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(
-//            processor.state,"PITCH",pitchKnob);
-    
+    quantizeSlider.setSliderStyle(juce::Slider::Rotary);
+    quantizeSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 20);
+    addAndMakeVisible(quantizeSlider);
+    quantizeAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
+                                                                                                processor.parameters, "snap", quantizeSlider);
+
+//    quantizeLabel.setText("snap", juce::dontSendNotification);
+//    quantizeLabel.attachToComponent(&quantizeSlider, false);
+//    addAndMakeVisible(quantizeLabel);
+
+    juce::OwnedArray<juce::Image> knobFrames;
+
+    for (int i = 0; i < 128; ++i)
+    {
+        juce::String name = "knob_" + juce::String(i).paddedLeft('0', 3) + "_png";
+        auto* img = juce::ImageFileFormat::loadFrom(BinaryData::getNamedResource(name.toRawUTF8(), size));
+        knobFrames.add(new juce::Image(*img));
+    }
+
+    quantizeSlider.setImageFrames(knobFrames);
+
     
     addAndMakeVisible(pitchGrid);
     pitchGrid.onCurveFinished = [this]{
         sendPitchCurve();
+        resized();
     };
 
 Timer::startTimerHz (60);
@@ -53,22 +65,48 @@ GrannyDrawAudioProcessorEditor::~GrannyDrawAudioProcessorEditor()
 }
 
 //==============================================================================
-void GrannyDrawAudioProcessorEditor::paint (Graphics& g)
+void GrannyDrawAudioProcessorEditor::paint(juce::Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (juce::Colours::black);
+    g.fillAll(juce::Colours::black);
 
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    //g.drawFittedText ("Hello World!", getLocalBounds(), Justification::centred, 1);
+    if (sketchFrame.isValid())
+    {
+        g.drawImage(sketchFrame, imageBounds.toFloat());
+    }
 }
+
+
 void GrannyDrawAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
-    pitchGrid.setBounds(20, 20, getWidth() - 40, getHeight() - 120);
+    // Step 1: Calculate image size
+    imageBounds = getLocalBounds().withSizeKeepingCentre(
+        (int)(getHeight() * (728.0 / 600.0)),
+        getHeight()
+    );
 
+    auto scaleX = (float)imageBounds.getWidth() / 728.0f;
+    auto scaleY = (float)imageBounds.getHeight() / 600.0f;
+
+    // Step 2: Set grid inside screen cutout
+    int screenX = (int)(80 * scaleX);
+    int screenY = (int)(75 * scaleY);
+    int screenW = (int)(570 * scaleX);
+    int screenH = (int)(425 * scaleY);
+
+    pitchGrid.setBounds(imageBounds.getX() + screenX, imageBounds.getY() + screenY, screenW, screenH);
+    
+    int knobX = imageBounds.getX() + (int)(-30 * scaleX);
+    int knobY = imageBounds.getBottom() - (int)(115 * scaleY);
+    int knobW = (int)(160 * scaleX);
+    int knobH = (int)(160 * scaleY);
+    quantizeSlider.setBounds(knobX, knobY, knobW, knobH);
+
+    
+    repaint();
 }
+
+
+
 
 void GrannyDrawAudioProcessorEditor::timerCallback()
 {
@@ -83,13 +121,6 @@ void GrannyDrawAudioProcessorEditor::timerCallback()
 
 }
 
-//void GrannyDrawAudioProcessorEditor::sliderValueChanged(Slider * slider)
-//{
-//    if (slider == &pitchKnob){
-//        processor.pitchValue = pitchKnob.getValue();
-//    }
-//    
-//}
 void GrannyDrawAudioProcessorEditor::sendPitchCurve()
 {
     auto newCurve = pitchGrid.getPitchCurve();

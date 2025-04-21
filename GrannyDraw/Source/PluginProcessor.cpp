@@ -15,29 +15,31 @@ using namespace juce;
 
 //==============================================================================
 GrannyDrawAudioProcessor::GrannyDrawAudioProcessor()
-     : AudioProcessor (BusesProperties()
+    : AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
                       #if ! JucePlugin_IsSynth
                        .withInput  ("Input",  AudioChannelSet::stereo(), true)
                       #endif
                        .withOutput ("Output", AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
+      parameters(*this, nullptr, "PARAMETERS", createParameterLayout())
 {
 }
+
 
 GrannyDrawAudioProcessor::~GrannyDrawAudioProcessor()
 {
 }
 
 
-//AudioProcessorValueTreeState::ParameterLayout GrannyDrawAudioProcessor::createParameterLayout(){
-//    std::vector<std::unique_ptr<RangedAudioParameter>> params;
-//    
-//    params.push_back (std::make_unique<AudioParameterFloat>("PITCH","Pitch",-12.f,12.f,0.f));
-//    
-//    return {params.begin() , params.end()};
-//}
+AudioProcessorValueTreeState::ParameterLayout GrannyDrawAudioProcessor::createParameterLayout(){
+    std::vector<std::unique_ptr<RangedAudioParameter>> params;
+    
+    params.push_back (std::make_unique<AudioParameterFloat>("snap","Snap",0.f,100.f,0.f));
+    
+    return {params.begin() , params.end()};
+}
 //==============================================================================
 const String GrannyDrawAudioProcessor::getName() const
 {
@@ -104,6 +106,8 @@ void GrannyDrawAudioProcessor::changeProgramName (int index, const String& newNa
 void GrannyDrawAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     pitchShiftEffect.setFs(sampleRate);
+    smoothedPitch.reset(sampleRate, 0.02); // 20ms smoothing
+
 }
 
 void GrannyDrawAudioProcessor::releaseResources()
@@ -111,6 +115,7 @@ void GrannyDrawAudioProcessor::releaseResources()
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
+
 
 #ifndef JucePlugin_PreferredChannelConfigurations
 bool GrannyDrawAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
@@ -136,13 +141,24 @@ bool GrannyDrawAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 }
 #endif
 
+float quantizePitch(float pitch, float snapAmount)
+{
+    float t = juce::jlimit(0.0f, 1.0f, snapAmount / 100.0f);
+    float snapped = std::round(pitch);
+    return juce::jmap(t, pitch, snapped);
+}
+
+
+
+
+
 void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
     ScopedNoDenormals noDenormals;
     const int totalNumInputChannels  = getTotalNumInputChannels();
     const int totalNumOutputChannels = getTotalNumOutputChannels();
     const int numSamples = buffer.getNumSamples();
-    const double sampleRate = getSampleRate(); // Get sample rate for accurate time-based calculations
+//    const double sampleRate = getSampleRate();
 
     for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, numSamples);
@@ -169,7 +185,13 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
     int curveIndex = juce::jlimit(0, static_cast<int>(pitchCurve.size()) - 1,
                                   static_cast<int>(phase * pitchCurve.size()));
     float pitch = pitchCurve[curveIndex];
-    pitchShiftEffect.setPitch(pitch);
+    
+    float quantValue = *parameters.getRawParameterValue("snap");
+    float quantPitch = quantizePitch(pitch, quantValue);
+
+    
+    smoothedPitch.setTargetValue(quantPitch);
+
     
     // Track sample count over time
     static double sampleCounter = 0;
@@ -180,13 +202,13 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
 
         for (int sample = 0; sample < numSamples; ++sample)
         {
-            
-
             float inputSample = channelData[sample];
+            
+            float smoothPitch = smoothedPitch.getNextValue();
+            pitchShiftEffect.setPitch(smoothPitch);
+
             float outputSample = pitchShiftEffect.processSample(inputSample, channel);
             channelData[sample] = outputSample;
-
-            sampleCounter += 1.0;
         }
     }
 }

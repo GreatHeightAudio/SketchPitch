@@ -37,9 +37,13 @@ private:
     
     GrannyDrawAudioProcessor& processor;
     
-//    juce::Slider pitchKnob;
-//    
-//    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> sliderAttachments;
+    juce::Image sketchFrame;
+//    juce::Label quantizeLabel;
+    ImageStripKnob quantizeSlider;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> quantizeAttachment;
+
+    juce::Rectangle<int> imageBounds;
+
 
     DrawGrid pitchGrid;
     void sendPitchCurve();

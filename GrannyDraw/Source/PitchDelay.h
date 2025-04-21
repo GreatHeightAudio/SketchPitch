@@ -36,7 +36,7 @@ private:
     float Fs = 48000.f;
     int phaseChoice;
     
-    const float MAX_DELAY_SEC = .03f;
+    const float MAX_DELAY_SEC = 0.03f;
     float MAX_DELAY_SAMPLES = MAX_DELAY_SEC * Fs;
     float delay[2];// = {5.f}; // in samples
     

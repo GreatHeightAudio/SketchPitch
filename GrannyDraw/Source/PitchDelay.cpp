@@ -36,16 +36,18 @@ float PitchDelay::processSample(float x, int channel, float & angle){
 //        return x;
 //    }
 //    else{
-        
-        delay[channel] += delta;
+    delay[channel] += delta;
+
         if (delta <= 0.f && delay[channel] < 2.f){
             delay[channel] = MAX_DELAY_SAMPLES;
-            angle = 1.5f*M_PI;
+            angle = 1.5f * M_PI;
         }
         if (delta > 0.f && delay[channel] > MAX_DELAY_SAMPLES){
             delay[channel] = 2.0f;
-            angle = 1.5f*M_PI;
+            angle = 1.5f * M_PI;
         }
+
+
         
         // Delay Buffer
         // "delay" can be fraction
@@ -81,20 +83,21 @@ float PitchDelay::processSample(float x, int channel, float & angle){
 
 void PitchDelay::setFs(float Fs){
     this->Fs = Fs;
-    this->MAX_DELAY_SAMPLES = MAX_DELAY_SEC * Fs;
-    
-    if (phaseChoice == 1){
-        delay[0] = 2.f; delay[1] = 2.f;
+        this->MAX_DELAY_SAMPLES = MAX_DELAY_SEC * Fs;
+        
+        if (phaseChoice == 1){
+            delay[0] = 2.f; delay[1] = 2.f;
+        }
+        if (phaseChoice == 2){
+            delay[0] = (float)MAX_DELAY_SAMPLES / 3.0f;
+            delay[1] = (float)MAX_DELAY_SAMPLES / 3.0f;
+        }
+        if (phaseChoice == 3){
+            delay[0] = 2.f * (float)MAX_DELAY_SAMPLES / 3.0f;
+            delay[1] = 2.f * (float)MAX_DELAY_SAMPLES / 3.0f;
+        }
     }
-    if (phaseChoice == 2){
-        delay[0] = (float)MAX_DELAY_SAMPLES/3.0f;
-        delay[1] = (float)MAX_DELAY_SAMPLES/3.0f;
-    }
-    if (phaseChoice == 3){
-        delay[0] = 2.f*(float)MAX_DELAY_SAMPLES/3.0f;
-        delay[1] = 2.f*(float)MAX_DELAY_SAMPLES/3.0f;
-    }
-}
+
 
 
 void PitchDelay::setPitch(float semitone){

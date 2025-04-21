@@ -4,6 +4,10 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="Vx8DUz" name="GrannyDraw">
     <GROUP id="{609D3F17-C20B-70D9-1029-FDDC85300F6F}" name="Source">
+      <FILE id="npAnIR" name="KnobStrip.cpp" compile="1" resource="0" file="../../Downloads/KnobStrip.cpp"/>
+      <FILE id="eAuqsM" name="KnobStrip.h" compile="0" resource="0" file="../../Downloads/KnobStrip.h"/>
+      <FILE id="fEIqMx" name="Sketch &amp; Pitch.png" compile="0" resource="1"
+            file="../../Downloads/Sketch &amp; Pitch.png"/>
       <FILE id="j5hUm6" name="DrawGrid.cpp" compile="1" resource="0" file="Source/DrawGrid.cpp"/>
       <FILE id="fYMQdH" name="DrawGrid.h" compile="0" resource="0" file="Source/DrawGrid.h"/>
       <FILE id="s38zuo" name="PitchDelay.cpp" compile="1" resource="0" file="Source/PitchDelay.cpp"/>
@@ -21,6 +25,616 @@
       <FILE id="wCeYO2" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       <FILE id="HuxkXG" name="CursorBall.cpp" compile="1" resource="0" file="Source/CursorBall.cpp"/>
       <FILE id="e6ypBC" name="CursorBall.h" compile="0" resource="0" file="Source/CursorBall.h"/>
+    </GROUP>
+    <GROUP id="{83A55DDB-CF77-C235-0DB3-CD14814D8F5D}" name="Knob_middle">
+      <FILE id="EI3mZE" name="Knob_middle_0000.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0000.png"/>
+      <FILE id="LGrhB8" name="Knob_middle_0000_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0000_result.png"/>
+      <FILE id="VolleY" name="Knob_middle_0000_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0000_result_result.png"/>
+      <FILE id="vjoNiS" name="Knob_middle_0001.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0001.png"/>
+      <FILE id="madme5" name="Knob_middle_0001_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0001_result.png"/>
+      <FILE id="XPAX80" name="Knob_middle_0001_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0001_result_result.png"/>
+      <FILE id="wXZvZR" name="Knob_middle_0002.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0002.png"/>
+      <FILE id="RSCbni" name="Knob_middle_0002_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0002_result.png"/>
+      <FILE id="czWUVP" name="Knob_middle_0002_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0002_result_result.png"/>
+      <FILE id="LUNYLp" name="Knob_middle_0003.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0003.png"/>
+      <FILE id="tIQyH7" name="Knob_middle_0003_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0003_result.png"/>
+      <FILE id="DwuQUS" name="Knob_middle_0003_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0003_result_result.png"/>
+      <FILE id="DR3Kh2" name="Knob_middle_0004.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0004.png"/>
+      <FILE id="uUXtSK" name="Knob_middle_0004_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0004_result.png"/>
+      <FILE id="H6KPm8" name="Knob_middle_0004_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0004_result_result.png"/>
+      <FILE id="yCVohM" name="Knob_middle_0005.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0005.png"/>
+      <FILE id="V0Mp04" name="Knob_middle_0005_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0005_result.png"/>
+      <FILE id="jgL4Sy" name="Knob_middle_0005_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0005_result_result.png"/>
+      <FILE id="ZhkhNP" name="Knob_middle_0006.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0006.png"/>
+      <FILE id="lO96vA" name="Knob_middle_0006_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0006_result.png"/>
+      <FILE id="wut3ci" name="Knob_middle_0006_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0006_result_result.png"/>
+      <FILE id="aii4MV" name="Knob_middle_0007.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0007.png"/>
+      <FILE id="prDXBS" name="Knob_middle_0007_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0007_result.png"/>
+      <FILE id="rBcMwS" name="Knob_middle_0007_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0007_result_result.png"/>
+      <FILE id="tzlcHu" name="Knob_middle_0008.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0008.png"/>
+      <FILE id="ZSOjgJ" name="Knob_middle_0008_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0008_result.png"/>
+      <FILE id="cm4xQt" name="Knob_middle_0008_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0008_result_result.png"/>
+      <FILE id="n0Vii6" name="Knob_middle_0009.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0009.png"/>
+      <FILE id="sgojFc" name="Knob_middle_0009_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0009_result.png"/>
+      <FILE id="JOq5I7" name="Knob_middle_0009_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0009_result_result.png"/>
+      <FILE id="lvaFI4" name="Knob_middle_0010.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0010.png"/>
+      <FILE id="E4b64H" name="Knob_middle_0010_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0010_result.png"/>
+      <FILE id="iUMGgn" name="Knob_middle_0010_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0010_result_result.png"/>
+      <FILE id="hvFGTp" name="Knob_middle_0011.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0011.png"/>
+      <FILE id="TmpKtm" name="Knob_middle_0011_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0011_result.png"/>
+      <FILE id="KbxGuO" name="Knob_middle_0011_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0011_result_result.png"/>
+      <FILE id="yKOaeg" name="Knob_middle_0012.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0012.png"/>
+      <FILE id="TCKntj" name="Knob_middle_0012_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0012_result.png"/>
+      <FILE id="NINNOD" name="Knob_middle_0012_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0012_result_result.png"/>
+      <FILE id="h1aigR" name="Knob_middle_0013.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0013.png"/>
+      <FILE id="rEcqs0" name="Knob_middle_0013_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0013_result.png"/>
+      <FILE id="GRIaLQ" name="Knob_middle_0013_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0013_result_result.png"/>
+      <FILE id="qQnOUD" name="Knob_middle_0014.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0014.png"/>
+      <FILE id="DId8fG" name="Knob_middle_0014_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0014_result.png"/>
+      <FILE id="Zd8HGN" name="Knob_middle_0014_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0014_result_result.png"/>
+      <FILE id="gBkYxT" name="Knob_middle_0015.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0015.png"/>
+      <FILE id="f6h4fi" name="Knob_middle_0015_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0015_result.png"/>
+      <FILE id="tFmrCx" name="Knob_middle_0015_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0015_result_result.png"/>
+      <FILE id="JsUWom" name="Knob_middle_0016.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0016.png"/>
+      <FILE id="kv93Le" name="Knob_middle_0016_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0016_result.png"/>
+      <FILE id="XTcEdh" name="Knob_middle_0016_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0016_result_result.png"/>
+      <FILE id="akHIkK" name="Knob_middle_0017.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0017.png"/>
+      <FILE id="DYatJT" name="Knob_middle_0017_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0017_result.png"/>
+      <FILE id="WJVCme" name="Knob_middle_0018.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0018.png"/>
+      <FILE id="l6FKcv" name="Knob_middle_0018_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0018_result.png"/>
+      <FILE id="oz2WgP" name="Knob_middle_0018_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0018_result_result.png"/>
+      <FILE id="rbpoHD" name="Knob_middle_0019.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0019.png"/>
+      <FILE id="WJb1Cd" name="Knob_middle_0019_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0019_result.png"/>
+      <FILE id="PGvyke" name="Knob_middle_0019_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0019_result_result.png"/>
+      <FILE id="FYcmed" name="Knob_middle_0020.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0020.png"/>
+      <FILE id="lFgON5" name="Knob_middle_0020_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0020_result.png"/>
+      <FILE id="RkjXD4" name="Knob_middle_0020_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0020_result_result.png"/>
+      <FILE id="wgOVXf" name="Knob_middle_0021.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0021.png"/>
+      <FILE id="Z3p1Xv" name="Knob_middle_0021_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0021_result.png"/>
+      <FILE id="T1lMyK" name="Knob_middle_0021_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0021_result_result.png"/>
+      <FILE id="ILFy8T" name="Knob_middle_0022.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0022.png"/>
+      <FILE id="mI96Ur" name="Knob_middle_0022_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0022_result.png"/>
+      <FILE id="Dk3T0P" name="Knob_middle_0022_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0022_result_result.png"/>
+      <FILE id="y0YUgq" name="Knob_middle_0023.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0023.png"/>
+      <FILE id="byuYSh" name="Knob_middle_0023_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0023_result.png"/>
+      <FILE id="rTi8wk" name="Knob_middle_0023_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0023_result_result.png"/>
+      <FILE id="iMgEbH" name="Knob_middle_0024.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0024.png"/>
+      <FILE id="FJd8Ij" name="Knob_middle_0024_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0024_result.png"/>
+      <FILE id="XWZLqg" name="Knob_middle_0024_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0024_result_result.png"/>
+      <FILE id="FUcoyo" name="Knob_middle_0025.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0025.png"/>
+      <FILE id="jqJicA" name="Knob_middle_0025_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0025_result.png"/>
+      <FILE id="mQXIV8" name="Knob_middle_0025_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0025_result_result.png"/>
+      <FILE id="SJVmaR" name="Knob_middle_0026.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0026.png"/>
+      <FILE id="xcoyZ5" name="Knob_middle_0026_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0026_result.png"/>
+      <FILE id="xLWBWT" name="Knob_middle_0026_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0026_result_result.png"/>
+      <FILE id="XoGCLG" name="Knob_middle_0027.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0027.png"/>
+      <FILE id="ZmRiVs" name="Knob_middle_0027_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0027_result.png"/>
+      <FILE id="aIlWyk" name="Knob_middle_0027_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0027_result_result.png"/>
+      <FILE id="ermIoo" name="Knob_middle_0028.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0028.png"/>
+      <FILE id="V8JEao" name="Knob_middle_0028_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0028_result.png"/>
+      <FILE id="nJXcZd" name="Knob_middle_0028_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0028_result_result.png"/>
+      <FILE id="hp0b9V" name="Knob_middle_0029.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0029.png"/>
+      <FILE id="V0Zpdx" name="Knob_middle_0029_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0029_result.png"/>
+      <FILE id="PYw8TM" name="Knob_middle_0029_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0029_result_result.png"/>
+      <FILE id="UVtSad" name="Knob_middle_0030.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0030.png"/>
+      <FILE id="itwkYB" name="Knob_middle_0030_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0030_result.png"/>
+      <FILE id="jXzJVb" name="Knob_middle_0030_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0030_result_result.png"/>
+      <FILE id="idwdah" name="Knob_middle_0031.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0031.png"/>
+      <FILE id="bNelWc" name="Knob_middle_0031_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0031_result.png"/>
+      <FILE id="qWwg1B" name="Knob_middle_0031_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0031_result_result.png"/>
+      <FILE id="GrAiMj" name="Knob_middle_0032.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0032.png"/>
+      <FILE id="GpKra7" name="Knob_middle_0032_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0032_result.png"/>
+      <FILE id="CdtHzx" name="Knob_middle_0032_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0032_result_result.png"/>
+      <FILE id="MVHN07" name="Knob_middle_0033.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0033.png"/>
+      <FILE id="GF9zI1" name="Knob_middle_0033_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0033_result.png"/>
+      <FILE id="s4E01L" name="Knob_middle_0033_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0033_result_result.png"/>
+      <FILE id="HeibrG" name="Knob_middle_0034.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0034.png"/>
+      <FILE id="JovocK" name="Knob_middle_0034_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0034_result.png"/>
+      <FILE id="SiQO1L" name="Knob_middle_0034_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0034_result_result.png"/>
+      <FILE id="emeByX" name="Knob_middle_0035.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0035.png"/>
+      <FILE id="DM5JoX" name="Knob_middle_0036.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0036.png"/>
+      <FILE id="ENYv3r" name="Knob_middle_0037.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0037.png"/>
+      <FILE id="ORq7zD" name="Knob_middle_0038.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0038.png"/>
+      <FILE id="j7X6TI" name="Knob_middle_0039.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0039.png"/>
+      <FILE id="kO7SXA" name="Knob_middle_0040.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0040.png"/>
+      <FILE id="XBKqeA" name="Knob_middle_0041.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0041.png"/>
+      <FILE id="B1qWa0" name="Knob_middle_0042.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0042.png"/>
+      <FILE id="aXXJHX" name="Knob_middle_0043.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0043.png"/>
+      <FILE id="OZEKpe" name="Knob_middle_0044.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0044.png"/>
+      <FILE id="WnIYKE" name="Knob_middle_0045.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0045.png"/>
+      <FILE id="uWvfKy" name="Knob_middle_0046.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0046.png"/>
+      <FILE id="cxpAss" name="Knob_middle_0047.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0047.png"/>
+      <FILE id="l9T5FG" name="Knob_middle_0048.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0048.png"/>
+      <FILE id="HgZidH" name="Knob_middle_0049.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0049.png"/>
+      <FILE id="dHeIVI" name="Knob_middle_0050.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0050.png"/>
+      <FILE id="jFwMHy" name="Knob_middle_0051.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0051.png"/>
+      <FILE id="PfHgaF" name="Knob_middle_0052.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0052.png"/>
+      <FILE id="Wheei7" name="Knob_middle_0053.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0053.png"/>
+      <FILE id="AQTb3q" name="Knob_middle_0054.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0054.png"/>
+      <FILE id="US0xgB" name="Knob_middle_0055.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0055.png"/>
+      <FILE id="kOgGFc" name="Knob_middle_0056.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0056.png"/>
+      <FILE id="al3HoL" name="Knob_middle_0057.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0057.png"/>
+      <FILE id="nw4kuL" name="Knob_middle_0058.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0058.png"/>
+      <FILE id="V2svxo" name="Knob_middle_0059.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0059.png"/>
+      <FILE id="gJVNbP" name="Knob_middle_0060.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0060.png"/>
+      <FILE id="irxpUq" name="Knob_middle_0061.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0061.png"/>
+      <FILE id="YXTite" name="Knob_middle_0062.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0062.png"/>
+      <FILE id="ix0JrO" name="Knob_middle_0063.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0063.png"/>
+      <FILE id="wZ7zrq" name="Knob_middle_0063_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0063_result.png"/>
+      <FILE id="gBea2M" name="Knob_middle_0063_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0063_result_result.png"/>
+      <FILE id="xMcOYy" name="Knob_middle_0064.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0064.png"/>
+      <FILE id="HZnMOP" name="Knob_middle_0064_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0064_result.png"/>
+      <FILE id="BnTQgi" name="Knob_middle_0064_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0064_result_result.png"/>
+      <FILE id="FGA3gV" name="Knob_middle_0065.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0065.png"/>
+      <FILE id="UUcua3" name="Knob_middle_0065_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0065_result.png"/>
+      <FILE id="DDrSqZ" name="Knob_middle_0065_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0065_result_result.png"/>
+      <FILE id="e3nfKQ" name="Knob_middle_0066.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0066.png"/>
+      <FILE id="bpeN0J" name="Knob_middle_0066_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0066_result.png"/>
+      <FILE id="vXSbgR" name="Knob_middle_0066_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0066_result_result.png"/>
+      <FILE id="G1FgNf" name="Knob_middle_0067.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0067.png"/>
+      <FILE id="JhcKo9" name="Knob_middle_0067_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0067_result.png"/>
+      <FILE id="tPLMsg" name="Knob_middle_0067_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0067_result_result.png"/>
+      <FILE id="SCPf9J" name="Knob_middle_0068.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0068.png"/>
+      <FILE id="fRmydW" name="Knob_middle_0068_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0068_result.png"/>
+      <FILE id="aPqHWk" name="Knob_middle_0068_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0068_result_result.png"/>
+      <FILE id="YKfeJ4" name="Knob_middle_0069.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0069.png"/>
+      <FILE id="SqXrcP" name="Knob_middle_0069_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0069_result.png"/>
+      <FILE id="ThSXVM" name="Knob_middle_0069_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0069_result_result.png"/>
+      <FILE id="mPdvHm" name="Knob_middle_0070.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0070.png"/>
+      <FILE id="bCbS0B" name="Knob_middle_0070_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0070_result.png"/>
+      <FILE id="exWEmg" name="Knob_middle_0070_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0070_result_result.png"/>
+      <FILE id="lySzJu" name="Knob_middle_0071.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0071.png"/>
+      <FILE id="a4okOl" name="Knob_middle_0071_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0071_result.png"/>
+      <FILE id="vONrtW" name="Knob_middle_0071_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0071_result_result.png"/>
+      <FILE id="mKdKad" name="Knob_middle_0072.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0072.png"/>
+      <FILE id="XiMgcV" name="Knob_middle_0072_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0072_result.png"/>
+      <FILE id="CjUI6F" name="Knob_middle_0072_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0072_result_result.png"/>
+      <FILE id="m7t3xo" name="Knob_middle_0073.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0073.png"/>
+      <FILE id="i3Mwj0" name="Knob_middle_0073_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0073_result.png"/>
+      <FILE id="bp8qqe" name="Knob_middle_0073_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0073_result_result.png"/>
+      <FILE id="irXHfO" name="Knob_middle_0074.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0074.png"/>
+      <FILE id="mWTq2V" name="Knob_middle_0074_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0074_result.png"/>
+      <FILE id="CX8J85" name="Knob_middle_0074_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0074_result_result.png"/>
+      <FILE id="SBOt06" name="Knob_middle_0075.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0075.png"/>
+      <FILE id="OYyL6n" name="Knob_middle_0075_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0075_result.png"/>
+      <FILE id="k2bJ5a" name="Knob_middle_0075_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0075_result_result.png"/>
+      <FILE id="lmXiY0" name="Knob_middle_0076.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0076.png"/>
+      <FILE id="ygWifl" name="Knob_middle_0076_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0076_result.png"/>
+      <FILE id="sO2DiV" name="Knob_middle_0076_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0076_result_result.png"/>
+      <FILE id="gOj21E" name="Knob_middle_0077.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0077.png"/>
+      <FILE id="kw73sW" name="Knob_middle_0077_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0077_result.png"/>
+      <FILE id="vtmGQP" name="Knob_middle_0077_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0077_result_result.png"/>
+      <FILE id="UOrKgl" name="Knob_middle_0078.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0078.png"/>
+      <FILE id="U5NNcb" name="Knob_middle_0078_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0078_result.png"/>
+      <FILE id="RJKZ3W" name="Knob_middle_0078_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0078_result_result.png"/>
+      <FILE id="Utz567" name="Knob_middle_0079.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0079.png"/>
+      <FILE id="MG63ru" name="Knob_middle_0079_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0079_result.png"/>
+      <FILE id="L0qLaq" name="Knob_middle_0079_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0079_result_result.png"/>
+      <FILE id="SeL483" name="Knob_middle_0080.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0080.png"/>
+      <FILE id="D9tIZw" name="Knob_middle_0080_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0080_result.png"/>
+      <FILE id="Ae5I5W" name="Knob_middle_0080_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0080_result_result.png"/>
+      <FILE id="ZnVLXR" name="Knob_middle_0081.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0081.png"/>
+      <FILE id="nZaSYw" name="Knob_middle_0081_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0081_result.png"/>
+      <FILE id="pXhlFL" name="Knob_middle_0081_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0081_result_result.png"/>
+      <FILE id="T5UnS5" name="Knob_middle_0082.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0082.png"/>
+      <FILE id="g0JWTz" name="Knob_middle_0082_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0082_result.png"/>
+      <FILE id="RnBcei" name="Knob_middle_0082_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0082_result_result.png"/>
+      <FILE id="vLct44" name="Knob_middle_0083.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0083.png"/>
+      <FILE id="Z1SRKG" name="Knob_middle_0083_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0083_result.png"/>
+      <FILE id="gKTFwp" name="Knob_middle_0083_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0083_result_result.png"/>
+      <FILE id="UjtoSf" name="Knob_middle_0084.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0084.png"/>
+      <FILE id="fTfmyK" name="Knob_middle_0084_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0084_result.png"/>
+      <FILE id="pmaU0O" name="Knob_middle_0084_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0084_result_result.png"/>
+      <FILE id="o19WZL" name="Knob_middle_0085.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0085.png"/>
+      <FILE id="fgRGpL" name="Knob_middle_0085_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0085_result.png"/>
+      <FILE id="fq80Np" name="Knob_middle_0085_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0085_result_result.png"/>
+      <FILE id="RinV08" name="Knob_middle_0086.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0086.png"/>
+      <FILE id="vH0Uso" name="Knob_middle_0086_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0086_result.png"/>
+      <FILE id="I9IaqT" name="Knob_middle_0087.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0087.png"/>
+      <FILE id="uMv3vS" name="Knob_middle_0087_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0087_result.png"/>
+      <FILE id="AFJpEG" name="Knob_middle_0088.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0088.png"/>
+      <FILE id="xHJOdD" name="Knob_middle_0088_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0088_result.png"/>
+      <FILE id="UHHqV0" name="Knob_middle_0089.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0089.png"/>
+      <FILE id="OSvNDT" name="Knob_middle_0089_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0089_result.png"/>
+      <FILE id="GkbQz7" name="Knob_middle_0090.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0090.png"/>
+      <FILE id="aMX3HM" name="Knob_middle_0090_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0090_result.png"/>
+      <FILE id="VGFzkg" name="Knob_middle_0091.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0091.png"/>
+      <FILE id="ZZIaxw" name="Knob_middle_0091_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0091_result.png"/>
+      <FILE id="agTfQ8" name="Knob_middle_0092.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0092.png"/>
+      <FILE id="P34JOU" name="Knob_middle_0092_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0092_result.png"/>
+      <FILE id="VRt2yy" name="Knob_middle_0093.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0093.png"/>
+      <FILE id="AHVUbS" name="Knob_middle_0093_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0093_result.png"/>
+      <FILE id="CCmIXj" name="Knob_middle_0094.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0094.png"/>
+      <FILE id="UPSw83" name="Knob_middle_0094_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0094_result.png"/>
+      <FILE id="znUu5B" name="Knob_middle_0095.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0095.png"/>
+      <FILE id="TqgWp5" name="Knob_middle_0095_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0095_result.png"/>
+      <FILE id="Xjwh31" name="Knob_middle_0096.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0096.png"/>
+      <FILE id="xci5xe" name="Knob_middle_0096_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0096_result.png"/>
+      <FILE id="OS9tik" name="Knob_middle_0097.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0097.png"/>
+      <FILE id="tRgedR" name="Knob_middle_0097_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0097_result.png"/>
+      <FILE id="RlZV8T" name="Knob_middle_0098.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0098.png"/>
+      <FILE id="FcVHte" name="Knob_middle_0098_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0098_result.png"/>
+      <FILE id="ZGzdo2" name="Knob_middle_0099.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0099.png"/>
+      <FILE id="CgEOij" name="Knob_middle_0099_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0099_result.png"/>
+      <FILE id="zejT3P" name="Knob_middle_0100.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0100.png"/>
+      <FILE id="TFc0H1" name="Knob_middle_0100_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0100_result.png"/>
+      <FILE id="bmezOP" name="Knob_middle_0101.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0101.png"/>
+      <FILE id="FDNoe5" name="Knob_middle_0101_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0101_result.png"/>
+      <FILE id="Ko80hu" name="Knob_middle_0102.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0102.png"/>
+      <FILE id="DZyqUP" name="Knob_middle_0102_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0102_result.png"/>
+      <FILE id="jLPQaP" name="Knob_middle_0103.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0103.png"/>
+      <FILE id="FRe5Ih" name="Knob_middle_0103_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0103_result.png"/>
+      <FILE id="x2PMwL" name="Knob_middle_0104.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0104.png"/>
+      <FILE id="bHVaak" name="Knob_middle_0104_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0104_result.png"/>
+      <FILE id="DRhkKE" name="Knob_middle_0105.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0105.png"/>
+      <FILE id="Pn4eUC" name="Knob_middle_0105_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0105_result.png"/>
+      <FILE id="RMtr3D" name="Knob_middle_0106.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0106.png"/>
+      <FILE id="QwfQZ7" name="Knob_middle_0106_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0106_result.png"/>
+      <FILE id="dqGAM4" name="Knob_middle_0107.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0107.png"/>
+      <FILE id="HgBnLj" name="Knob_middle_0107_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0107_result.png"/>
+      <FILE id="DLME2p" name="Knob_middle_0107_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0107_result_result.png"/>
+      <FILE id="ZFrG6M" name="Knob_middle_0108.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0108.png"/>
+      <FILE id="yqpeVN" name="Knob_middle_0108_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0108_result.png"/>
+      <FILE id="uGevDv" name="Knob_middle_0108_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0108_result_result.png"/>
+      <FILE id="Bp1CkO" name="Knob_middle_0109.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0109.png"/>
+      <FILE id="jG0c5c" name="Knob_middle_0109_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0109_result.png"/>
+      <FILE id="ugwq5H" name="Knob_middle_0109_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0109_result_result.png"/>
+      <FILE id="oSDeiV" name="Knob_middle_0110.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0110.png"/>
+      <FILE id="m8ff8D" name="Knob_middle_0110_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0110_result.png"/>
+      <FILE id="Wp0VeT" name="Knob_middle_0110_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0110_result_result.png"/>
+      <FILE id="R6igr7" name="Knob_middle_0111.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0111.png"/>
+      <FILE id="qsQI3c" name="Knob_middle_0111_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0111_result.png"/>
+      <FILE id="z655oB" name="Knob_middle_0111_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0111_result_result.png"/>
+      <FILE id="MlFbG5" name="Knob_middle_0112.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0112.png"/>
+      <FILE id="yw58q6" name="Knob_middle_0112_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0112_result.png"/>
+      <FILE id="bqng1c" name="Knob_middle_0112_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0112_result_result.png"/>
+      <FILE id="oeQkIN" name="Knob_middle_0113.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0113.png"/>
+      <FILE id="Xe8IQf" name="Knob_middle_0113_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0113_result.png"/>
+      <FILE id="y8Lm9t" name="Knob_middle_0113_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0113_result_result.png"/>
+      <FILE id="vcVUZt" name="Knob_middle_0114.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0114.png"/>
+      <FILE id="pGcyDM" name="Knob_middle_0114_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0114_result.png"/>
+      <FILE id="IdjA6p" name="Knob_middle_0114_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0114_result_result.png"/>
+      <FILE id="YSD3sB" name="Knob_middle_0115.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0115.png"/>
+      <FILE id="WfeY5E" name="Knob_middle_0115_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0115_result.png"/>
+      <FILE id="rtD9tR" name="Knob_middle_0115_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0115_result_result.png"/>
+      <FILE id="uZPlHd" name="Knob_middle_0116.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0116.png"/>
+      <FILE id="wLWATW" name="Knob_middle_0116_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0116_result.png"/>
+      <FILE id="RyoJg0" name="Knob_middle_0116_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0116_result_result.png"/>
+      <FILE id="dv7RE7" name="Knob_middle_0117.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0117.png"/>
+      <FILE id="NWttt5" name="Knob_middle_0117_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0117_result.png"/>
+      <FILE id="yvi5Vg" name="Knob_middle_0117_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0117_result_result.png"/>
+      <FILE id="is1mm9" name="Knob_middle_0118.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0118.png"/>
+      <FILE id="W3KVA2" name="Knob_middle_0118_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0118_result.png"/>
+      <FILE id="Qv91L1" name="Knob_middle_0118_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0118_result_result.png"/>
+      <FILE id="ScRg0T" name="Knob_middle_0119.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0119.png"/>
+      <FILE id="SfUoC2" name="Knob_middle_0119_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0119_result.png"/>
+      <FILE id="fj8K2P" name="Knob_middle_0119_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0119_result_result.png"/>
+      <FILE id="Lfrljy" name="Knob_middle_0120.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0120.png"/>
+      <FILE id="gvAbbQ" name="Knob_middle_0120_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0120_result.png"/>
+      <FILE id="v0XOjK" name="Knob_middle_0120_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0120_result_result.png"/>
+      <FILE id="E1psgD" name="Knob_middle_0121.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0121.png"/>
+      <FILE id="KxytsO" name="Knob_middle_0121_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0121_result.png"/>
+      <FILE id="tgcr16" name="Knob_middle_0121_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0121_result_result.png"/>
+      <FILE id="yvSUoE" name="Knob_middle_0122.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0122.png"/>
+      <FILE id="Y96dc0" name="Knob_middle_0122_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0122_result.png"/>
+      <FILE id="UD9Sof" name="Knob_middle_0122_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0122_result_result.png"/>
+      <FILE id="sYYg3p" name="Knob_middle_0123.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0123.png"/>
+      <FILE id="bROX2I" name="Knob_middle_0123_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0123_result.png"/>
+      <FILE id="jZYzbU" name="Knob_middle_0123_result_result.png" compile="0"
+            resource="1" file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0123_result_result.png"/>
+      <FILE id="bvekfc" name="Knob_middle_0124.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0124.png"/>
+      <FILE id="qVoTfH" name="Knob_middle_0124_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0124_result.png"/>
+      <FILE id="MakvvM" name="Knob_middle_0125.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0125.png"/>
+      <FILE id="tsaeWp" name="Knob_middle_0125_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0125_result.png"/>
+      <FILE id="m126du" name="Knob_middle_0126.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0126.png"/>
+      <FILE id="txTRlL" name="Knob_middle_0126_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0126_result.png"/>
+      <FILE id="aOvYyG" name="Knob_middle_0127.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0127.png"/>
+      <FILE id="GRLE8G" name="Knob_middle_0127_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0127_result.png"/>
+      <FILE id="Rx6KfE" name="Knob_middle_0128.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0128.png"/>
+      <FILE id="k0KO2h" name="Knob_middle_0128_result.png" compile="0" resource="1"
+            file="../../JUCE-GUI-Lesson/GUI-Lecture/Assets/Animations/Oneshots/Knob_middle/Knob_middle_0128_result.png"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>

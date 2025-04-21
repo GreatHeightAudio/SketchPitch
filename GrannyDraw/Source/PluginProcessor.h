@@ -56,29 +56,31 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-//    float pitchValue = 0.0f;
     
-//    juce::AudioProcessorValueTreeState state;
-//    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    juce::AudioProcessorValueTreeState parameters;
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     
     void setPitchCurve(const std::vector<float>& newCurve);
-    std::vector<float> getPointCruve() const;
+    std::vector<float> pitchCurve;
+    std::vector<float> getPitchCurve() const;
     
     void setPitchPlayheadIndex(int index);
     int getPitchPlayheadIndex() const;
     size_t getPitchCurveLength() const;
+    
 
 
     
 private:
     PitchShiftEffectProcessor pitchShiftEffect;
     
-    std::vector<float> pitchCurve;
-    std::vector<float> getPitchCurve() const;
-    
+
+    juce::SmoothedValue<float> smoothedPitch;
     int pitchPlayhead;
     double pitchCurveDuration = 2; //(seconds)
     static double sampleCounter;
+    
+
     
     juce::AudioPlayHead *playHead;
     juce::AudioPlayHead::CurrentPositionInfo cpi;

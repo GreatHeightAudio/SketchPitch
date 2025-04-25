@@ -11,6 +11,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
 #include "DrawGrid.h"
+#include "MainComponent.h"
+
 
 //==============================================================================
 /**
@@ -38,8 +40,7 @@ private:
     GrannyDrawAudioProcessor& processor;
     
     juce::Image sketchFrame;
-//    juce::Label quantizeLabel;
-    ImageStripKnob quantizeSlider;
+    
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> quantizeAttachment;
 
     juce::Rectangle<int> imageBounds;
@@ -47,6 +48,9 @@ private:
 
     DrawGrid pitchGrid;
     void sendPitchCurve();
+    
+    MainComponent mainComponent;
+    
     
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GrannyDrawAudioProcessorEditor)

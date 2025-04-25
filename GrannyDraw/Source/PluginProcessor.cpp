@@ -192,9 +192,7 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
     
     smoothedPitch.setTargetValue(quantPitch);
 
-    
-    // Track sample count over time
-    static double sampleCounter = 0;
+//    static double sampleCounter = 0;
 
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {

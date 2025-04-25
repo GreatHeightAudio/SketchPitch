@@ -10,6 +10,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PitchShiftEffectProcessor.h"
+#include "SharedImages.h"
 
 //==============================================================================
 /**
@@ -68,12 +69,13 @@ public:
     int getPitchPlayheadIndex() const;
     size_t getPitchCurveLength() const;
     
-
+    SharedImages* getSharedImagesPtr() { return m_pSharedImagesPtr; };
 
     
 private:
     PitchShiftEffectProcessor pitchShiftEffect;
     
+    juce::SharedResourcePointer<SharedImages>     m_pSharedImagesPtr;
 
     juce::SmoothedValue<float> smoothedPitch;
     int pitchPlayhead;

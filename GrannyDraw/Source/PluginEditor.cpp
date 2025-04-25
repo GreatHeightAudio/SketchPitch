@@ -8,13 +8,13 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-#include "KnobStrip.h"
+
 
 using namespace juce;
 
 //==============================================================================
 GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor (GrannyDrawAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p)
+    : AudioProcessorEditor (&p), processor (p), mainComponent(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -25,35 +25,15 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor (GrannyDrawAudioP
     setResizable(true, true);
     getConstrainer()->setFixedAspectRatio(728.0 / 600.0);
     
-    sketchFrame = juce::ImageCache::getFromMemory(BinaryData::Sketch__Pitch_png, BinaryData::Sketch__Pitch_pngSize);
-
+//    sketchFrame = juce::ImageCache::getFromMemory(BinaryData::Sketch__Pitch_png, BinaryData::Sketch__Pitch_pngSize);
     
-    quantizeSlider.setSliderStyle(juce::Slider::Rotary);
-    quantizeSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 20);
-    addAndMakeVisible(quantizeSlider);
-    quantizeAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
-                                                                                                processor.parameters, "snap", quantizeSlider);
-
-//    quantizeLabel.setText("snap", juce::dontSendNotification);
-//    quantizeLabel.attachToComponent(&quantizeSlider, false);
-//    addAndMakeVisible(quantizeLabel);
-
-    juce::OwnedArray<juce::Image> knobFrames;
-
-    for (int i = 0; i < 128; ++i)
-    {
-        juce::String name = "knob_" + juce::String(i).paddedLeft('0', 3) + "_png";
-        auto* img = juce::ImageFileFormat::loadFrom(BinaryData::getNamedResource(name.toRawUTF8(), size));
-        knobFrames.add(new juce::Image(*img));
-    }
-
-    quantizeSlider.setImageFrames(knobFrames);
-
-    
+    addAndMakeVisible(mainComponent);
     addAndMakeVisible(pitchGrid);
+    mainComponent.getBounds();
+    resized();
+    
     pitchGrid.onCurveFinished = [this]{
         sendPitchCurve();
-        resized();
     };
 
 Timer::startTimerHz (60);
@@ -68,11 +48,6 @@ GrannyDrawAudioProcessorEditor::~GrannyDrawAudioProcessorEditor()
 void GrannyDrawAudioProcessorEditor::paint(juce::Graphics& g)
 {
     g.fillAll(juce::Colours::black);
-
-    if (sketchFrame.isValid())
-    {
-        g.drawImage(sketchFrame, imageBounds.toFloat());
-    }
 }
 
 
@@ -95,13 +70,10 @@ void GrannyDrawAudioProcessorEditor::resized()
 
     pitchGrid.setBounds(imageBounds.getX() + screenX, imageBounds.getY() + screenY, screenW, screenH);
     
-    int knobX = imageBounds.getX() + (int)(-30 * scaleX);
-    int knobY = imageBounds.getBottom() - (int)(115 * scaleY);
-    int knobW = (int)(160 * scaleX);
-    int knobH = (int)(160 * scaleY);
-    quantizeSlider.setBounds(knobX, knobY, knobW, knobH);
+    mainComponent.setBounds(getLocalBounds());
+    mainComponent.updateImageBounds(imageBounds);
 
-    
+
     repaint();
 }
 

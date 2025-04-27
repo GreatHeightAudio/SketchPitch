@@ -16,18 +16,16 @@ using namespace juce;
 GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor (GrannyDrawAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p), mainComponent(p)
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
     setSize(refWidth, refHeight);
+
     setResizable(true, true);
     getConstrainer()->setFixedAspectRatio(728.0 / 600.0);
+    
     
 //    sketchFrame = juce::ImageCache::getFromMemory(BinaryData::Sketch__Pitch_png, BinaryData::Sketch__Pitch_pngSize);
     
     addAndMakeVisible(mainComponent);
     addAndMakeVisible(pitchGrid);
-    mainComponent.getBounds();
-    resized();
     
     pitchGrid.onCurveFinished = [this]{
         sendPitchCurve();
@@ -50,16 +48,16 @@ void GrannyDrawAudioProcessorEditor::paint(juce::Graphics& g)
 
 void GrannyDrawAudioProcessorEditor::resized()
 {
-    // Step 1: Calculate image size
+    auto bounds = getLocalBounds();
+    
     imageBounds = getLocalBounds().withSizeKeepingCentre(
         (int)(getHeight() * (728.0 / 600.0)),
-        getHeight()
+        bounds.getHeight()
     );
 
     auto scaleX = (float)imageBounds.getWidth() / 728.0f;
     auto scaleY = (float)imageBounds.getHeight() / 600.0f;
 
-    // Step 2: Set grid inside screen cutout
     int screenX = (int)(80 * scaleX);
     int screenY = (int)(75 * scaleY);
     int screenW = (int)(570 * scaleX);
@@ -67,11 +65,7 @@ void GrannyDrawAudioProcessorEditor::resized()
 
     pitchGrid.setBounds(imageBounds.getX() + screenX, imageBounds.getY() + screenY, screenW, screenH);
     
-    mainComponent.setBounds(getLocalBounds());
-    mainComponent.updateImageBounds(imageBounds);
-
-
-    repaint();
+    mainComponent.setBounds(bounds);
 }
 
 

@@ -4,6 +4,8 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildStandalone,buildVST3">
   <MAINGROUP id="Vx8DUz" name="GrannyDraw">
     <GROUP id="{609D3F17-C20B-70D9-1029-FDDC85300F6F}" name="Source">
+      <FILE id="HRis2J" name="Sketch &amp; Pitch.png" compile="0" resource="1"
+            file="Source/Sketch &amp; Pitch.png"/>
       <GROUP id="{2563A5E5-441A-2288-D455-25E908A89A3B}" name="Knob_big">
         <FILE id="WptZBO" name="Knob_big__0000.png" compile="0" resource="1"
               file="Source/Knob_big/Knob_big__0000.png"/>
@@ -527,8 +529,6 @@
       <FILE id="rjDMSW" name="SharedImages.cpp" compile="1" resource="0"
             file="Source/SharedImages.cpp"/>
       <FILE id="IJDIzH" name="SharedImages.h" compile="0" resource="0" file="Source/SharedImages.h"/>
-      <FILE id="fEIqMx" name="Sketch &amp; Pitch.png" compile="0" resource="1"
-            file="../../Downloads/Sketch &amp; Pitch.png"/>
       <FILE id="Bi8F1k" name="StripKnob.h" compile="0" resource="0" file="Source/StripKnob.h"/>
       <FILE id="j5hUm6" name="DrawGrid.cpp" compile="1" resource="0" file="Source/DrawGrid.cpp"/>
       <FILE id="fYMQdH" name="DrawGrid.h" compile="0" resource="0" file="Source/DrawGrid.h"/>

@@ -27,10 +27,11 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
     void timerCallback() override;
-
+    
 private:
     static constexpr int refWidth = 728;
     static constexpr int refHeight = 600;
+    
 
     GrannyDrawAudioProcessor& processor;
 

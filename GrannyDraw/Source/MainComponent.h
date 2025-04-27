@@ -25,11 +25,8 @@ public:
     MainComponent(GrannyDrawAudioProcessor&);
     ~MainComponent() override;
 
-    void updateImageBounds(juce::Rectangle<int> newBounds);
     void paint (juce::Graphics&) override;
     void resized() override;
-    
-    void mouseEnter (const juce::MouseEvent &event) override;
 
 private:
     GrannyDrawAudioProcessor&   audioProcessor;

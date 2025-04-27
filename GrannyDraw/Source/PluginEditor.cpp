@@ -18,10 +18,7 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor (GrannyDrawAudioP
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    float scalar = 1.f;
-    int windowWidth = (int) (scalar * refWidth);
-    int windowHeight = (int) (scalar * refHeight);
-    setSize (windowWidth, windowHeight);
+    setSize(refWidth, refHeight);
     setResizable(true, true);
     getConstrainer()->setFixedAspectRatio(728.0 / 600.0);
     

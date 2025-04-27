@@ -20,6 +20,8 @@ MainComponent::MainComponent(GrannyDrawAudioProcessor& p) :
     quantizeAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
         audioProcessor.parameters, "snap", bigKnob);
     addAndMakeVisible(bigKnob);
+    
+    updateImageBounds(getLocalBounds());
 }
 
 MainComponent::~MainComponent()
@@ -43,12 +45,13 @@ void MainComponent::resized()
     float scaleX = imageBounds.getWidth() / 728.0f;
     float scaleY = imageBounds.getHeight() / 600.0f;
 
-    int knobW = static_cast<int>(200 * scaleX);
-    int knobH = static_cast<int>(200 * scaleY);
-    int knobX = imageBounds.getX() + static_cast<int>(0.0 * scaleX);
+    int knobW = static_cast<int>(120 * scaleX);
+    int knobH = static_cast<int>(120 * scaleY);
+    int knobX = imageBounds.getX() + static_cast<int>(-5.0 * scaleX);
     int knobY = imageBounds.getY() + static_cast<int>(500 * scaleY);
 
     bigKnob.setBounds(knobX, knobY, knobW, knobH);
+    bigKnob.repaint();
 }
 
 

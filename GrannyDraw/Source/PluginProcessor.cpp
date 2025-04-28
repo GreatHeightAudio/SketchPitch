@@ -38,6 +38,10 @@ AudioProcessorValueTreeState::ParameterLayout GrannyDrawAudioProcessor::createPa
     
     params.push_back (std::make_unique<AudioParameterFloat>("snap","Snap",0.f,100.f,0.f));
     
+    params.push_back (std::make_unique<AudioParameterChoice>("loopRate", "Loop Rate",
+                                                             juce::StringArray({ "0.25x", "0.5x", "1x", "2x", "4x", "8x", "16x" }),
+                                                             2));
+    
     return {params.begin() , params.end()};
 }
 //==============================================================================
@@ -158,11 +162,10 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
     const int totalNumInputChannels  = getTotalNumInputChannels();
     const int totalNumOutputChannels = getTotalNumOutputChannels();
     const int numSamples = buffer.getNumSamples();
-//    const double sampleRate = getSampleRate();
-
+    
     for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, numSamples);
-
+    
     if (pitchCurve.empty())
         return;
     
@@ -170,46 +173,47 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
     if (playHead != nullptr)
     {
         playHead->getCurrentPosition(cpi);
-        //cpi = playHead->getPosition();
-    }
-//    auto bpm = cpi.bpm;
-    auto ppqPos = cpi.ppqPosition;
-//    const double bpm = 120.0;
-    const double timeSigNumerator = cpi.timeSigNumerator; // 4/4 time
-    //const double secondsPerBeat = 60.0 / bpm;
-    //const double samplesPerBar = secondsPerBeat * sampleRate * timeSigNumerator;
-
-    // Calculate phase of the current bar (0.0 to 1.0)
-    //double phase = fmod(sampleCounter, samplesPerBar) / samplesPerBar;
-    double phase = fmod(ppqPos, timeSigNumerator) / timeSigNumerator;
-    int curveIndex = juce::jlimit(0, static_cast<int>(pitchCurve.size()) - 1,
-                                  static_cast<int>(phase * pitchCurve.size()));
-    float pitch = pitchCurve[curveIndex];
-    
-    float quantValue = *parameters.getRawParameterValue("snap");
-    float quantPitch = quantizePitch(pitch, quantValue);
-
-    
-    smoothedPitch.setTargetValue(quantPitch);
-
-//    static double sampleCounter = 0;
-
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        float* channelData = buffer.getWritePointer(channel);
-
-        for (int sample = 0; sample < numSamples; ++sample)
+        
+        auto ppqPos = cpi.ppqPosition;
+        const double timeSigNumerator = cpi.timeSigNumerator;
+        
+        static constexpr double loopMultipliers[] = { 0.25, 0.5, 1.0, 2.0, 4.0, 8.0, 16.0 };
+        
+        auto* loopRateParam = parameters.getRawParameterValue("loopRate");
+        int loopRateIndex = (loopRateParam != nullptr) ? (int)(*loopRateParam) : 2;
+        
+        double loopMultiplier = loopMultipliers[juce::jlimit(0, 6, loopRateIndex)];
+        
+        double beatsPerLoop = timeSigNumerator / loopMultiplier;
+        double phase = fmod(ppqPos, beatsPerLoop) / beatsPerLoop;
+        
+        int curveIndex = juce::jlimit(0, static_cast<int>(pitchCurve.size()) - 1,
+                                      static_cast<int>(phase * pitchCurve.size()));
+        float pitch = pitchCurve[curveIndex];
+        
+        float quantValue = *parameters.getRawParameterValue("snap");
+        float quantPitch = quantizePitch(pitch, quantValue);
+        
+        smoothedPitch.setTargetValue(quantPitch);
+        
+        for (int channel = 0; channel < totalNumInputChannels; ++channel)
         {
-            float inputSample = channelData[sample];
+            float* channelData = buffer.getWritePointer(channel);
             
-            float smoothPitch = smoothedPitch.getNextValue();
-            pitchShiftEffect.setPitch(smoothPitch);
-
-            float outputSample = pitchShiftEffect.processSample(inputSample, channel);
-            channelData[sample] = outputSample;
+            for (int sample = 0; sample < numSamples; ++sample)
+            {
+                float inputSample = channelData[sample];
+                
+                float smoothPitch = smoothedPitch.getNextValue();
+                pitchShiftEffect.setPitch(smoothPitch);
+                
+                float outputSample = pitchShiftEffect.processSample(inputSample, channel);
+                channelData[sample] = outputSample;
+            }
         }
     }
 }
+
 
 
 

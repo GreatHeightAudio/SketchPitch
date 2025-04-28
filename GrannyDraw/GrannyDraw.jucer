@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="jQ3rMS" name="GrannyDraw" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildStandalone,buildVST3">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildAU,buildStandalone,buildVST3">
   <MAINGROUP id="Vx8DUz" name="GrannyDraw">
     <GROUP id="{609D3F17-C20B-70D9-1029-FDDC85300F6F}" name="Source">
       <FILE id="HRis2J" name="Sketch &amp; Pitch.png" compile="0" resource="1"

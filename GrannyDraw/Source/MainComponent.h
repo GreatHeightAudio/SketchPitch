@@ -15,32 +15,23 @@
 #include "SharedImages.h"
 #include "StripKnob.h"
 
-
-//==============================================================================
-/*
-*/
-class MainComponent  : public juce::Component
+class MainComponent : public juce::Component
 {
 public:
     MainComponent(GrannyDrawAudioProcessor&);
     ~MainComponent() override;
 
-    void paint (juce::Graphics&) override;
+    void paint(juce::Graphics&) override;
     void resized() override;
 
 private:
     GrannyDrawAudioProcessor&   audioProcessor;
     SharedImages*               m_pSharedImages;
-    BigKnob                     bigKnob;
-    
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> quantizeAttachment;
-    
-    juce::Rectangle<int> imageBounds;
-
-
-
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
-    
-    
+    BigKnob                     snapKnob;
+    BigKnob                     loopRateKnob;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> loopRateAttachment;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> snapKnobAttachment;
+    juce::Label                 loopRateLabel;
+    juce::Label                 snapLabel;
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainComponent)
 };
-

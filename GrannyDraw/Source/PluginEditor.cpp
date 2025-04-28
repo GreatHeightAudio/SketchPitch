@@ -20,6 +20,11 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioPr
 
     addAndMakeVisible(mainComponent);
     addAndMakeVisible(pitchGrid);
+    
+    if (! processor.getPitchCurve().empty())
+        {
+            pitchGrid.setPitchCurve(processor.getPitchCurve());
+        }
 
     pitchGrid.onCurveFinished = [this]{
         sendPitchCurve();
@@ -65,6 +70,11 @@ void GrannyDrawAudioProcessorEditor::timerCallback()
     index = (index + 1) % curveLength;
 
     processor.setPitchPlayheadIndex(index);
+    
+    if (processor.needsCurveUpdate.exchange(false))
+        {
+            pitchGrid.setPitchCurve(processor.getPitchCurve());
+        }
 }
 
 void GrannyDrawAudioProcessorEditor::sendPitchCurve()

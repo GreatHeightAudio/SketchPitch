@@ -11,6 +11,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PitchShiftEffectProcessor.h"
 #include "SharedImages.h"
+#include "DrawGrid.h"
 
 //==============================================================================
 /**
@@ -61,13 +62,13 @@ public:
     juce::AudioProcessorValueTreeState parameters;
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     
-    void setPitchCurve(const std::vector<float>& newCurve);
-    std::vector<float> pitchCurve;
-    std::vector<float> getPitchCurve() const;
+    void setPitchCurve(const std::vector<CurvePoint>& newCurve);
+        std::vector<CurvePoint> getPitchCurve() const;
     
     void setPitchPlayheadIndex(int index);
     int getPitchPlayheadIndex() const;
     size_t getPitchCurveLength() const;
+    std::atomic<bool> needsCurveUpdate { false };
     
     SharedImages* getSharedImagesPtr() { return m_pSharedImagesPtr; };
 
@@ -82,11 +83,11 @@ private:
     double pitchCurveDuration = 2; //(seconds)
     static double sampleCounter;
     
-
+    std::vector<CurvePoint> pitchCurve;
+  
     
     juce::AudioPlayHead *playHead;
     juce::AudioPlayHead::CurrentPositionInfo cpi;
-//    juce::AudioPlayHead::PositionInfo::getTimeSignature();
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GrannyDrawAudioProcessor)

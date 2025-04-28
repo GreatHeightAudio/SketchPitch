@@ -11,6 +11,12 @@
 #pragma once
 #include <JuceHeader.h>
 
+struct CurvePoint
+{
+    float normalizedX; // 0.0 to 1.0 (left to right)
+    float pitch;       // -12.0 to +12.0 (bottom to top)
+};
+
 class DrawGrid : public juce::Component
 {
 public:
@@ -22,17 +28,13 @@ public:
     void mouseUp(const juce::MouseEvent&) override;
     juce::Point<int> getClampedPoint(juce::Point<int> p) const;
 
-    std::vector<juce::Point<int>> getDrawnPoints() const;
-
-    std::vector<float> getPitchCurve() const;
+    std::vector<CurvePoint> getPitchCurve() const;
+    void setPitchCurve(const std::vector<CurvePoint>& newCurve);
 
     std::function<void()> onCurveFinished;
 
-
-
 private:
-    std::vector<juce::Point<int>> drawnPoints;
-    const int cellSize = 20;
-    
+    std::vector<CurvePoint> drawnCurvePoints;
 };
+
 

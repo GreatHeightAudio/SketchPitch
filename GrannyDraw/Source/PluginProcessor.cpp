@@ -189,7 +189,7 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
         
         int curveIndex = juce::jlimit(0, static_cast<int>(pitchCurve.size()) - 1,
                                       static_cast<int>(phase * pitchCurve.size()));
-        float pitch = pitchCurve[curveIndex];
+        float pitch = pitchCurve[curveIndex].pitch;
         
         float quantValue = *parameters.getRawParameterValue("snap");
         float quantPitch = quantizePitch(pitch, quantValue);
@@ -231,34 +231,66 @@ AudioProcessorEditor* GrannyDrawAudioProcessor::createEditor()
 }
 
 //==============================================================================
-void GrannyDrawAudioProcessor::getStateInformation (MemoryBlock& destData)
+void GrannyDrawAudioProcessor::getStateInformation(juce::MemoryBlock& destData)
 {
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
-//    auto currentState = state.copyState();
-//    std::unique_ptr<XmlElement> xml(currentState.createXml());
-//    copyXmlToBinary(*xml, destData);
-}
+    auto state = parameters.copyState();
+    juce::XmlElement xmlState("DrawState");
 
-void GrannyDrawAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
-{
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
-    //MemoryBlock data_block (data, (size_t) sizeInBytes);
-//    std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
-//    if (xmlState && xmlState->hasTagName(state.state.getType())){
-//        state.replaceState(ValueTree::fromXml(*xmlState));
+    if (auto paramsXml = state.createXml())
+        xmlState.addChildElement(paramsXml.release());
+
+    auto* curveElement = new juce::XmlElement("PitchCurve");
+    for (const auto& point : pitchCurve)
+    {
+        auto* p = curveElement->createNewChildElement("Point");
+        p->setAttribute("x", point.normalizedX);
+        p->setAttribute("pitch", point.pitch);
     }
 
-void GrannyDrawAudioProcessor::setPitchCurve(const std::vector<float>& newCurve)
+    xmlState.addChildElement(curveElement);
+
+    copyXmlToBinary(xmlState, destData);
+}
+
+void GrannyDrawAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
+{
+    std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+
+    if (xmlState != nullptr)
+    {
+        if (auto* paramsXml = xmlState->getChildByName(parameters.state.getType()))
+            parameters.replaceState(juce::ValueTree::fromXml(*paramsXml));
+
+        if (auto* curveElement = xmlState->getChildByName("PitchCurve"))
+        {
+            pitchCurve.clear();
+            for (auto* pointElement : curveElement->getChildIterator())
+            {
+                if (pointElement->hasTagName("Point"))
+                {
+                    CurvePoint cp;
+                    cp.normalizedX = (float)pointElement->getDoubleAttribute("x", 0.0);
+                    cp.pitch = (float)pointElement->getDoubleAttribute("pitch", 0.0);
+                    pitchCurve.push_back(cp);
+                }
+            }
+        }
+    }
+    
+    needsCurveUpdate = true;
+
+}
+
+void GrannyDrawAudioProcessor::setPitchCurve(const std::vector<CurvePoint>& newCurve)
 {
     pitchCurve = newCurve;
 }
-std::vector<float> GrannyDrawAudioProcessor::getPitchCurve() const
+
+std::vector<CurvePoint> GrannyDrawAudioProcessor::getPitchCurve() const
 {
     return pitchCurve;
 }
+
 void GrannyDrawAudioProcessor::setPitchPlayheadIndex(int index)
 {
     pitchPlayhead = index;

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="jQ3rMS" name="GrannyDraw" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildAU,buildStandalone,buildVST3">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildAU,buildStandalone,buildVST3"
+              pluginName="SketchPitch" pluginManufacturer="GreatHeight" pluginAUExportPrefix="SketchPitchAU">
   <MAINGROUP id="Vx8DUz" name="GrannyDraw">
     <GROUP id="{609D3F17-C20B-70D9-1029-FDDC85300F6F}" name="Source">
       <FILE id="HRis2J" name="Sketch &amp; Pitch.png" compile="0" resource="1"
@@ -545,8 +546,6 @@
       <FILE id="f8fT2i" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="wCeYO2" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
-      <FILE id="HuxkXG" name="CursorBall.cpp" compile="1" resource="0" file="Source/CursorBall.cpp"/>
-      <FILE id="e6ypBC" name="CursorBall.h" compile="0" resource="0" file="Source/CursorBall.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>

@@ -32,10 +32,6 @@ PitchDelay::~PitchDelay(){
 
 float PitchDelay::processSample(float x, int channel, float & angle){
     
-//    if (delay[channel] < 1.f){
-//        return x;
-//    }
-//    else{
     delay[channel] += delta;
 
         if (delta <= 0.f && delay[channel] < 2.f){
@@ -48,7 +44,6 @@ float PitchDelay::processSample(float x, int channel, float & angle){
         }
 
 
-        
         // Delay Buffer
         // "delay" can be fraction
         int d1 = floor(delay[channel]);
@@ -78,7 +73,6 @@ float PitchDelay::processSample(float x, int channel, float & angle){
         }
         
         return y;
-    //}
 }
 
 void PitchDelay::setFs(float Fs){

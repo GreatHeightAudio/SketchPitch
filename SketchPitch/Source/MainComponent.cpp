@@ -44,7 +44,7 @@ MainComponent::MainComponent(GrannyDrawAudioProcessor& p)
 
         loopRateLabel.setText(labels[index], juce::dontSendNotification);
     };
-    loopRateKnob.onValueChange(); // manually trigger it once to update label on load
+    loopRateKnob.onValueChange(); // manually trigger it once - bug
 
     
     addAndMakeVisible(loopRateLabel);

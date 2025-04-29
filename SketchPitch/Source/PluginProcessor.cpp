@@ -170,8 +170,7 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
     if (pitchCurve.empty())
         return;
     
-    // Get playhead and project information
-    playHead = this->getPlayHead();
+    playHead = this->getPlayHead(); // Get playhead and project information
     if (playHead != nullptr)
     {
         playHead->getCurrentPosition(cpi);
@@ -179,26 +178,19 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
         auto ppqPos = cpi.ppqPosition;
         const double timeSigNumerator = cpi.timeSigNumerator;
         
-    // Creates array of rate values and gets knob value
         static constexpr double loopMultipliers[] = { 0.25, 0.5, 1.0, 2.0, 4.0, 8.0, 16.0 };
         auto* loopRateParam = parameters.getRawParameterValue("loopRate");
         
-    // Safety code - default to 1 bar if pointer invalid
         int loopRateIndex = (loopRateParam != nullptr) ? (int)(*loopRateParam) : 2;
-    // Clamp to values in the array
         double loopMultiplier = loopMultipliers[juce::jlimit(0, 6, loopRateIndex)];
     
-    // Find how many beats are in each loop
         double beatsPerLoop = timeSigNumerator / loopMultiplier;
-        
-    // Find current position and normalize to 0-1
+    
         double phase = fmod(ppqPos, beatsPerLoop) / beatsPerLoop;
         
-    // Use phase to map into the index (what point should be used at this moment)
         int curveIndex = juce::jlimit(0, static_cast<int>(pitchCurve.size()) - 1,
                                       static_cast<int>(phase * pitchCurve.size()));
         
-    // Read value of point from curveIndex
         float pitch = pitchCurve[curveIndex].pitch;
         
         float quantValue = *parameters.getRawParameterValue("snap");

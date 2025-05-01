@@ -170,7 +170,7 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
     if (pitchCurve.empty())
         return;
     
-    playHead = this->getPlayHead(); // Get playhead and project information
+    playHead = this->getPlayHead();
     if (playHead != nullptr)
     {
         playHead->getCurrentPosition(cpi);
@@ -196,7 +196,7 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
         float quantValue = *parameters.getRawParameterValue("snap");
         float quantPitch = quantizePitch(pitch, quantValue);
         
-        smoothedPitch.setTargetValue(quantPitch);
+        smoothedPitch.setTargetValue(quantPitch)
         
         for (int channel = 0; channel < totalNumInputChannels; ++channel)
         {

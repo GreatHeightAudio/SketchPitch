@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="jQ3rMS" name="SketchPitch" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildAU,buildStandalone,buildVST3"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildStandalone,buildVST3"
               pluginName="SketchPitch" pluginManufacturer="GreatHeight" pluginAUExportPrefix="SketchPitchAU"
               companyName="GreatHeight">
   <MAINGROUP id="Vx8DUz" name="SketchPitch">
@@ -548,6 +548,9 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="wCeYO2" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
+    <FILE id="D1fJr7" name="ModeComponent.cpp" compile="1" resource="0"
+          file="Source/ModeComponent.cpp"/>
+    <FILE id="vo371r" name="ModeComponent.h" compile="0" resource="0" file="Source/ModeComponent.h"/>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>

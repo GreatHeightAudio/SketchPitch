@@ -12,7 +12,7 @@
 using namespace juce;
 
 GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioProcessor& p)
-    : AudioProcessorEditor(&p), processor(p), mainComponent(p)
+    : AudioProcessorEditor(&p), processor(p), mainComponent(p), modeComponent(p)
 {
     setSize(refWidth, refHeight);
     setResizable(true, true);
@@ -20,6 +20,7 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioPr
 
     addAndMakeVisible(mainComponent);
     addAndMakeVisible(pitchGrid);
+    addAndMakeVisible(modeComponent);
     
     if (! processor.getPitchCurve().empty())
         {
@@ -56,8 +57,16 @@ void GrannyDrawAudioProcessorEditor::resized()
     int screenH = (int)(425.0f * scaleY);
 
     pitchGrid.setBounds(screenX, screenY, screenW, screenH);
+    
+    int modeX = (int)(20.0f * scaleX);
+    int modeY = (int)(20.0f * scaleY);
+    int modeW = (int)(160.0f * scaleX);
+    int modeH = (int)(30.0f * scaleY);
+
+    modeComponent.setBounds(modeX, modeY, modeW, modeH);
 
     mainComponent.setBounds(bounds);
+    
 }
 
 void GrannyDrawAudioProcessorEditor::timerCallback()

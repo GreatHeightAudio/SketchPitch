@@ -12,6 +12,7 @@
 #include "PluginProcessor.h"
 #include "DrawGrid.h"
 #include "MainComponent.h"
+#include "ModeComponent.h"
 
 class GrannyDrawAudioProcessorEditor  : public juce::AudioProcessorEditor,
                                         public juce::Timer
@@ -33,6 +34,7 @@ private:
     juce::Image sketchFrame;
     DrawGrid pitchGrid;
     MainComponent mainComponent;
+    ModeComponent modeComponent;
 
     void sendPitchCurve();
 

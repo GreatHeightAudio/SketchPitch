@@ -71,6 +71,8 @@ public:
     std::atomic<bool> needsCurveUpdate { false };
     
     SharedImages* getSharedImagesPtr() { return m_pSharedImagesPtr; };
+    
+    void setErasedRanges(const std::vector<std::pair<float, float>>& newRanges);
 
     
 private:
@@ -83,11 +85,18 @@ private:
     double pitchCurveDuration = 2; //(seconds)
     static double sampleCounter;
     
+    std::vector<std::pair<float, float>> erasedRanges;
+
+    
     std::vector<CurvePoint> pitchCurve;
   
     
     juce::AudioPlayHead *playHead;
     juce::AudioPlayHead::CurrentPositionInfo cpi;
+    
+    std::vector<bool> previousMuteStates;
+    std::vector<float> muteGains;
+
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GrannyDrawAudioProcessor)

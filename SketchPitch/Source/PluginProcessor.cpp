@@ -111,6 +111,8 @@ void GrannyDrawAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
 {
     pitchShiftEffect.setFs(sampleRate);
     smoothedPitch.reset(sampleRate, 0.02); // 20ms smoothing
+    previousMuteStates.resize(getTotalNumInputChannels(), false);
+    muteGains.resize(getTotalNumInputChannels(), 1.0f);
 
 }
 
@@ -158,68 +160,72 @@ float quantizePitch(float pitch, float snapAmount)
 
 void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
-    // Set up - get channel number and block size
     ScopedNoDenormals noDenormals;
-    const int totalNumInputChannels  = getTotalNumInputChannels();
+    const int totalNumInputChannels = getTotalNumInputChannels();
     const int totalNumOutputChannels = getTotalNumOutputChannels();
     const int numSamples = buffer.getNumSamples();
-    
+
     for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, numSamples);
-    
+
     if (pitchCurve.empty())
         return;
-    
-    playHead = this->getPlayHead();
+
+    playHead = getPlayHead();
     if (playHead != nullptr)
     {
         playHead->getCurrentPosition(cpi);
-        
+
         auto ppqPos = cpi.ppqPosition;
         const double timeSigNumerator = cpi.timeSigNumerator;
-        
+
         static constexpr double loopMultipliers[] = { 0.25, 0.5, 1.0, 2.0, 4.0, 8.0, 16.0 };
         auto* loopRateParam = parameters.getRawParameterValue("loopRate");
-        
+
         int loopRateIndex = (loopRateParam != nullptr) ? (int)(*loopRateParam) : 2;
         double loopMultiplier = loopMultipliers[juce::jlimit(0, 6, loopRateIndex)];
-    
         double beatsPerLoop = timeSigNumerator / loopMultiplier;
-    
-        double phase = fmod(ppqPos, beatsPerLoop) / beatsPerLoop;
-        
+        double phase = std::fmod(ppqPos, beatsPerLoop) / beatsPerLoop;
+
         int curveIndex = juce::jlimit(0, static_cast<int>(pitchCurve.size()) - 1,
                                       static_cast<int>(phase * pitchCurve.size()));
-        
+
+        float normX = static_cast<float>(curveIndex) / static_cast<float>(pitchCurve.size() - 1);
+        bool isMuted = std::any_of(erasedRanges.begin(), erasedRanges.end(),
+                                   [normX](const auto& range) {
+                                       return normX >= range.first && normX <= range.second;
+                                   });
+
         float pitch = pitchCurve[curveIndex].pitch;
-        
-        float quantValue = *parameters.getRawParameterValue("snap");
-        float quantPitch = quantizePitch(pitch, quantValue);
-        
-        smoothedPitch.setTargetValue(quantPitch)
-        
-        for (int channel = 0; channel < totalNumInputChannels; ++channel)
+        float snap = *parameters.getRawParameterValue("snap");
+        float quantPitch = quantizePitch(pitch, snap);
+        smoothedPitch.setTargetValue(quantPitch);
+
+        for (int ch = 0; ch < totalNumInputChannels; ++ch)
         {
-            float* channelData = buffer.getWritePointer(channel);
-            
-            for (int sample = 0; sample < numSamples; ++sample)
+            auto* channelData = buffer.getWritePointer(ch);
+
+            for (int i = 0; i < numSamples; ++i)
             {
-                float inputSample = channelData[sample];
-                
-                float smoothPitch = smoothedPitch.getNextValue();
-                pitchShiftEffect.setPitch(smoothPitch);
-                
-                float outputSample = pitchShiftEffect.processSample(inputSample, channel);
-                channelData[sample] = outputSample;
+                float in = channelData[i];
+
+                if (isMuted)
+                {
+                    // Apply a soft fade (linear for now)
+                    float fadeAmount = juce::jmap((float)i, 0.0f, (float)numSamples, 1.0f, 0.0f);
+                    fadeAmount = juce::jlimit(0.0f, 1.0f, fadeAmount);
+                    channelData[i] = in * fadeAmount;
+                }
+                else
+                {
+                    float pitchVal = smoothedPitch.getNextValue();
+                    pitchShiftEffect.setPitch(pitchVal);
+                    channelData[i] = pitchShiftEffect.processSample(in, ch);
+                }
             }
         }
     }
 }
-
-
-
-
-
 
 //==============================================================================
 bool GrannyDrawAudioProcessor::hasEditor() const
@@ -306,6 +312,15 @@ int GrannyDrawAudioProcessor::getPitchPlayheadIndex() const
 size_t GrannyDrawAudioProcessor::getPitchCurveLength() const
 {
     return pitchCurve.size();
+}
+
+void GrannyDrawAudioProcessor::setErasedRanges(const std::vector<std::pair<float, float>>& newRanges)
+{
+    erasedRanges = newRanges;
+    
+//    DBG("Erased ranges updated:");
+//        for (const auto& range : erasedRanges)
+//            DBG("Range: " << range.first << " to " << range.second);
 }
 
 

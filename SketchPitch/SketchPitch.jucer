@@ -1,530 +1,538 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="jQ3rMS" name="SketchPitch" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildStandalone,buildVST3"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildAU,buildStandalone,buildVST3"
               pluginName="SketchPitch" pluginManufacturer="GreatHeight" pluginAUExportPrefix="SketchPitchAU"
-              companyName="GreatHeight">
+              companyName="GreatHeightAudio">
   <MAINGROUP id="Vx8DUz" name="SketchPitch">
-    <GROUP id="{609D3F17-C20B-70D9-1029-FDDC85300F6F}" name="Source">
-      <FILE id="HRis2J" name="Sketch &amp; Pitch.png" compile="0" resource="1"
-            file="Source/Sketch &amp; Pitch.png"/>
-      <GROUP id="{2563A5E5-441A-2288-D455-25E908A89A3B}" name="Knob_big">
-        <FILE id="WptZBO" name="Knob_big__0000.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0000.png"/>
-        <FILE id="sVQVwA" name="Knob_big__0001.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0001.png"/>
-        <FILE id="BWKXT4" name="Knob_big__0002.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0002.png"/>
-        <FILE id="ZjPfNO" name="Knob_big__0003.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0003.png"/>
-        <FILE id="Xsh0vv" name="Knob_big__0004.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0004.png"/>
-        <FILE id="nFkdHI" name="Knob_big__0005.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0005.png"/>
-        <FILE id="jnluIx" name="Knob_big__0006.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0006.png"/>
-        <FILE id="QGx3E8" name="Knob_big__0007.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0007.png"/>
-        <FILE id="tND5fV" name="Knob_big__0008.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0008.png"/>
-        <FILE id="uTuRrP" name="Knob_big__0009.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0009.png"/>
-        <FILE id="Fyroef" name="Knob_big__0010.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0010.png"/>
-        <FILE id="c2xbtt" name="Knob_big__0011.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0011.png"/>
-        <FILE id="yspQ94" name="Knob_big__0012.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0012.png"/>
-        <FILE id="xdt46F" name="Knob_big__0013.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0013.png"/>
-        <FILE id="MumKGc" name="Knob_big__0014.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0014.png"/>
-        <FILE id="ZW8tQh" name="Knob_big__0015.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0015.png"/>
-        <FILE id="onSQvg" name="Knob_big__0016.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0016.png"/>
-        <FILE id="hTQSeI" name="Knob_big__0017.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0017.png"/>
-        <FILE id="Um7yyD" name="Knob_big__0018.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0018.png"/>
-        <FILE id="aNC503" name="Knob_big__0019.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0019.png"/>
-        <FILE id="zveLkz" name="Knob_big__0020.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0020.png"/>
-        <FILE id="u2K8HY" name="Knob_big__0021.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0021.png"/>
-        <FILE id="lh5hqB" name="Knob_big__0022.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0022.png"/>
-        <FILE id="XVx25L" name="Knob_big__0023.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0023.png"/>
-        <FILE id="h2nEjD" name="Knob_big__0024.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0024.png"/>
-        <FILE id="gFswYc" name="Knob_big__0025.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0025.png"/>
-        <FILE id="WsvLYe" name="Knob_big__0026.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0026.png"/>
-        <FILE id="yNvs15" name="Knob_big__0027.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0027.png"/>
-        <FILE id="OxSZGB" name="Knob_big__0028.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0028.png"/>
-        <FILE id="XMHHf5" name="Knob_big__0029.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0029.png"/>
-        <FILE id="BsYD8O" name="Knob_big__0030.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0030.png"/>
-        <FILE id="wvi4BI" name="Knob_big__0031.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0031.png"/>
-        <FILE id="MNY9gV" name="Knob_big__0032.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0032.png"/>
-        <FILE id="DyM4f2" name="Knob_big__0033.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0033.png"/>
-        <FILE id="bNCCET" name="Knob_big__0034.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0034.png"/>
-        <FILE id="DN5Rqr" name="Knob_big__0035.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0035.png"/>
-        <FILE id="Bzhbmn" name="Knob_big__0036.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0036.png"/>
-        <FILE id="olkRls" name="Knob_big__0037.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0037.png"/>
-        <FILE id="ejkwsm" name="Knob_big__0038.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0038.png"/>
-        <FILE id="TZtHOA" name="Knob_big__0039.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0039.png"/>
-        <FILE id="lkdcwz" name="Knob_big__0040.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0040.png"/>
-        <FILE id="ehh67w" name="Knob_big__0041.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0041.png"/>
-        <FILE id="CtK2cu" name="Knob_big__0042.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0042.png"/>
-        <FILE id="ZQrXFW" name="Knob_big__0043.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0043.png"/>
-        <FILE id="lTtWVy" name="Knob_big__0044.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0044.png"/>
-        <FILE id="MKS9tx" name="Knob_big__0045.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0045.png"/>
-        <FILE id="WeqemB" name="Knob_big__0046.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0046.png"/>
-        <FILE id="xSPbYk" name="Knob_big__0047.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0047.png"/>
-        <FILE id="CUmB5H" name="Knob_big__0048.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0048.png"/>
-        <FILE id="wUhe4V" name="Knob_big__0049.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0049.png"/>
-        <FILE id="wAguE8" name="Knob_big__0050.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0050.png"/>
-        <FILE id="m26wvx" name="Knob_big__0051.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0051.png"/>
-        <FILE id="X4Zkki" name="Knob_big__0052.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0052.png"/>
-        <FILE id="PwXLyy" name="Knob_big__0053.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0053.png"/>
-        <FILE id="YEv7Wb" name="Knob_big__0054.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0054.png"/>
-        <FILE id="cACKt1" name="Knob_big__0055.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0055.png"/>
-        <FILE id="eKBWOi" name="Knob_big__0056.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0056.png"/>
-        <FILE id="eAiMvt" name="Knob_big__0057.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0057.png"/>
-        <FILE id="YZ3suw" name="Knob_big__0058.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0058.png"/>
-        <FILE id="GATNRU" name="Knob_big__0059.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0059.png"/>
-        <FILE id="RGyRW0" name="Knob_big__0060.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0060.png"/>
-        <FILE id="EPOIaF" name="Knob_big__0061.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0061.png"/>
-        <FILE id="JfffIS" name="Knob_big__0062.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0062.png"/>
-        <FILE id="UYmHLj" name="Knob_big__0063.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0063.png"/>
-        <FILE id="RjKar1" name="Knob_big__0064.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0064.png"/>
-        <FILE id="U8C0eX" name="Knob_big__0065.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0065.png"/>
-        <FILE id="NHlQjG" name="Knob_big__0066.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0066.png"/>
-        <FILE id="v6fINb" name="Knob_big__0067.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0067.png"/>
-        <FILE id="dhtNsR" name="Knob_big__0068.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0068.png"/>
-        <FILE id="dyyICe" name="Knob_big__0069.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0069.png"/>
-        <FILE id="PJjrHl" name="Knob_big__0070.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0070.png"/>
-        <FILE id="P3cwP9" name="Knob_big__0071.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0071.png"/>
-        <FILE id="hP4Id6" name="Knob_big__0072.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0072.png"/>
-        <FILE id="yZAe0x" name="Knob_big__0073.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0073.png"/>
-        <FILE id="pF9Oas" name="Knob_big__0074.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0074.png"/>
-        <FILE id="uYAw5l" name="Knob_big__0075.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0075.png"/>
-        <FILE id="AUjbcZ" name="Knob_big__0076.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0076.png"/>
-        <FILE id="qUFOrJ" name="Knob_big__0077.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0077.png"/>
-        <FILE id="eZ0QtA" name="Knob_big__0078.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0078.png"/>
-        <FILE id="vVGegB" name="Knob_big__0079.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0079.png"/>
-        <FILE id="EblC1b" name="Knob_big__0080.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0080.png"/>
-        <FILE id="K0xB84" name="Knob_big__0081.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0081.png"/>
-        <FILE id="hzmpcw" name="Knob_big__0082.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0082.png"/>
-        <FILE id="WIWEcm" name="Knob_big__0083.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0083.png"/>
-        <FILE id="y7grxc" name="Knob_big__0084.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0084.png"/>
-        <FILE id="GUj0WQ" name="Knob_big__0085.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0085.png"/>
-        <FILE id="JUKESx" name="Knob_big__0086.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0086.png"/>
-        <FILE id="SWqIgb" name="Knob_big__0087.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0087.png"/>
-        <FILE id="HpCM5s" name="Knob_big__0088.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0088.png"/>
-        <FILE id="y8ASZ8" name="Knob_big__0089.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0089.png"/>
-        <FILE id="bb5GWD" name="Knob_big__0090.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0090.png"/>
-        <FILE id="DZCRf9" name="Knob_big__0091.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0091.png"/>
-        <FILE id="FdTMx3" name="Knob_big__0092.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0092.png"/>
-        <FILE id="rQus6E" name="Knob_big__0093.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0093.png"/>
-        <FILE id="wAwQd4" name="Knob_big__0094.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0094.png"/>
-        <FILE id="etjJdf" name="Knob_big__0095.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0095.png"/>
-        <FILE id="mhMag9" name="Knob_big__0096.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0096.png"/>
-        <FILE id="b6c3NO" name="Knob_big__0097.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0097.png"/>
-        <FILE id="jMEPfu" name="Knob_big__0098.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0098.png"/>
-        <FILE id="d32lNU" name="Knob_big__0099.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0099.png"/>
-        <FILE id="rJsISa" name="Knob_big__0100.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0100.png"/>
-        <FILE id="XOG9ga" name="Knob_big__0101.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0101.png"/>
-        <FILE id="JbCaOK" name="Knob_big__0102.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0102.png"/>
-        <FILE id="AIOXVB" name="Knob_big__0103.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0103.png"/>
-        <FILE id="XD49Wr" name="Knob_big__0104.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0104.png"/>
-        <FILE id="PFAiUG" name="Knob_big__0105.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0105.png"/>
-        <FILE id="GuGB3r" name="Knob_big__0106.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0106.png"/>
-        <FILE id="WyN2q9" name="Knob_big__0107.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0107.png"/>
-        <FILE id="M7ZKJm" name="Knob_big__0108.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0108.png"/>
-        <FILE id="A6Qjvq" name="Knob_big__0109.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0109.png"/>
-        <FILE id="AuwI1Z" name="Knob_big__0110.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0110.png"/>
-        <FILE id="la8vCM" name="Knob_big__0111.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0111.png"/>
-        <FILE id="eHfsmw" name="Knob_big__0112.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0112.png"/>
-        <FILE id="YOTf4S" name="Knob_big__0113.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0113.png"/>
-        <FILE id="pQK0Tw" name="Knob_big__0114.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0114.png"/>
-        <FILE id="TSkAgY" name="Knob_big__0115.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0115.png"/>
-        <FILE id="yXC5SD" name="Knob_big__0116.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0116.png"/>
-        <FILE id="qvS7pZ" name="Knob_big__0117.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0117.png"/>
-        <FILE id="wieSpo" name="Knob_big__0118.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0118.png"/>
-        <FILE id="mIoNRz" name="Knob_big__0119.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0119.png"/>
-        <FILE id="YNokke" name="Knob_big__0120.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0120.png"/>
-        <FILE id="WO23XR" name="Knob_big__0121.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0121.png"/>
-        <FILE id="yreUqU" name="Knob_big__0122.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0122.png"/>
-        <FILE id="q7ygAG" name="Knob_big__0123.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0123.png"/>
-        <FILE id="TJ6SnT" name="Knob_big__0124.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0124.png"/>
-        <FILE id="l6vhIb" name="Knob_big__0125.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0125.png"/>
-        <FILE id="qBa4UL" name="Knob_big__0126.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0126.png"/>
-        <FILE id="sHvbAS" name="Knob_big__0127.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0127.png"/>
-        <FILE id="lmTFgo" name="Knob_big__0128.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0128.png"/>
-        <FILE id="OsmiLA" name="Knob_big__0129.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0129.png"/>
-        <FILE id="qo4JZ8" name="Knob_big__0130.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0130.png"/>
-        <FILE id="iOQ4kv" name="Knob_big__0131.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0131.png"/>
-        <FILE id="lA4f2d" name="Knob_big__0132.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0132.png"/>
-        <FILE id="SRgQCb" name="Knob_big__0133.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0133.png"/>
-        <FILE id="uNOtda" name="Knob_big__0134.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0134.png"/>
-        <FILE id="G0znSR" name="Knob_big__0135.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0135.png"/>
-        <FILE id="gOtQR2" name="Knob_big__0136.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0136.png"/>
-        <FILE id="B4quHE" name="Knob_big__0137.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0137.png"/>
-        <FILE id="tVpSt2" name="Knob_big__0138.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0138.png"/>
-        <FILE id="v7vgR2" name="Knob_big__0139.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0139.png"/>
-        <FILE id="KOgp2H" name="Knob_big__0140.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0140.png"/>
-        <FILE id="aKQ5J8" name="Knob_big__0141.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0141.png"/>
-        <FILE id="BSuX3t" name="Knob_big__0142.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0142.png"/>
-        <FILE id="JVy4YP" name="Knob_big__0143.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0143.png"/>
-        <FILE id="iHVlmx" name="Knob_big__0144.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0144.png"/>
-        <FILE id="C3A9WM" name="Knob_big__0145.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0145.png"/>
-        <FILE id="fqNdQP" name="Knob_big__0146.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0146.png"/>
-        <FILE id="e3Pr3U" name="Knob_big__0147.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0147.png"/>
-        <FILE id="MIsIFt" name="Knob_big__0148.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0148.png"/>
-        <FILE id="rmVXRJ" name="Knob_big__0149.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0149.png"/>
-        <FILE id="CjsME5" name="Knob_big__0150.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0150.png"/>
-        <FILE id="NAfEjh" name="Knob_big__0151.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0151.png"/>
-        <FILE id="A60y8j" name="Knob_big__0152.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0152.png"/>
-        <FILE id="OLO0l0" name="Knob_big__0153.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0153.png"/>
-        <FILE id="o1FBXC" name="Knob_big__0154.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0154.png"/>
-        <FILE id="Q3xHsf" name="Knob_big__0155.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0155.png"/>
-        <FILE id="mdUT8R" name="Knob_big__0156.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0156.png"/>
-        <FILE id="AFxUzi" name="Knob_big__0157.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0157.png"/>
-        <FILE id="QivXPj" name="Knob_big__0158.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0158.png"/>
-        <FILE id="IXPfKx" name="Knob_big__0159.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0159.png"/>
-        <FILE id="lqmGBM" name="Knob_big__0160.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0160.png"/>
-        <FILE id="I7elLN" name="Knob_big__0161.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0161.png"/>
-        <FILE id="AEtKsm" name="Knob_big__0162.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0162.png"/>
-        <FILE id="Ep5j04" name="Knob_big__0163.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0163.png"/>
-        <FILE id="Vsxz9q" name="Knob_big__0164.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0164.png"/>
-        <FILE id="HVcP4C" name="Knob_big__0165.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0165.png"/>
-        <FILE id="hQLxWV" name="Knob_big__0166.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0166.png"/>
-        <FILE id="gifsHV" name="Knob_big__0167.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0167.png"/>
-        <FILE id="DE2N3l" name="Knob_big__0168.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0168.png"/>
-        <FILE id="q5mOdo" name="Knob_big__0169.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0169.png"/>
-        <FILE id="axkElW" name="Knob_big__0170.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0170.png"/>
-        <FILE id="GcoKMh" name="Knob_big__0171.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0171.png"/>
-        <FILE id="WeQEQC" name="Knob_big__0172.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0172.png"/>
-        <FILE id="tgA066" name="Knob_big__0173.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0173.png"/>
-        <FILE id="iVcjp8" name="Knob_big__0174.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0174.png"/>
-        <FILE id="fvdkHS" name="Knob_big__0175.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0175.png"/>
-        <FILE id="KlqYvO" name="Knob_big__0176.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0176.png"/>
-        <FILE id="XosaEl" name="Knob_big__0177.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0177.png"/>
-        <FILE id="vpVQ9t" name="Knob_big__0178.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0178.png"/>
-        <FILE id="SU466P" name="Knob_big__0179.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0179.png"/>
-        <FILE id="ndceeq" name="Knob_big__0180.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0180.png"/>
-        <FILE id="LVN8Yl" name="Knob_big__0181.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0181.png"/>
-        <FILE id="X0I8Jq" name="Knob_big__0182.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0182.png"/>
-        <FILE id="zx0uQo" name="Knob_big__0183.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0183.png"/>
-        <FILE id="h0vW1c" name="Knob_big__0184.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0184.png"/>
-        <FILE id="tTXTbW" name="Knob_big__0185.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0185.png"/>
-        <FILE id="p0saEy" name="Knob_big__0186.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0186.png"/>
-        <FILE id="XTYoVt" name="Knob_big__0187.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0187.png"/>
-        <FILE id="aXF8kb" name="Knob_big__0188.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0188.png"/>
-        <FILE id="mrHZHk" name="Knob_big__0189.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0189.png"/>
-        <FILE id="LnST8a" name="Knob_big__0190.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0190.png"/>
-        <FILE id="QiVmlT" name="Knob_big__0191.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0191.png"/>
-        <FILE id="KikRzx" name="Knob_big__0192.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0192.png"/>
-        <FILE id="MFSNDw" name="Knob_big__0193.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0193.png"/>
-        <FILE id="ujQTcx" name="Knob_big__0194.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0194.png"/>
-        <FILE id="pDasiX" name="Knob_big__0195.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0195.png"/>
-        <FILE id="gqEswu" name="Knob_big__0196.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0196.png"/>
-        <FILE id="ZAb6gA" name="Knob_big__0197.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0197.png"/>
-        <FILE id="j4nDMz" name="Knob_big__0198.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0198.png"/>
-        <FILE id="tMdFgy" name="Knob_big__0199.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0199.png"/>
-        <FILE id="j4irsB" name="Knob_big__0200.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0200.png"/>
-        <FILE id="tUFgSc" name="Knob_big__0201.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0201.png"/>
-        <FILE id="K1iUN0" name="Knob_big__0202.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0202.png"/>
-        <FILE id="E4F196" name="Knob_big__0203.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0203.png"/>
-        <FILE id="NzIrnS" name="Knob_big__0204.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0204.png"/>
-        <FILE id="lZLTsZ" name="Knob_big__0205.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0205.png"/>
-        <FILE id="Ln9j4f" name="Knob_big__0206.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0206.png"/>
-        <FILE id="K2mZPX" name="Knob_big__0207.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0207.png"/>
-        <FILE id="gARkH6" name="Knob_big__0208.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0208.png"/>
-        <FILE id="SBrZFB" name="Knob_big__0209.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0209.png"/>
-        <FILE id="l45cCM" name="Knob_big__0210.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0210.png"/>
-        <FILE id="QTTDoX" name="Knob_big__0211.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0211.png"/>
-        <FILE id="epTQfL" name="Knob_big__0212.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0212.png"/>
-        <FILE id="FMQHL4" name="Knob_big__0213.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0213.png"/>
-        <FILE id="CXw6p6" name="Knob_big__0214.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0214.png"/>
-        <FILE id="wEe5nH" name="Knob_big__0215.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0215.png"/>
-        <FILE id="uZGZNc" name="Knob_big__0216.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0216.png"/>
-        <FILE id="QITrQx" name="Knob_big__0217.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0217.png"/>
-        <FILE id="pqj7Zf" name="Knob_big__0218.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0218.png"/>
-        <FILE id="UESyLF" name="Knob_big__0219.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0219.png"/>
-        <FILE id="epOX5C" name="Knob_big__0220.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0220.png"/>
-        <FILE id="GsDaca" name="Knob_big__0221.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0221.png"/>
-        <FILE id="AHA91g" name="Knob_big__0222.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0222.png"/>
-        <FILE id="KeGr8h" name="Knob_big__0223.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0223.png"/>
-        <FILE id="sp1CCx" name="Knob_big__0224.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0224.png"/>
-        <FILE id="ivnWXK" name="Knob_big__0225.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0225.png"/>
-        <FILE id="reKMbG" name="Knob_big__0226.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0226.png"/>
-        <FILE id="MHcfk6" name="Knob_big__0227.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0227.png"/>
-        <FILE id="uxgCHA" name="Knob_big__0228.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0228.png"/>
-        <FILE id="ay59MB" name="Knob_big__0229.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0229.png"/>
-        <FILE id="sAKKp8" name="Knob_big__0230.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0230.png"/>
-        <FILE id="pq3rF5" name="Knob_big__0231.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0231.png"/>
-        <FILE id="MQ7xki" name="Knob_big__0232.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0232.png"/>
-        <FILE id="mzyxBc" name="Knob_big__0233.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0233.png"/>
-        <FILE id="ahhZ3b" name="Knob_big__0234.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0234.png"/>
-        <FILE id="vyGi2L" name="Knob_big__0235.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0235.png"/>
-        <FILE id="CCAB7Y" name="Knob_big__0236.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0236.png"/>
-        <FILE id="aaCnmr" name="Knob_big__0237.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0237.png"/>
-        <FILE id="OmzRW6" name="Knob_big__0238.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0238.png"/>
-        <FILE id="f2Q4VR" name="Knob_big__0239.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0239.png"/>
-        <FILE id="jX5eAh" name="Knob_big__0240.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0240.png"/>
-        <FILE id="mmgZ0i" name="Knob_big__0241.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0241.png"/>
-        <FILE id="tcbhI7" name="Knob_big__0242.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0242.png"/>
-        <FILE id="C5fW4w" name="Knob_big__0243.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0243.png"/>
-        <FILE id="LpzBpF" name="Knob_big__0244.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0244.png"/>
-        <FILE id="NS0l42" name="Knob_big__0245.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0245.png"/>
-        <FILE id="HO3GDk" name="Knob_big__0246.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0246.png"/>
-        <FILE id="sV8AvK" name="Knob_big__0247.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0247.png"/>
-        <FILE id="iVctyD" name="Knob_big__0248.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0248.png"/>
-        <FILE id="pDhuOr" name="Knob_big__0249.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0249.png"/>
-        <FILE id="nkRK68" name="Knob_big__0250.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0250.png"/>
-        <FILE id="jopxrY" name="Knob_big__0251.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0251.png"/>
-        <FILE id="xFAYFj" name="Knob_big__0252.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0252.png"/>
-        <FILE id="HcpCBw" name="Knob_big__0253.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0253.png"/>
-        <FILE id="jydNqQ" name="Knob_big__0254.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0254.png"/>
-        <FILE id="SnmKyY" name="Knob_big__0255.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0255.png"/>
-        <FILE id="Fy0jlA" name="Knob_big__0256.png" compile="0" resource="1"
-              file="Source/Knob_big/Knob_big__0256.png"/>
+    <GROUP id="{D4D4841B-5580-667E-67E7-3116E0780940}" name="Images">
+      <FILE id="AD3h0N" name="Sketch &amp; Pitch.png" compile="0" resource="1"
+            file="Images/Sketch &amp; Pitch.png"/>
+      <FILE id="JkZL9N" name="erase.png" compile="0" resource="1" file="Images/erase.png"/>
+      <FILE id="H4qC6D" name="multipencil.png" compile="0" resource="1" file="Images/multipencil.png"/>
+      <FILE id="O49D80" name="solopencil.png" compile="0" resource="1" file="Images/solopencil.png"/>
+      <GROUP id="{65CFD9B9-6BE6-65D6-2216-D60B71DE9433}" name="Knob_big">
+        <FILE id="JGjjuu" name="Knob_big__0000.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0000.png"/>
+        <FILE id="nEA9k3" name="Knob_big__0001.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0001.png"/>
+        <FILE id="vywXrG" name="Knob_big__0002.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0002.png"/>
+        <FILE id="MXwT59" name="Knob_big__0003.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0003.png"/>
+        <FILE id="a9l2p5" name="Knob_big__0004.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0004.png"/>
+        <FILE id="RlLJ5V" name="Knob_big__0005.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0005.png"/>
+        <FILE id="QMU31V" name="Knob_big__0006.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0006.png"/>
+        <FILE id="v64nVJ" name="Knob_big__0007.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0007.png"/>
+        <FILE id="Qg6Z4T" name="Knob_big__0008.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0008.png"/>
+        <FILE id="N9oK56" name="Knob_big__0009.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0009.png"/>
+        <FILE id="rw0h3s" name="Knob_big__0010.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0010.png"/>
+        <FILE id="O2ukgL" name="Knob_big__0011.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0011.png"/>
+        <FILE id="uFfiQC" name="Knob_big__0012.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0012.png"/>
+        <FILE id="hpjuBg" name="Knob_big__0013.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0013.png"/>
+        <FILE id="CSS3su" name="Knob_big__0014.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0014.png"/>
+        <FILE id="oscDvf" name="Knob_big__0015.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0015.png"/>
+        <FILE id="WL9pUt" name="Knob_big__0016.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0016.png"/>
+        <FILE id="l0skCQ" name="Knob_big__0017.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0017.png"/>
+        <FILE id="gaR06A" name="Knob_big__0018.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0018.png"/>
+        <FILE id="VVnEzK" name="Knob_big__0019.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0019.png"/>
+        <FILE id="acWNST" name="Knob_big__0020.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0020.png"/>
+        <FILE id="pwXTkE" name="Knob_big__0021.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0021.png"/>
+        <FILE id="H5I3YA" name="Knob_big__0022.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0022.png"/>
+        <FILE id="tRSDyR" name="Knob_big__0023.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0023.png"/>
+        <FILE id="oQ8uyz" name="Knob_big__0024.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0024.png"/>
+        <FILE id="Wkfbi6" name="Knob_big__0025.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0025.png"/>
+        <FILE id="W7o4GT" name="Knob_big__0026.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0026.png"/>
+        <FILE id="MUsdi8" name="Knob_big__0027.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0027.png"/>
+        <FILE id="FnAMiq" name="Knob_big__0028.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0028.png"/>
+        <FILE id="mWF6aC" name="Knob_big__0029.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0029.png"/>
+        <FILE id="Z35bY3" name="Knob_big__0030.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0030.png"/>
+        <FILE id="onFY9R" name="Knob_big__0031.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0031.png"/>
+        <FILE id="EyaPI3" name="Knob_big__0032.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0032.png"/>
+        <FILE id="Xky1cX" name="Knob_big__0033.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0033.png"/>
+        <FILE id="FYs7yS" name="Knob_big__0034.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0034.png"/>
+        <FILE id="Lh7ohF" name="Knob_big__0035.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0035.png"/>
+        <FILE id="mCpB7c" name="Knob_big__0036.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0036.png"/>
+        <FILE id="VsZJfj" name="Knob_big__0037.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0037.png"/>
+        <FILE id="wo9EUZ" name="Knob_big__0038.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0038.png"/>
+        <FILE id="MDG20E" name="Knob_big__0039.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0039.png"/>
+        <FILE id="pe87IU" name="Knob_big__0040.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0040.png"/>
+        <FILE id="v0UMlp" name="Knob_big__0041.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0041.png"/>
+        <FILE id="HrCTSE" name="Knob_big__0042.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0042.png"/>
+        <FILE id="rmUbXj" name="Knob_big__0043.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0043.png"/>
+        <FILE id="XgkM6K" name="Knob_big__0044.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0044.png"/>
+        <FILE id="cMiUMh" name="Knob_big__0045.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0045.png"/>
+        <FILE id="zbEJ11" name="Knob_big__0046.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0046.png"/>
+        <FILE id="JJNjV2" name="Knob_big__0047.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0047.png"/>
+        <FILE id="WyF0tA" name="Knob_big__0048.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0048.png"/>
+        <FILE id="uT8Plk" name="Knob_big__0049.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0049.png"/>
+        <FILE id="xira6M" name="Knob_big__0050.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0050.png"/>
+        <FILE id="Lrq5S4" name="Knob_big__0051.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0051.png"/>
+        <FILE id="Ggnl1x" name="Knob_big__0052.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0052.png"/>
+        <FILE id="MDtJPW" name="Knob_big__0053.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0053.png"/>
+        <FILE id="VLLJRH" name="Knob_big__0054.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0054.png"/>
+        <FILE id="WpTo5V" name="Knob_big__0055.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0055.png"/>
+        <FILE id="DI1koE" name="Knob_big__0056.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0056.png"/>
+        <FILE id="zf9t3o" name="Knob_big__0057.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0057.png"/>
+        <FILE id="j77KFf" name="Knob_big__0058.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0058.png"/>
+        <FILE id="ixnj4a" name="Knob_big__0059.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0059.png"/>
+        <FILE id="EDLSOI" name="Knob_big__0060.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0060.png"/>
+        <FILE id="KT3LGT" name="Knob_big__0061.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0061.png"/>
+        <FILE id="gTGiXt" name="Knob_big__0062.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0062.png"/>
+        <FILE id="zlOM7T" name="Knob_big__0063.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0063.png"/>
+        <FILE id="Wtreuv" name="Knob_big__0064.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0064.png"/>
+        <FILE id="zuLCMx" name="Knob_big__0065.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0065.png"/>
+        <FILE id="nc9lVA" name="Knob_big__0066.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0066.png"/>
+        <FILE id="wpgeqk" name="Knob_big__0067.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0067.png"/>
+        <FILE id="CzkDLm" name="Knob_big__0068.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0068.png"/>
+        <FILE id="ikgAwo" name="Knob_big__0069.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0069.png"/>
+        <FILE id="QD9mgr" name="Knob_big__0070.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0070.png"/>
+        <FILE id="R1jtVr" name="Knob_big__0071.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0071.png"/>
+        <FILE id="vAqcZR" name="Knob_big__0072.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0072.png"/>
+        <FILE id="vhBSqi" name="Knob_big__0073.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0073.png"/>
+        <FILE id="sQAeXl" name="Knob_big__0074.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0074.png"/>
+        <FILE id="DQa16n" name="Knob_big__0075.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0075.png"/>
+        <FILE id="lsjsDu" name="Knob_big__0076.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0076.png"/>
+        <FILE id="Rq90Js" name="Knob_big__0077.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0077.png"/>
+        <FILE id="Pgy8AQ" name="Knob_big__0078.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0078.png"/>
+        <FILE id="QiT80a" name="Knob_big__0079.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0079.png"/>
+        <FILE id="F26TlY" name="Knob_big__0080.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0080.png"/>
+        <FILE id="OkS0zo" name="Knob_big__0081.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0081.png"/>
+        <FILE id="y5W54I" name="Knob_big__0082.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0082.png"/>
+        <FILE id="oh2rSU" name="Knob_big__0083.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0083.png"/>
+        <FILE id="l2QDGv" name="Knob_big__0084.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0084.png"/>
+        <FILE id="rFmICp" name="Knob_big__0085.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0085.png"/>
+        <FILE id="kkRKDk" name="Knob_big__0086.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0086.png"/>
+        <FILE id="ljucfF" name="Knob_big__0087.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0087.png"/>
+        <FILE id="zHgQCU" name="Knob_big__0088.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0088.png"/>
+        <FILE id="yx7Rdl" name="Knob_big__0089.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0089.png"/>
+        <FILE id="DwhWGD" name="Knob_big__0090.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0090.png"/>
+        <FILE id="WWUrKa" name="Knob_big__0091.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0091.png"/>
+        <FILE id="sFRl5z" name="Knob_big__0092.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0092.png"/>
+        <FILE id="yEvjMB" name="Knob_big__0093.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0093.png"/>
+        <FILE id="OjlFI5" name="Knob_big__0094.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0094.png"/>
+        <FILE id="pXLjb5" name="Knob_big__0095.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0095.png"/>
+        <FILE id="guxT5V" name="Knob_big__0096.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0096.png"/>
+        <FILE id="jlrwWZ" name="Knob_big__0097.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0097.png"/>
+        <FILE id="WXGQ3n" name="Knob_big__0098.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0098.png"/>
+        <FILE id="RS6ihL" name="Knob_big__0099.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0099.png"/>
+        <FILE id="vbeSxn" name="Knob_big__0100.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0100.png"/>
+        <FILE id="b0kKr8" name="Knob_big__0101.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0101.png"/>
+        <FILE id="CH6dnL" name="Knob_big__0102.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0102.png"/>
+        <FILE id="sr1tFV" name="Knob_big__0103.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0103.png"/>
+        <FILE id="ku7N5Q" name="Knob_big__0104.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0104.png"/>
+        <FILE id="lZ3iTp" name="Knob_big__0105.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0105.png"/>
+        <FILE id="E77eUJ" name="Knob_big__0106.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0106.png"/>
+        <FILE id="k16kZS" name="Knob_big__0107.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0107.png"/>
+        <FILE id="zVXGoN" name="Knob_big__0108.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0108.png"/>
+        <FILE id="fJfd5w" name="Knob_big__0109.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0109.png"/>
+        <FILE id="A63SJp" name="Knob_big__0110.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0110.png"/>
+        <FILE id="QBoYqT" name="Knob_big__0111.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0111.png"/>
+        <FILE id="jY4g7t" name="Knob_big__0112.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0112.png"/>
+        <FILE id="oAzsIT" name="Knob_big__0113.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0113.png"/>
+        <FILE id="YuNcMp" name="Knob_big__0114.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0114.png"/>
+        <FILE id="E9AMTp" name="Knob_big__0115.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0115.png"/>
+        <FILE id="QC9KUB" name="Knob_big__0116.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0116.png"/>
+        <FILE id="Owh0tV" name="Knob_big__0117.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0117.png"/>
+        <FILE id="xlOw0n" name="Knob_big__0118.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0118.png"/>
+        <FILE id="wCquYY" name="Knob_big__0119.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0119.png"/>
+        <FILE id="yoJhZz" name="Knob_big__0120.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0120.png"/>
+        <FILE id="EFnNLI" name="Knob_big__0121.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0121.png"/>
+        <FILE id="m5vK5v" name="Knob_big__0122.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0122.png"/>
+        <FILE id="xRhAmy" name="Knob_big__0123.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0123.png"/>
+        <FILE id="erNEJ8" name="Knob_big__0124.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0124.png"/>
+        <FILE id="XfbAmM" name="Knob_big__0125.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0125.png"/>
+        <FILE id="vYtdcN" name="Knob_big__0126.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0126.png"/>
+        <FILE id="pASXrR" name="Knob_big__0127.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0127.png"/>
+        <FILE id="nOkdeF" name="Knob_big__0128.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0128.png"/>
+        <FILE id="S3TEL9" name="Knob_big__0129.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0129.png"/>
+        <FILE id="VRIwr5" name="Knob_big__0130.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0130.png"/>
+        <FILE id="RayMen" name="Knob_big__0131.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0131.png"/>
+        <FILE id="QYXwY5" name="Knob_big__0132.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0132.png"/>
+        <FILE id="bs5S3Y" name="Knob_big__0133.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0133.png"/>
+        <FILE id="AsMHEN" name="Knob_big__0134.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0134.png"/>
+        <FILE id="pXhAKO" name="Knob_big__0135.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0135.png"/>
+        <FILE id="KA8AB5" name="Knob_big__0136.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0136.png"/>
+        <FILE id="gaMpAQ" name="Knob_big__0137.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0137.png"/>
+        <FILE id="zP764L" name="Knob_big__0138.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0138.png"/>
+        <FILE id="IbvIrC" name="Knob_big__0139.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0139.png"/>
+        <FILE id="AklHp0" name="Knob_big__0140.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0140.png"/>
+        <FILE id="dAdBnA" name="Knob_big__0141.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0141.png"/>
+        <FILE id="ACUS7U" name="Knob_big__0142.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0142.png"/>
+        <FILE id="Veo7yM" name="Knob_big__0143.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0143.png"/>
+        <FILE id="tdKO3S" name="Knob_big__0144.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0144.png"/>
+        <FILE id="to9rhN" name="Knob_big__0145.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0145.png"/>
+        <FILE id="v7yzgU" name="Knob_big__0146.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0146.png"/>
+        <FILE id="x9q5U0" name="Knob_big__0147.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0147.png"/>
+        <FILE id="Ni64aP" name="Knob_big__0148.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0148.png"/>
+        <FILE id="mVidFw" name="Knob_big__0149.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0149.png"/>
+        <FILE id="cglxpz" name="Knob_big__0150.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0150.png"/>
+        <FILE id="p2jIde" name="Knob_big__0151.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0151.png"/>
+        <FILE id="Wxircp" name="Knob_big__0152.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0152.png"/>
+        <FILE id="M3SnIf" name="Knob_big__0153.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0153.png"/>
+        <FILE id="jtGeZu" name="Knob_big__0154.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0154.png"/>
+        <FILE id="QsDewN" name="Knob_big__0155.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0155.png"/>
+        <FILE id="YLyZaU" name="Knob_big__0156.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0156.png"/>
+        <FILE id="OELYMe" name="Knob_big__0157.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0157.png"/>
+        <FILE id="qlI4UX" name="Knob_big__0158.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0158.png"/>
+        <FILE id="lt0MbH" name="Knob_big__0159.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0159.png"/>
+        <FILE id="B6VKLJ" name="Knob_big__0160.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0160.png"/>
+        <FILE id="rLAE72" name="Knob_big__0161.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0161.png"/>
+        <FILE id="p33MwY" name="Knob_big__0162.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0162.png"/>
+        <FILE id="QdtDZb" name="Knob_big__0163.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0163.png"/>
+        <FILE id="VGpb6Q" name="Knob_big__0164.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0164.png"/>
+        <FILE id="ZbROho" name="Knob_big__0165.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0165.png"/>
+        <FILE id="RQARnL" name="Knob_big__0166.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0166.png"/>
+        <FILE id="Q047YT" name="Knob_big__0167.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0167.png"/>
+        <FILE id="pdDdua" name="Knob_big__0168.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0168.png"/>
+        <FILE id="YPlHsG" name="Knob_big__0169.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0169.png"/>
+        <FILE id="yI89kf" name="Knob_big__0170.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0170.png"/>
+        <FILE id="iV0oCN" name="Knob_big__0171.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0171.png"/>
+        <FILE id="cUK6gE" name="Knob_big__0172.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0172.png"/>
+        <FILE id="R28B9Y" name="Knob_big__0173.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0173.png"/>
+        <FILE id="LJ4yBF" name="Knob_big__0174.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0174.png"/>
+        <FILE id="K7q5DY" name="Knob_big__0175.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0175.png"/>
+        <FILE id="mZ0QEo" name="Knob_big__0176.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0176.png"/>
+        <FILE id="w6BVRR" name="Knob_big__0177.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0177.png"/>
+        <FILE id="jxDvIT" name="Knob_big__0178.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0178.png"/>
+        <FILE id="gXSlTW" name="Knob_big__0179.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0179.png"/>
+        <FILE id="XVajtw" name="Knob_big__0180.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0180.png"/>
+        <FILE id="yHX2Gs" name="Knob_big__0181.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0181.png"/>
+        <FILE id="W3ZLvj" name="Knob_big__0182.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0182.png"/>
+        <FILE id="XjDl05" name="Knob_big__0183.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0183.png"/>
+        <FILE id="Z4FCwA" name="Knob_big__0184.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0184.png"/>
+        <FILE id="fZfm6J" name="Knob_big__0185.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0185.png"/>
+        <FILE id="WGwj3P" name="Knob_big__0186.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0186.png"/>
+        <FILE id="ZSPz5N" name="Knob_big__0187.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0187.png"/>
+        <FILE id="wFYEaf" name="Knob_big__0188.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0188.png"/>
+        <FILE id="W5UMrQ" name="Knob_big__0189.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0189.png"/>
+        <FILE id="BTQXrP" name="Knob_big__0190.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0190.png"/>
+        <FILE id="DrHaY9" name="Knob_big__0191.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0191.png"/>
+        <FILE id="DCz63t" name="Knob_big__0192.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0192.png"/>
+        <FILE id="mFNHfc" name="Knob_big__0193.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0193.png"/>
+        <FILE id="Zkwr7N" name="Knob_big__0194.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0194.png"/>
+        <FILE id="P7CF8O" name="Knob_big__0195.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0195.png"/>
+        <FILE id="lXQqlA" name="Knob_big__0196.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0196.png"/>
+        <FILE id="AktV6e" name="Knob_big__0197.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0197.png"/>
+        <FILE id="adqLHO" name="Knob_big__0198.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0198.png"/>
+        <FILE id="mEScRE" name="Knob_big__0199.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0199.png"/>
+        <FILE id="Mtpg3x" name="Knob_big__0200.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0200.png"/>
+        <FILE id="nhhXwG" name="Knob_big__0201.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0201.png"/>
+        <FILE id="DHqjaC" name="Knob_big__0202.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0202.png"/>
+        <FILE id="xyrmfe" name="Knob_big__0203.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0203.png"/>
+        <FILE id="GIZUEU" name="Knob_big__0204.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0204.png"/>
+        <FILE id="oQq0HR" name="Knob_big__0205.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0205.png"/>
+        <FILE id="j2eXIC" name="Knob_big__0206.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0206.png"/>
+        <FILE id="Dez2R6" name="Knob_big__0207.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0207.png"/>
+        <FILE id="FdEsOa" name="Knob_big__0208.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0208.png"/>
+        <FILE id="Xs1y2G" name="Knob_big__0209.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0209.png"/>
+        <FILE id="ncrYPD" name="Knob_big__0210.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0210.png"/>
+        <FILE id="yB8iCR" name="Knob_big__0211.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0211.png"/>
+        <FILE id="Vqk0G9" name="Knob_big__0212.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0212.png"/>
+        <FILE id="RSwS9v" name="Knob_big__0213.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0213.png"/>
+        <FILE id="rAh05j" name="Knob_big__0214.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0214.png"/>
+        <FILE id="k0GGy9" name="Knob_big__0215.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0215.png"/>
+        <FILE id="nS3gzp" name="Knob_big__0216.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0216.png"/>
+        <FILE id="xwjxcz" name="Knob_big__0217.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0217.png"/>
+        <FILE id="b7dadi" name="Knob_big__0218.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0218.png"/>
+        <FILE id="OTwE9X" name="Knob_big__0219.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0219.png"/>
+        <FILE id="Ri8IhJ" name="Knob_big__0220.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0220.png"/>
+        <FILE id="gBOGkQ" name="Knob_big__0221.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0221.png"/>
+        <FILE id="wWn0o2" name="Knob_big__0222.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0222.png"/>
+        <FILE id="jE629w" name="Knob_big__0223.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0223.png"/>
+        <FILE id="jYYVSb" name="Knob_big__0224.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0224.png"/>
+        <FILE id="D0wjwS" name="Knob_big__0225.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0225.png"/>
+        <FILE id="PLWIRo" name="Knob_big__0226.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0226.png"/>
+        <FILE id="HKGpEm" name="Knob_big__0227.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0227.png"/>
+        <FILE id="RAW0hS" name="Knob_big__0228.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0228.png"/>
+        <FILE id="IzBdRI" name="Knob_big__0229.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0229.png"/>
+        <FILE id="Mcy8PS" name="Knob_big__0230.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0230.png"/>
+        <FILE id="DN4hmO" name="Knob_big__0231.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0231.png"/>
+        <FILE id="drge9P" name="Knob_big__0232.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0232.png"/>
+        <FILE id="FDk7bH" name="Knob_big__0233.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0233.png"/>
+        <FILE id="nqQDRF" name="Knob_big__0234.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0234.png"/>
+        <FILE id="MKLvzd" name="Knob_big__0235.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0235.png"/>
+        <FILE id="aaRzHf" name="Knob_big__0236.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0236.png"/>
+        <FILE id="q9nNr1" name="Knob_big__0237.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0237.png"/>
+        <FILE id="KAuBV7" name="Knob_big__0238.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0238.png"/>
+        <FILE id="OuigDD" name="Knob_big__0239.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0239.png"/>
+        <FILE id="smLXXx" name="Knob_big__0240.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0240.png"/>
+        <FILE id="Gk2XOE" name="Knob_big__0241.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0241.png"/>
+        <FILE id="jWSDWG" name="Knob_big__0242.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0242.png"/>
+        <FILE id="xx56Zf" name="Knob_big__0243.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0243.png"/>
+        <FILE id="qg8UGK" name="Knob_big__0244.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0244.png"/>
+        <FILE id="q5Jd8O" name="Knob_big__0245.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0245.png"/>
+        <FILE id="TFDT1i" name="Knob_big__0246.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0246.png"/>
+        <FILE id="zIDIdv" name="Knob_big__0247.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0247.png"/>
+        <FILE id="Oy41ra" name="Knob_big__0248.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0248.png"/>
+        <FILE id="sAXnXM" name="Knob_big__0249.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0249.png"/>
+        <FILE id="uNcsS5" name="Knob_big__0250.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0250.png"/>
+        <FILE id="voXZP2" name="Knob_big__0251.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0251.png"/>
+        <FILE id="w6A60Q" name="Knob_big__0252.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0252.png"/>
+        <FILE id="wP9J1O" name="Knob_big__0253.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0253.png"/>
+        <FILE id="sOnEG8" name="Knob_big__0254.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0254.png"/>
+        <FILE id="oeDqCD" name="Knob_big__0255.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0255.png"/>
+        <FILE id="RtTSed" name="Knob_big__0256.png" compile="0" resource="1"
+              file="Images/Knob_big/Knob_big__0256.png"/>
       </GROUP>
-      <FILE id="O16fZn" name="Knob_big.png" compile="0" resource="1" file="Source/Knob_big.png"/>
+      <FILE id="LmMWdF" name="Knob_big.png" compile="0" resource="1" file="Images/Knob_big.png"/>
+    </GROUP>
+    <GROUP id="{609D3F17-C20B-70D9-1029-FDDC85300F6F}" name="Source">
+      <FILE id="D1fJr7" name="ModeComponent.cpp" compile="1" resource="0"
+            file="Source/ModeComponent.cpp"/>
+      <FILE id="vo371r" name="ModeComponent.h" compile="0" resource="0" file="Source/ModeComponent.h"/>
       <FILE id="r71tPM" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
       <FILE id="IDomDy" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
@@ -548,9 +556,6 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="wCeYO2" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
-    <FILE id="D1fJr7" name="ModeComponent.cpp" compile="1" resource="0"
-          file="Source/ModeComponent.cpp"/>
-    <FILE id="vo371r" name="ModeComponent.h" compile="0" resource="0" file="Source/ModeComponent.h"/>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
@@ -572,8 +577,8 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" targetName="NewProject"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="NewProject"/>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="SketchPitch"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="SketchPitch"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>

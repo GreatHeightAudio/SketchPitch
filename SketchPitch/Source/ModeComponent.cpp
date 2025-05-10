@@ -38,15 +38,15 @@ void ModeComponent::comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged)
     if (comboBoxThatHasChanged == &styleBox)
     {
         int selectedId = styleBox.getSelectedId();
-
-        switch (selectedId)
+        
+        if (onModeChanged != nullptr)
         {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
+            switch (selectedId)
+            {
+                case 1: onModeChanged(DrawGrid::DrawMode::Solo); break;
+                case 2: onModeChanged(DrawGrid::DrawMode::Layer); break;
+                case 3: onModeChanged(DrawGrid::DrawMode::Erase); break;
+            }
         }
     }
 }

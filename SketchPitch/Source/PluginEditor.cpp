@@ -8,11 +8,12 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "DrawGrid.h"
 
 using namespace juce;
 
 GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioProcessor& p)
-    : AudioProcessorEditor(&p), processor(p), mainComponent(p), modeComponent(p)
+: AudioProcessorEditor(&p), processor(p), pitchGrid(*p.getSharedImagesPtr()), mainComponent(p), modeComponent(p)
 {
     setSize(refWidth, refHeight);
     setResizable(true, true);
@@ -29,6 +30,14 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioPr
 
     pitchGrid.onCurveFinished = [this]{
         sendPitchCurve();
+    };
+    
+    modeComponent.onModeChanged = [this](DrawGrid::DrawMode newMode)
+    {
+        pitchGrid.setMode(newMode);
+    };
+    pitchGrid.onErased = [this]{
+        processor.setErasedRanges(pitchGrid.getErasedRanges());
     };
 
     Timer::startTimerHz(60);

@@ -21,13 +21,23 @@ public:
     juce::Image& getBackgroundImage() { return m_BackgroundImage; };
     
     juce::Image& getBigKnobImage()    { return m_BigKnob; };
-
     
+    juce::Image& getSoloCursor()    { return m_soloCursor; };
+    
+    juce::Image& getMultiCursor()    { return m_multiCursor; };
+
+    juce::Image& getEraserCursor()    { return m_eraserCursor; };
     
 private:
     juce::Image m_BackgroundImage;
     
     juce::Image m_BigKnob;
+    
+    juce::Image m_soloCursor;
+    
+    juce::Image m_multiCursor;
+    
+    juce::Image m_eraserCursor;
 
 };
 

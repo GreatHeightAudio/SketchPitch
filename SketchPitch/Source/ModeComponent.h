@@ -23,6 +23,7 @@ public:
     void paint(juce::Graphics&) override;
     void resized() override;
     void comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged) override;
+    std::function<void(DrawGrid::DrawMode)> onModeChanged;
 
 private:
     juce::ComboBox styleBox;

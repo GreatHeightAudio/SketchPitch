@@ -110,7 +110,7 @@ void GrannyDrawAudioProcessor::changeProgramName (int index, const String& newNa
 void GrannyDrawAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     pitchShiftEffect.setFs(sampleRate);
-    smoothedPitch.reset(sampleRate, 0.02); // 20ms smoothing
+    smoothedPitch.reset(sampleRate, 0.1);
     previousMuteStates.resize(getTotalNumInputChannels(), false);
     muteGains.resize(getTotalNumInputChannels(), 1.0f);
 
@@ -190,7 +190,7 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
         int curveIndex = juce::jlimit(0, static_cast<int>(pitchCurve.size()) - 1,
                                       static_cast<int>(phase * pitchCurve.size()));
 
-        float normX = static_cast<float>(curveIndex) / static_cast<float>(pitchCurve.size() - 1);
+        float normX = pitchCurve[curveIndex].normalizedX;
         bool isMuted = std::any_of(erasedRanges.begin(), erasedRanges.end(),
                                    [normX](const auto& range) {
                                        return normX >= range.first && normX <= range.second;
@@ -204,25 +204,40 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
         for (int ch = 0; ch < totalNumInputChannels; ++ch)
         {
             auto* channelData = buffer.getWritePointer(ch);
-
+            
+            bool wasMuted = previousMuteStates[ch];
+            float& gain = muteGains[ch];
+            float targetGain = isMuted ? 0.0f : 1.0f;
+            
+            float gainStep = (wasMuted != isMuted) ? (targetGain - gain) / (float)numSamples : 0.0f;
+            
+            float pitchVal = smoothedPitch.getCurrentValue();
+            if (!isMuted)
+            {
+                pitchVal = smoothedPitch.getNextValue();
+                pitchShiftEffect.setPitch(pitchVal);
+            }
+            
             for (int i = 0; i < numSamples; ++i)
             {
                 float in = channelData[i];
-
-                if (isMuted)
+                
+                if (!isMuted)
                 {
-                    // Apply a soft fade (linear for now)
-                    float fadeAmount = juce::jmap((float)i, 0.0f, (float)numSamples, 1.0f, 0.0f);
-                    fadeAmount = juce::jlimit(0.0f, 1.0f, fadeAmount);
-                    channelData[i] = in * fadeAmount;
+                    pitchVal = smoothedPitch.getNextValue();
+                    in = pitchShiftEffect.processSample(in, ch);
                 }
                 else
                 {
-                    float pitchVal = smoothedPitch.getNextValue();
-                    pitchShiftEffect.setPitch(pitchVal);
-                    channelData[i] = pitchShiftEffect.processSample(in, ch);
+                    in = 0.0f;
                 }
+                
+                gain += gainStep;
+                channelData[i] = in * gain;
             }
+            
+            gain = targetGain;
+            previousMuteStates[ch] = isMuted;
         }
     }
 }

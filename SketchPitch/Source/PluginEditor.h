@@ -35,6 +35,12 @@ private:
     DrawGrid pitchGrid;
     MainComponent mainComponent;
     ModeComponent modeComponent;
+    
+    juce::TextButton shakeButton { "Shake" };
+    std::unique_ptr<juce::Timer> shakeTimer;
+    juce::Point<int> originalWindowPos;
+    juce::uint32 shakeStartTime = 0;
+
 
     void sendPitchCurve();
 

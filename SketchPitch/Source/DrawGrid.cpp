@@ -129,7 +129,25 @@ void DrawGrid::applyVisualEraser()
         }
     }
 
-    erasedRanges = std::move(newRanges);
+    // Append new ranges
+    erasedRanges.insert(erasedRanges.end(), newRanges.begin(), newRanges.end());
+    std::sort(erasedRanges.begin(), erasedRanges.end());
+
+    std::vector<std::pair<float, float>> merged;
+    for (const auto& range : erasedRanges)
+    {
+        if (merged.empty() || range.first > merged.back().second + 0.01f) // 1% tolerance
+        {
+            merged.push_back(range);
+        }
+        else
+        {
+            merged.back().second = std::max(merged.back().second, range.second);
+        }
+    }
+
+    erasedRanges = std::move(merged);
+
 }
 
 
@@ -218,11 +236,14 @@ void DrawGrid::mouseDown(const juce::MouseEvent& e)
     }
 
     if (currentMode == DrawMode::Solo)
+    {
         curves.clear();
-
-    currentCurve.points.clear();
-    currentCurve.path.clear();
-    
+        eraserPoints.clear();
+        erasedRanges.clear();
+        currentCurve.points.clear();
+        currentCurve.path.clear();
+        fullPitchCurve.clear();
+    }
 
     auto clampedPos = getClampedPoint(e.getPosition());
 
@@ -335,7 +356,6 @@ void DrawGrid::mouseUp(const juce::MouseEvent&)
     currentCurve.points.clear();
     currentCurve.path.clear();
 
-
     if (onCurveFinished)
         onCurveFinished();
 }
@@ -429,5 +449,16 @@ void DrawGrid::setMode(DrawMode mode)
     }
 
     repaint(); // update UI if needed
+}
+
+void DrawGrid::reset()
+{
+    curves.clear();
+    eraserPoints.clear();
+    erasedRanges.clear();
+    fullPitchCurve.clear();
+    currentCurve.points.clear();
+    currentCurve.path.clear();
+    repaint();
 }
 

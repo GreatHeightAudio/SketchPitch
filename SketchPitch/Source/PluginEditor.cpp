@@ -22,6 +22,41 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioPr
     addAndMakeVisible(mainComponent);
     addAndMakeVisible(pitchGrid);
     addAndMakeVisible(modeComponent);
+    addAndMakeVisible(shakeButton);
+    shakeButton.onClick = [this]() {
+        pitchGrid.reset();
+        originalWindowPos = getTopLevelComponent()->getPosition();
+        shakeStartTime = juce::Time::getMillisecondCounter();
+
+        class ShakeTimer : public juce::Timer {
+        public:
+            ShakeTimer(GrannyDrawAudioProcessorEditor* ed) : editor(ed) {
+                startTimerHz(60);
+            }
+            void timerCallback() override {
+                auto now = juce::Time::getMillisecondCounter();
+                if (now - editor->shakeStartTime > 200) {
+                    stopTimer();
+                    editor->getTopLevelComponent()->setTopLeftPosition(editor->originalWindowPos);
+                    return;
+                }
+                int offsetX = juce::Random::getSystemRandom().nextInt(5) - 2;
+                int offsetY = juce::Random::getSystemRandom().nextInt(5) - 2;
+                editor->getTopLevelComponent()->setTopLeftPosition(
+                    editor->originalWindowPos + juce::Point<int>(offsetX, offsetY)
+                );
+            }
+        private:
+            GrannyDrawAudioProcessorEditor* editor;
+        };
+
+        shakeTimer = std::make_unique<ShakeTimer>(this);
+    };
+
+    pitchGrid.onErased = [this]()
+    {
+        processor.setErasedRanges(pitchGrid.getErasedRanges());
+    };
     
     if (! processor.getPitchCurve().empty())
         {
@@ -75,6 +110,14 @@ void GrannyDrawAudioProcessorEditor::resized()
     modeComponent.setBounds(modeX, modeY, modeW, modeH);
 
     mainComponent.setBounds(bounds);
+    
+    int shakeX = (int)(600.0f * scaleX);
+    int shakeY = (int)(20.0f * scaleY);
+    int shakeW = (int)(100.0f * scaleX);
+    int shakeH = (int)(30.0f * scaleY);
+
+    shakeButton.setBounds(shakeX, shakeY, shakeW, shakeH);
+
     
 }
 

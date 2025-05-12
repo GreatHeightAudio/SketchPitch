@@ -33,6 +33,7 @@ public:
 
     const std::vector<std::pair<float, float>>& getErasedRanges() const { return erasedRanges; }
 
+    void reset();
     juce::Point<int> getClampedPoint(juce::Point<int> p) const;
 
     std::vector<CurvePoint> getPitchCurve() const;

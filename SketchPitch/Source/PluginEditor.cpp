@@ -13,7 +13,7 @@
 using namespace juce;
 
 GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioProcessor& p)
-: AudioProcessorEditor(&p), processor(p), pitchGrid(*p.getSharedImagesPtr()), mainComponent(p), modeComponent(p)
+: AudioProcessorEditor(&p), processor(p), pitchGrid(*p.getSharedImagesPtr()), mainComponent(p), modeComponent(p, *p.getSharedImagesPtr())
 {
     setSize(refWidth, refHeight);
     setResizable(true, true);
@@ -22,7 +22,16 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioPr
     addAndMakeVisible(mainComponent);
     addAndMakeVisible(pitchGrid);
     addAndMakeVisible(modeComponent);
+    shakeButton.setImages(false, true, true,
+                          processor.getSharedImagesPtr()->shakeButtonUp(),
+                          1.0f, {},
+                          processor.getSharedImagesPtr()->shakeButtonUp(),
+                          1.0f, {},
+                          processor.getSharedImagesPtr()->shakeButtonDown(),
+                          1.0f, {});
+
     addAndMakeVisible(shakeButton);
+
     shakeButton.onClick = [this]() {
         pitchGrid.reset();
         originalWindowPos = getTopLevelComponent()->getPosition();
@@ -52,6 +61,7 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioPr
 
         shakeTimer = std::make_unique<ShakeTimer>(this);
     };
+
 
     pitchGrid.onErased = [this]()
     {
@@ -102,19 +112,19 @@ void GrannyDrawAudioProcessorEditor::resized()
 
     pitchGrid.setBounds(screenX, screenY, screenW, screenH);
     
-    int modeX = (int)(20.0f * scaleX);
+    int modeX = (int)(45.0f * scaleX);
     int modeY = (int)(20.0f * scaleY);
-    int modeW = (int)(160.0f * scaleX);
-    int modeH = (int)(30.0f * scaleY);
+    int modeW = (int)(110.0f * scaleX);
+    int modeH = (int)(40.0f * scaleY);
 
     modeComponent.setBounds(modeX, modeY, modeW, modeH);
 
     mainComponent.setBounds(bounds);
     
-    int shakeX = (int)(600.0f * scaleX);
+    int shakeX = (int)(575.0f * scaleX);
     int shakeY = (int)(20.0f * scaleY);
-    int shakeW = (int)(100.0f * scaleX);
-    int shakeH = (int)(30.0f * scaleY);
+    int shakeW = (int)(110.0f * scaleX);
+    int shakeH = (int)(40.0f * scaleY);
 
     shakeButton.setBounds(shakeX, shakeY, shakeW, shakeH);
 
@@ -127,16 +137,22 @@ void GrannyDrawAudioProcessorEditor::timerCallback()
     if (curveLength == 0)
         return;
 
-    int index = processor.getPitchPlayheadIndex();
-    index = (index + 1) % curveLength;
+    int index = (int)(processor.getPlayheadPhase() * processor.getPitchCurveLength());
+    const auto& curve = processor.getPitchCurve();
+    if (!curve.empty())
+    {
+        int index = processor.getPitchPlayheadIndex();
+        float normX = curve[index].normalizedX;
+        float pitch = curve[index].pitch;
+        pitchGrid.updatePlaybackCursor(normX, pitch);
+    }
 
-    processor.setPitchPlayheadIndex(index);
-    
     if (processor.needsCurveUpdate.exchange(false))
-        {
-            pitchGrid.setPitchCurve(processor.getPitchCurve());
-        }
+    {
+        pitchGrid.setPitchCurve(processor.getPitchCurve());
+    }
 }
+
 
 void GrannyDrawAudioProcessorEditor::sendPitchCurve()
 {

@@ -73,6 +73,8 @@ public:
     SharedImages* getSharedImagesPtr() { return m_pSharedImagesPtr; };
     
     void setErasedRanges(const std::vector<std::pair<float, float>>& newRanges);
+    float getPlayheadPhase() const { return playheadPhase.load(); }
+
 
     
 private:
@@ -96,7 +98,8 @@ private:
     
     std::vector<bool> previousMuteStates;
     std::vector<float> muteGains;
-
+    std::atomic<float> playheadPhase { -1.0f };
+    
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GrannyDrawAudioProcessor)

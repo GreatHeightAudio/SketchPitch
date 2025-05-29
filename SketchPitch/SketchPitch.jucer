@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="jQ3rMS" name="SketchPitch" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildAU,buildStandalone,buildVST3"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildStandalone,buildVST3"
               pluginName="SketchPitch" pluginManufacturer="GreatHeight" pluginAUExportPrefix="SketchPitchAU"
               companyName="GreatHeightAudio">
   <MAINGROUP id="Vx8DUz" name="SketchPitch">
     <GROUP id="{D4D4841B-5580-667E-67E7-3116E0780940}" name="Images">
+      <FILE id="JYcrFi" name="ShakeButtonLight.png" compile="0" resource="1"
+            file="Images/ShakeButtonLight.png"/>
+      <FILE id="Z8PSki" name="ModeButtonDark.png" compile="0" resource="1"
+            file="Images/ModeButtonDark.png"/>
+      <FILE id="zSYB1m" name="ModeButtonLight.png" compile="0" resource="1"
+            file="Images/ModeButtonLight.png"/>
+      <FILE id="eHrmPo" name="ShakeButtonDark.png" compile="0" resource="1"
+            file="Images/ShakeButtonDark.png"/>
       <FILE id="AD3h0N" name="Sketch &amp; Pitch.png" compile="0" resource="1"
             file="Images/Sketch &amp; Pitch.png"/>
       <FILE id="JkZL9N" name="erase.png" compile="0" resource="1" file="Images/erase.png"/>

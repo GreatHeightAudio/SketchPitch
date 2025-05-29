@@ -10,7 +10,8 @@
 
 #include "ModeComponent.h"
 
-ModeComponent::ModeComponent(GrannyDrawAudioProcessor&)
+ModeComponent::ModeComponent(GrannyDrawAudioProcessor&, SharedImages& images)
+: sharedImages(images)
 {
     addAndMakeVisible(styleBox);
     styleBox.addItem("Solo", 1);
@@ -18,13 +19,17 @@ ModeComponent::ModeComponent(GrannyDrawAudioProcessor&)
     styleBox.addItem("Erase", 3);
     styleBox.setSelectedId(1);
     styleBox.addListener(this);
+
+    customLF.setComboImage(sharedImages.modeButtonUp());
+    styleBox.setLookAndFeel(&customLF);
 }
+
 
 ModeComponent::~ModeComponent() {}
 
 void ModeComponent::paint(juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::darkgrey);
+    g.fillAll(juce::Colours::darkgrey.withAlpha(0.f));
 }
 
 void ModeComponent::resized()

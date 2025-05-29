@@ -186,6 +186,8 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
         double loopMultiplier = loopMultipliers[juce::jlimit(0, 6, loopRateIndex)];
         double beatsPerLoop = timeSigNumerator / loopMultiplier;
         double phase = std::fmod(ppqPos, beatsPerLoop) / beatsPerLoop;
+        playheadPhase.store(static_cast<float>(phase));
+
 
         int curveIndex = juce::jlimit(0, static_cast<int>(pitchCurve.size()) - 1,
                                       static_cast<int>(phase * pitchCurve.size()));

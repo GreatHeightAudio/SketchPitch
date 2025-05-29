@@ -13,6 +13,7 @@
 #include "DrawGrid.h"
 #include "MainComponent.h"
 #include "ModeComponent.h"
+#include "SharedImages.h"
 
 class GrannyDrawAudioProcessorEditor  : public juce::AudioProcessorEditor,
                                         public juce::Timer
@@ -36,7 +37,7 @@ private:
     MainComponent mainComponent;
     ModeComponent modeComponent;
     
-    juce::TextButton shakeButton { "Shake" };
+    juce::ImageButton shakeButton;
     std::unique_ptr<juce::Timer> shakeTimer;
     juce::Point<int> originalWindowPos;
     juce::uint32 shakeStartTime = 0;

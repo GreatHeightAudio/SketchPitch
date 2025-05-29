@@ -24,12 +24,14 @@ public:
     enum class DrawMode { Solo, Layer, Erase };
 
     void paint(juce::Graphics&) override;
+    void resized() override;
     void mouseDown(const juce::MouseEvent&) override;
     void mouseDrag(const juce::MouseEvent&) override;
     void mouseUp(const juce::MouseEvent&) override;
     void mouseMove(const juce::MouseEvent& e) override;
     void applyVisualEraser();
     std::vector<CurvePoint> getFullPitchCurve() const;
+    void updatePlaybackCursor(float x, float y);
 
     const std::vector<std::pair<float, float>>& getErasedRanges() const { return erasedRanges; }
 
@@ -53,8 +55,15 @@ private:
         std::vector<CurvePoint> points;
         juce::Path path;
     };
+    
+    struct NormalizedPoint {
+        float xNorm; // 0.0 to 1.0
+        float yNorm; // 0.0 to 1.0
+    };
+
 
     std::vector<Curve> curves;
+    std::vector<Curve> erasedCurves;
     Curve currentCurve;
 
     DrawMode currentMode = DrawMode::Solo;
@@ -64,13 +73,16 @@ private:
     juce::MouseCursor eraserMouseCursor;
     
     juce::Point<float> eraserCursor;
-    std::vector<juce::Point<float>> eraserPoints;
+    std::vector<NormalizedPoint> eraserPoints;
     std::vector<std::pair<float, float>> erasedRanges;
     std::vector<CurvePoint> fullPitchCurve;
 
     bool pointNearEraser(const juce::Point<float>& pt, float tolerance) const;
 
     Curve buildCurveFromPoints(const std::vector<CurvePoint>& points);
+    
+    float playbackCursorX = -100.0f;
+    float playbackCursorY = -100.0f;
     
     SharedImages& sharedImages;
     

@@ -31,7 +31,10 @@ public:
     void mouseMove(const juce::MouseEvent& e) override;
     void applyVisualEraser();
     std::vector<CurvePoint> getFullPitchCurve() const;
-    void updatePlaybackCursor(float x, float y);
+    void applyLiveEraser();
+    void setPlayheadIndex(int index);
+    void setPitchCurveReference(const std::vector<CurvePoint>* externalCurve);
+
 
     const std::vector<std::pair<float, float>>& getErasedRanges() const { return erasedRanges; }
 
@@ -54,6 +57,7 @@ private:
     {
         std::vector<CurvePoint> points;
         juce::Path path;
+        bool isErased = false;
     };
     
     struct NormalizedPoint {
@@ -64,6 +68,10 @@ private:
 
     std::vector<Curve> curves;
     std::vector<Curve> erasedCurves;
+    std::vector<NormalizedPoint> currentEraserStroke;
+    std::vector<Curve> curvesBeforeEraser;
+
+
     Curve currentCurve;
 
     DrawMode currentMode = DrawMode::Solo;
@@ -77,13 +85,14 @@ private:
     std::vector<std::pair<float, float>> erasedRanges;
     std::vector<CurvePoint> fullPitchCurve;
 
-    bool pointNearEraser(const juce::Point<float>& pt, float tolerance) const;
+    bool pointNearEraser(const juce::Point<float>& pt, float tolerance, const std::vector<NormalizedPoint>& stroke) const;
 
     Curve buildCurveFromPoints(const std::vector<CurvePoint>& points);
     
-    float playbackCursorX = -100.0f;
-    float playbackCursorY = -100.0f;
-    
+    int playheadIndex = -1.0f;
+    const std::vector<CurvePoint>* pitchCurveRef = nullptr;
+
+
     SharedImages& sharedImages;
     
 };

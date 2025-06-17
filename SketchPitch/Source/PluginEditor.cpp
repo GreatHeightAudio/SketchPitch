@@ -18,6 +18,7 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioPr
     setSize(refWidth, refHeight);
     setResizable(true, true);
     getConstrainer()->setFixedAspectRatio(728.0 / 600.0);
+    
 
     addAndMakeVisible(mainComponent);
     addAndMakeVisible(pitchGrid);
@@ -36,6 +37,8 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioPr
         pitchGrid.reset();
         originalWindowPos = getTopLevelComponent()->getPosition();
         shakeStartTime = juce::Time::getMillisecondCounter();
+        processor.setErasedRanges({});
+        processor.pitchCurve.clear();
 
         class ShakeTimer : public juce::Timer {
         public:
@@ -65,12 +68,19 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioPr
 
     pitchGrid.onErased = [this]()
     {
-        processor.setErasedRanges(pitchGrid.getErasedRanges());
+        const auto& ranges = pitchGrid.getErasedRanges();
+        processor.setErasedRanges(ranges);
+
+        auto fullCurve = pitchGrid.getFullPitchCurve();
+        processor.setPitchCurve(fullCurve);
     };
+
     
     if (! processor.getPitchCurve().empty())
         {
             pitchGrid.setPitchCurve(processor.getPitchCurve());
+            pitchGrid.setPitchCurveReference(processor.getPitchCurvePointer());
+            processor.setErasedRanges(pitchGrid.getErasedRanges());
         }
 
     pitchGrid.onCurveFinished = [this]{
@@ -80,9 +90,6 @@ GrannyDrawAudioProcessorEditor::GrannyDrawAudioProcessorEditor(GrannyDrawAudioPr
     modeComponent.onModeChanged = [this](DrawGrid::DrawMode newMode)
     {
         pitchGrid.setMode(newMode);
-    };
-    pitchGrid.onErased = [this]{
-        processor.setErasedRanges(pitchGrid.getErasedRanges());
     };
 
     Timer::startTimerHz(60);
@@ -133,32 +140,34 @@ void GrannyDrawAudioProcessorEditor::resized()
 
 void GrannyDrawAudioProcessorEditor::timerCallback()
 {
-    size_t curveLength = processor.getPitchCurveLength();
+    const auto& curve = processor.getPitchCurve();
+    size_t curveLength = curve.size();
     if (curveLength == 0)
         return;
 
-    int index = (int)(processor.getPlayheadPhase() * processor.getPitchCurveLength());
-    const auto& curve = processor.getPitchCurve();
-    if (!curve.empty())
-    {
-        int index = processor.getPitchPlayheadIndex();
-        float normX = curve[index].normalizedX;
-        float pitch = curve[index].pitch;
-        pitchGrid.updatePlaybackCursor(normX, pitch);
-    }
+    int index = static_cast<int>(processor.getPlayheadPhase() * curveLength);
+    index = juce::jlimit(0, static_cast<int>(curveLength) - 1, index);
+
+    int playheadIndex = processor.getPitchPlayheadIndex();
+    pitchGrid.setPlayheadIndex(playheadIndex);
+
 
     if (processor.needsCurveUpdate.exchange(false))
     {
-        pitchGrid.setPitchCurve(processor.getPitchCurve());
+        pitchGrid.setPitchCurve(curve);
     }
 }
+
+
 
 
 void GrannyDrawAudioProcessorEditor::sendPitchCurve()
 {
-    auto newCurve = pitchGrid.getPitchCurve();
-    processor.setPitchCurve(newCurve);
+    auto fullCurve = pitchGrid.getFullPitchCurve();
+    processor.setPitchCurve(fullCurve);
+    processor.setErasedRanges(pitchGrid.getErasedRanges());
 
     auto curveLength = processor.getPitchCurveLength();
     startTimerHz(static_cast<int>(curveLength / 2));
 }
+

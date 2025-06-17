@@ -74,10 +74,24 @@ public:
     
     void setErasedRanges(const std::vector<std::pair<float, float>>& newRanges);
     float getPlayheadPhase() const { return playheadPhase.load(); }
+    std::vector<CurvePoint> pitchCurve;
 
+    bool isInErasedRange(float normalizedPhase);
+    
+    const std::vector<CurvePoint>* getPitchCurvePointer() const { return &pitchCurve; }
 
     
 private:
+    
+    struct MuteState {
+        bool isMuted = false;
+        int muteCounter = 0;
+        static constexpr int minHoldSamples = 512;
+    };
+
+    std::vector<MuteState> muteStates;
+
+    
     PitchShiftEffectProcessor pitchShiftEffect;
     
     juce::SharedResourcePointer<SharedImages>     m_pSharedImagesPtr;
@@ -88,9 +102,6 @@ private:
     static double sampleCounter;
     
     std::vector<std::pair<float, float>> erasedRanges;
-
-    
-    std::vector<CurvePoint> pitchCurve;
   
     
     juce::AudioPlayHead *playHead;
@@ -99,6 +110,8 @@ private:
     std::vector<bool> previousMuteStates;
     std::vector<float> muteGains;
     std::atomic<float> playheadPhase { -1.0f };
+    std::vector<CurvePoint> fullPitchCurve;
+
     
 
     //==============================================================================

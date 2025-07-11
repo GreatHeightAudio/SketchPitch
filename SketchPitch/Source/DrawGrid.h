@@ -11,12 +11,8 @@
 #pragma once
 #include <JuceHeader.h>
 #include "SharedImages.h"
+#include "CurveTypes.h"
 
-struct CurvePoint
-{
-    float normalizedX; // 0.0 to 1.0 (left to right)
-    float pitch;       // -12.0 to +12.0 (bottom to top)
-};
 
 class DrawGrid : public juce::Component
 {
@@ -32,11 +28,12 @@ public:
     void applyVisualEraser();
     std::vector<CurvePoint> getFullPitchCurve() const;
     void applyLiveEraser();
-    void setPlayheadIndex(int index);
+    void setPlayheadPhase(float phase);
     void setPitchCurveReference(const std::vector<CurvePoint>* externalCurve);
+    bool pointInErasedRegion(float xNorm, float pitch) const;
 
 
-    const std::vector<std::pair<float, float>>& getErasedRanges() const { return erasedRanges; }
+    const std::vector<ErasedRegion>& getErasedRegions() const { return erasedRegions; };
 
     void reset();
     juce::Point<int> getClampedPoint(juce::Point<int> p) const;
@@ -50,27 +47,25 @@ public:
     std::function<void()> onErased;
     
     explicit DrawGrid(SharedImages& sharedImages);
+    
+    void setResampledCurve(const std::vector<CurvePoint>& resampled);
+    
+    std::vector<Curve> eraseSegmentsFromCurves(const std::vector<Curve>& inputCurves,
+                                                      const std::vector<NormalizedPoint>& stroke,
+                                                      float tolerance,
+                                                      std::vector<ErasedRegion>* erasedOut,
+                                                      int width,
+                                                      int height);
+
 
 
 private:
-    struct Curve
-    {
-        std::vector<CurvePoint> points;
-        juce::Path path;
-        bool isErased = false;
-    };
     
-    struct NormalizedPoint {
-        float xNorm; // 0.0 to 1.0
-        float yNorm; // 0.0 to 1.0
-    };
-
-
     std::vector<Curve> curves;
     std::vector<Curve> erasedCurves;
     std::vector<NormalizedPoint> currentEraserStroke;
     std::vector<Curve> curvesBeforeEraser;
-
+    std::vector<CurvePoint> resampledCurve;
 
     Curve currentCurve;
 
@@ -82,14 +77,15 @@ private:
     
     juce::Point<float> eraserCursor;
     std::vector<NormalizedPoint> eraserPoints;
-    std::vector<std::pair<float, float>> erasedRanges;
+    std::vector<ErasedRegion> erasedRegions;
+    
     std::vector<CurvePoint> fullPitchCurve;
 
     bool pointNearEraser(const juce::Point<float>& pt, float tolerance, const std::vector<NormalizedPoint>& stroke) const;
 
     Curve buildCurveFromPoints(const std::vector<CurvePoint>& points);
     
-    int playheadIndex = -1.0f;
+    float playheadPhase = -1.0f;
     const std::vector<CurvePoint>* pitchCurveRef = nullptr;
 
 

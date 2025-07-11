@@ -41,9 +41,29 @@ private:
     std::unique_ptr<juce::Timer> shakeTimer;
     juce::Point<int> originalWindowPos;
     juce::uint32 shakeStartTime = 0;
-
-
     void sendPitchCurve();
+
+    class ShakeTimer : public juce::Timer {
+        public:
+        ShakeTimer(GrannyDrawAudioProcessorEditor* ed) : editor(ed) {
+            startTimerHz(60);
+        }
+        void timerCallback() override {
+            auto now = juce::Time::getMillisecondCounter();
+            if (now - editor->shakeStartTime > 200) {
+                stopTimer();
+                editor->getTopLevelComponent()->setTopLeftPosition(editor->originalWindowPos);
+                return;
+            }
+            int offsetX = juce::Random::getSystemRandom().nextInt(5) - 2;
+            int offsetY = juce::Random::getSystemRandom().nextInt(5) - 2;
+            editor->getTopLevelComponent()->setTopLeftPosition(
+                                                               editor->originalWindowPos + juce::Point<int>(offsetX, offsetY)
+                                                               );
+        }
+        private:
+        GrannyDrawAudioProcessorEditor* editor;
+    };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GrannyDrawAudioProcessorEditor)
 };

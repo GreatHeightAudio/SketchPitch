@@ -538,6 +538,7 @@
       <FILE id="LmMWdF" name="Knob_big.png" compile="0" resource="1" file="Images/Knob_big.png"/>
     </GROUP>
     <GROUP id="{609D3F17-C20B-70D9-1029-FDDC85300F6F}" name="Source">
+      <FILE id="IdL1Tk" name="CurveTypes.h" compile="0" resource="0" file="Source/CurveTypes.h"/>
       <FILE id="D1fJr7" name="ModeComponent.cpp" compile="1" resource="0"
             file="Source/ModeComponent.cpp"/>
       <FILE id="vo371r" name="ModeComponent.h" compile="0" resource="0" file="Source/ModeComponent.h"/>

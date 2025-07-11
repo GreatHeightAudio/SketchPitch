@@ -166,19 +166,28 @@ float quantizePitch(float pitch, float snapAmount)
 
 bool GrannyDrawAudioProcessor::isInErasedRange(float normalizedPhase)
 {
-    constexpr float epsilon = 1e-5f;;
-    
-    for (const auto& range : erasedRanges)
-        {
-            if (normalizedPhase + epsilon >= range.first && normalizedPhase - epsilon <= range.second)
-            {
-                DBG("✅ MATCH at phase: " << normalizedPhase);
-                return true;
-            }
-        }
-
+    if (pitchCurve.size() < 2)
         return false;
+
+    float floatIndex = normalizedPhase * (pitchCurve.size() - 1);
+    int indexA = static_cast<int>(std::floor(floatIndex));
+    int indexB = std::min(indexA + 1, static_cast<int>(pitchCurve.size() - 1));
+    float t = floatIndex - indexA;
+
+    float pitch = juce::jmap(t, 0.0f, 1.0f, pitchCurve[indexA].pitch, pitchCurve[indexB].pitch);
+
+    for (const auto& region : erasedRanges)
+    {
+        if (normalizedPhase >= region.xMin && normalizedPhase <= region.xMax &&
+            pitch           >= region.yMin && pitch           <= region.yMax)
+        {
+            return true;
+        }
     }
+
+    return false;
+}
+
 
 
 void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
@@ -187,68 +196,71 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
     const int totalNumInputChannels = getTotalNumInputChannels();
     const int totalNumOutputChannels = getTotalNumOutputChannels();
     const int numSamples = buffer.getNumSamples();
-
+    
     for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, numSamples);
-
+    
     if (pitchCurve.empty())
         return;
-
+    
     playHead = getPlayHead();
     if (playHead != nullptr && playHead->getCurrentPosition(cpi))
     {
         auto ppqPos = cpi.ppqPosition;
         const double timeSigNumerator = cpi.timeSigNumerator;
-
+        
         static constexpr double loopMultipliers[] = { 0.25, 0.5, 1.0, 2.0, 4.0, 8.0, 16.0 };
         auto* loopRateParam = parameters.getRawParameterValue("loopRate");
-
+        
         int loopRateIndex = (loopRateParam != nullptr) ? (int)(*loopRateParam) : 2;
         double loopMultiplier = loopMultipliers[juce::jlimit(0, 6, loopRateIndex)];
         double beatsPerLoop = timeSigNumerator / loopMultiplier;
         double phase = std::fmod(ppqPos, beatsPerLoop) / beatsPerLoop;
         playheadPhase.store(static_cast<float>(phase));
-
         
-        bool isMuted = isInErasedRange(static_cast<float>(phase));
+        
+        float normPhase = static_cast<float>(phase);
+        bool isMuted = isInErasedRange(normPhase);
+        DBG("Playhead Phase: " << normPhase << " -> Muted? " << (isMuted ? "YES" : "NO"));
+
 
         float targetNormX = static_cast<float>(phase);
         float minX = pitchCurve.front().normalizedX;
         float maxX = pitchCurve.back().normalizedX;
         targetNormX = juce::jmap(targetNormX, 0.0f, 1.0f, minX, maxX);
-
-        int curveIndex = static_cast<int>(pitchCurve.size()) - 1;
-        for (int i = 0; i < (int)pitchCurve.size(); ++i)
-        {
-            if (pitchCurve[i].normalizedX >= targetNormX)
-            {
-                curveIndex = i;
-                break;
-            }
-        }
-        setPitchPlayheadIndex(curveIndex);
         
-
-
-        float pitch = pitchCurve[curveIndex].pitch;
-        float snap = *parameters.getRawParameterValue("snap");
-        float quantPitch = quantizePitch(pitch, snap);
-        smoothedPitch.setTargetValue(quantPitch);
-
+            if (pitchCurve.size() >= 2)
+            {
+                float floatIndex = normPhase * (pitchCurve.size() - 1);
+                int indexA = static_cast<int>(std::floor(floatIndex));
+                int indexB = std::min(indexA + 1, static_cast<int>(pitchCurve.size() - 1));
+                float t = floatIndex - indexA;
+                
+                float pitchA = pitchCurve[indexA].pitch;
+                float pitchB = pitchCurve[indexB].pitch;
+                float interpolatedPitch = juce::jmap(t, 0.0f, 1.0f, pitchA, pitchB);
+                
+                setPitchPlayheadIndex(indexA);
+                
+                float snap = *parameters.getRawParameterValue("snap");
+                float quantPitch = quantizePitch(interpolatedPitch, snap);
+                smoothedPitch.setTargetValue(quantPitch);
+            }
+        
         for (int ch = 0; ch < totalNumInputChannels; ++ch)
         {
             float& gain = muteGains[ch];
             float targetGain = isMuted ? 0.0f : 1.0f;
             float gainStep = (targetGain - gain) / (float)numSamples;
-
+            
             auto* channelData = buffer.getWritePointer(ch);
             for (int i = 0; i < numSamples; ++i)
             {
                 float in = channelData[i];
-
+                
                 float pitchVal = smoothedPitch.getNextValue();
                 pitchShiftEffect.setPitch(pitchVal);
-
+                
                 float processed = pitchShiftEffect.processSample(in, ch);
                 gain += gainStep;
                 gain = std::clamp(gain, 0.0f, 1.0f);
@@ -257,6 +269,7 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
         }
     }
 }
+
 
 //==============================================================================
 bool GrannyDrawAudioProcessor::hasEditor() const
@@ -291,8 +304,10 @@ void GrannyDrawAudioProcessor::getStateInformation(juce::MemoryBlock& destData)
     for (const auto& range : erasedRanges)
     {
         auto* r = erasedElement->createNewChildElement("Range");
-        r->setAttribute("start", range.first);
-        r->setAttribute("end", range.second);
+        r->setAttribute("start", range.xMin);
+        r->setAttribute("end", range.xMax);
+        r->setAttribute("yMin", range.yMin);
+        r->setAttribute("yMax", range.yMax);
     }
     xmlState.addChildElement(erasedElement);
 
@@ -333,7 +348,9 @@ void GrannyDrawAudioProcessor::setStateInformation(const void* data, int sizeInB
                 {
                     float start = (float)rangeElement->getDoubleAttribute("start", 0.0);
                     float end   = (float)rangeElement->getDoubleAttribute("end", 0.0);
-                    erasedRanges.emplace_back(start, end);
+                    float yMin  = (float)rangeElement->getDoubleAttribute("yMin", -12.0);
+                    float yMax  = (float)rangeElement->getDoubleAttribute("yMax", 12.0);
+                    erasedRanges.emplace_back(ErasedRegion{ start, end, yMin, yMax });
                 }
             }
         }
@@ -342,10 +359,46 @@ void GrannyDrawAudioProcessor::setStateInformation(const void* data, int sizeInB
     needsCurveUpdate = true;
 }
 
+std::vector<CurvePoint> resamplePitchCurve(const std::vector<CurvePoint>& input, size_t numSamples = 512)
+{
+    std::vector<CurvePoint> resampled;
+
+    if (input.size() < 2)
+        return resampled;
+
+    std::vector<CurvePoint> sortedInput = input;
+    std::sort(sortedInput.begin(), sortedInput.end(), [](const CurvePoint& a, const CurvePoint& b) {
+        return a.normalizedX < b.normalizedX;
+    });
+
+    for (size_t i = 0; i < numSamples; ++i)
+    {
+        float targetX = (float)i / (float)(numSamples - 1);
+
+        // Find segment surrounding targetX
+        for (size_t j = 1; j < sortedInput.size(); ++j)
+        {
+            const auto& ptA = sortedInput[j - 1];
+            const auto& ptB = sortedInput[j];
+
+            if (targetX >= ptA.normalizedX && targetX <= ptB.normalizedX)
+            {
+                float t = (targetX - ptA.normalizedX) / (ptB.normalizedX - ptA.normalizedX);
+                float interpPitch = juce::jmap(t, 0.0f, 1.0f, ptA.pitch, ptB.pitch);
+                resampled.push_back({ targetX, interpPitch });
+                break;
+            }
+        }
+    }
+
+    return resampled;
+}
+
 
 void GrannyDrawAudioProcessor::setPitchCurve(const std::vector<CurvePoint>& newCurve)
 {
     pitchCurve = newCurve;
+    resampledCurve = resamplePitchCurve(newCurve);
 }
 
 std::vector<CurvePoint> GrannyDrawAudioProcessor::getPitchCurve() const
@@ -368,12 +421,23 @@ size_t GrannyDrawAudioProcessor::getPitchCurveLength() const
     return pitchCurve.size();
 }
 
-void GrannyDrawAudioProcessor::setErasedRanges(const std::vector<std::pair<float, float>>& newRanges)
+void GrannyDrawAudioProcessor::setErasedRanges(const std::vector<ErasedRegion>& newRanges)
 {
     erasedRanges = newRanges;
-    DBG("✅ setErasedRanges called! New size: " << erasedRanges.size());
-
+    
+    DBG("=== Erased Ranges Set ===");
+        for (const auto& r : erasedRanges)
+        {
+            DBG("ErasedRange -> X:[" << r.xMin << ", " << r.xMax << "]  Y:[" << r.yMin << ", " << r.yMax << "]");
+        }
 }
+
+const std::vector<CurvePoint>& GrannyDrawAudioProcessor::getResampledPitchCurve() const
+{
+    return resampledCurve;
+}
+
+
 
 
 

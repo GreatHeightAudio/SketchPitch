@@ -12,6 +12,7 @@
 #include "PitchShiftEffectProcessor.h"
 #include "SharedImages.h"
 #include "DrawGrid.h"
+#include "CurveTypes.h"
 
 //==============================================================================
 /**
@@ -63,7 +64,7 @@ public:
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     
     void setPitchCurve(const std::vector<CurvePoint>& newCurve);
-        std::vector<CurvePoint> getPitchCurve() const;
+    std::vector<CurvePoint> getPitchCurve() const;
     
     void setPitchPlayheadIndex(int index);
     int getPitchPlayheadIndex() const;
@@ -72,13 +73,17 @@ public:
     
     SharedImages* getSharedImagesPtr() { return m_pSharedImagesPtr; };
     
-    void setErasedRanges(const std::vector<std::pair<float, float>>& newRanges);
+    void setErasedRanges(const std::vector<ErasedRegion>& newRanges);
+
     float getPlayheadPhase() const { return playheadPhase.load(); }
     std::vector<CurvePoint> pitchCurve;
+    std::vector<CurvePoint> resampledCurve;
 
     bool isInErasedRange(float normalizedPhase);
     
     const std::vector<CurvePoint>* getPitchCurvePointer() const { return &pitchCurve; }
+    const std::vector<CurvePoint>& getResampledPitchCurve() const;
+
 
     
 private:
@@ -91,7 +96,6 @@ private:
 
     std::vector<MuteState> muteStates;
 
-    
     PitchShiftEffectProcessor pitchShiftEffect;
     
     juce::SharedResourcePointer<SharedImages>     m_pSharedImagesPtr;
@@ -99,10 +103,8 @@ private:
     juce::SmoothedValue<float> smoothedPitch;
     int pitchPlayhead;
     double pitchCurveDuration = 2; //(seconds)
-    static double sampleCounter;
     
-    std::vector<std::pair<float, float>> erasedRanges;
-  
+    std::vector<ErasedRegion> erasedRanges;
     
     juce::AudioPlayHead *playHead;
     juce::AudioPlayHead::CurrentPositionInfo cpi;

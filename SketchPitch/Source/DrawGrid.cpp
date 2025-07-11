@@ -9,6 +9,7 @@
 */
 
 #include "DrawGrid.h"
+#include "CurveTypes.h"
 
 
 bool DrawGrid::pointNearEraser(const juce::Point<float>& pt, float tolerance, const std::vector<NormalizedPoint>& stroke) const
@@ -59,14 +60,18 @@ DrawGrid::DrawGrid(SharedImages& images) : sharedImages(images)
     setMouseCursor(soloCursor);
 }
 
-void DrawGrid::applyVisualEraser()
+
+std::vector<Curve> DrawGrid::eraseSegmentsFromCurves(const std::vector<Curve>& inputCurves,
+                                                    const std::vector<NormalizedPoint>& stroke,
+                                                    float tolerance,
+                                                    std::vector<ErasedRegion>* erasedOut,
+                                                    int width,
+                                                    int height)
 {
-    const float tol = 6.0f;
+    std::vector<Curve> resultCurves;
+    std::vector<ErasedRegion> localErasedRegions;
 
-    std::vector<Curve> newCurves;
-    std::vector<std::pair<float, float>> localErasedRanges;
-
-    for (const auto& curve : curves)
+    for (const auto& curve : inputCurves)
     {
         std::vector<CurvePoint> segmentPoints;
         bool first = true;
@@ -76,10 +81,10 @@ void DrawGrid::applyVisualEraser()
             const auto& p1 = curve.points[i];
             const auto& p2 = curve.points[i + 1];
 
-            juce::Point<float> pt1(p1.normalizedX * getWidth(), juce::jmap(p1.pitch, -12.0f, 12.0f, (float)getHeight(), 0.0f));
-            juce::Point<float> pt2(p2.normalizedX * getWidth(), juce::jmap(p2.pitch, -12.0f, 12.0f, (float)getHeight(), 0.0f));
+            juce::Point<float> pt1(p1.normalizedX * width, juce::jmap(p1.pitch, -12.0f, 12.0f, (float)height, 0.0f));
+            juce::Point<float> pt2(p2.normalizedX * width, juce::jmap(p2.pitch, -12.0f, 12.0f, (float)height, 0.0f));
 
-            bool segmentErased = pointNearEraser(pt1, tol, currentEraserStroke) || pointNearEraser(pt2, tol, currentEraserStroke);
+            bool segmentErased = pointNearEraser(pt1, tolerance, stroke) || pointNearEraser(pt2, tolerance, stroke);
 
             if (!segmentErased)
             {
@@ -93,105 +98,90 @@ void DrawGrid::applyVisualEraser()
             else
             {
                 if (segmentPoints.size() >= 2)
-                    newCurves.push_back(buildCurveFromPoints(segmentPoints));
+                    resultCurves.push_back(buildCurveFromPoints(segmentPoints));
                 segmentPoints.clear();
                 first = true;
 
-                float minX = std::min(p1.normalizedX, p2.normalizedX);
-                float maxX = std::max(p1.normalizedX, p2.normalizedX);
-                localErasedRanges.emplace_back(minX, maxX);
+                if (erasedOut)
+                {
+                    float minX = std::min(p1.normalizedX, p2.normalizedX);
+                    float maxX = std::max(p1.normalizedX, p2.normalizedX);
+                    float minY = std::min(p1.pitch, p2.pitch);
+                    float maxY = std::max(p1.pitch, p2.pitch);
+
+                    minY = juce::jlimit(-12.0f, 12.0f, minY);
+                    maxY = juce::jlimit(-12.0f, 12.0f, maxY);
+
+                    if ((maxX - minX) > 0.001f || (maxY - minY) > 0.001f)
+                        localErasedRegions.push_back({ minX, maxX, minY, maxY });
+                }
             }
         }
 
         if (segmentPoints.size() >= 2)
-            newCurves.push_back(buildCurveFromPoints(segmentPoints));
+            resultCurves.push_back(buildCurveFromPoints(segmentPoints));
     }
 
-    curves = std::move(newCurves);
-
-    if (localErasedRanges.empty() && !currentEraserStroke.empty())
+    if (erasedOut)
     {
-        float minX = 1.0f, maxX = 0.0f;
-        for (const auto& pt : currentEraserStroke)
-        {
-            float x = pt.xNorm;
-            minX = std::min(minX, x);
-            maxX = std::max(maxX, x);
-        }
+        std::sort(localErasedRegions.begin(), localErasedRegions.end(), [](const ErasedRegion& a, const ErasedRegion& b) {
+            return a.xMin < b.xMin || (a.xMin == b.xMin && a.xMax < b.xMax);
+        });
 
-        if (maxX - minX > 0.0001f)
+        std::vector<ErasedRegion> merged;
+        for (const auto& region : localErasedRegions)
         {
-            localErasedRanges.emplace_back(minX, maxX);
-            DBG("⚠️ Erased range from stroke only: [" << minX << ", " << maxX << "]");
+            if (merged.empty())
+            {
+                merged.push_back(region);
+            }
+            else
+            {
+                auto& last = merged.back();
+                bool overlapX = region.xMin <= last.xMax + 0.001f;
+                bool overlapY = region.yMin <= last.yMax + 0.001f && region.yMax >= last.yMin - 0.001f;
+                if (overlapX && overlapY)
+                {
+                    last.xMax = std::max(last.xMax, region.xMax);
+                    last.yMin = std::min(last.yMin, region.yMin);
+                    last.yMax = std::max(last.yMax, region.yMax);
+                }
+                else
+                {
+                    merged.push_back(region);
+                }
+            }
         }
+        erasedOut->insert(erasedOut->end(), merged.begin(), merged.end());
     }
 
-    // No merging here — keep visual erasing raw and faithful
-    erasedRanges.insert(erasedRanges.end(), localErasedRanges.begin(), localErasedRanges.end());
-    eraserPoints.insert(eraserPoints.end(), currentEraserStroke.begin(), currentEraserStroke.end());
-
-    DBG("🧩 Visual erasedRanges size: " << erasedRanges.size());
-    for (const auto& r : erasedRanges)
-        DBG("🧩 Visual range: [" << r.first << ", " << r.second << "]");
-
-    repaint();
-
-    // Defer pitch curve/audio smoothing to separate backend method
-    if (onErased)
-        onErased();
+    return resultCurves;
 }
-
 
 void DrawGrid::applyLiveEraser()
 {
-    std::vector<Curve> previewCurves;
+    std::vector<ErasedRegion> tempRegions;
+    curves = eraseSegmentsFromCurves(curvesBeforeEraser, currentEraserStroke, 6.0f, &tempRegions, getWidth(), getHeight());
 
-    const float tol = 6.0f;
+    erasedRegions = tempRegions;
+    if (onErased)
+        onErased();
 
-    for (const auto& curve : curvesBeforeEraser)
-    {
-        std::vector<CurvePoint> segmentPoints;
-        bool first = true;
-
-        for (size_t i = 0; i + 1 < curve.points.size(); ++i)
-        {
-            const auto& p1 = curve.points[i];
-            const auto& p2 = curve.points[i + 1];
-
-            juce::Point<float> pt1(p1.normalizedX * getWidth(), juce::jmap(p1.pitch, -12.0f, 12.0f, (float)getHeight(), 0.0f));
-            juce::Point<float> pt2(p2.normalizedX * getWidth(), juce::jmap(p2.pitch, -12.0f, 12.0f, (float)getHeight(), 0.0f));
-
-            bool segmentErased = pointNearEraser(pt1, tol, currentEraserStroke) || pointNearEraser(pt2, tol, currentEraserStroke);
-
-            if (!segmentErased)
-            {
-                if (first)
-                {
-                    segmentPoints.push_back(p1);
-                    first = false;
-                }
-                segmentPoints.push_back(p2);
-            }
-            else
-            {
-                if (segmentPoints.size() >= 2)
-                    previewCurves.push_back(buildCurveFromPoints(segmentPoints));
-                segmentPoints.clear();
-                first = true;
-            }
-        }
-
-        if (segmentPoints.size() >= 2)
-            previewCurves.push_back(buildCurveFromPoints(segmentPoints));
-    }
-
-    curves = std::move(previewCurves);
     repaint();
-    
-    DBG("[ERASED] erasedRanges size: " << erasedRanges.size());
-    for (const auto& r : erasedRanges)
-        DBG("[ERASED] Range: [" << r.first << ", " << r.second << "]");
 
+}
+
+void DrawGrid::applyVisualEraser()
+{
+    std::vector<ErasedRegion> localErasedRegions;
+    curves = eraseSegmentsFromCurves(curves, currentEraserStroke, 10.0f, &localErasedRegions, getWidth(), getHeight());
+
+    erasedRegions.insert(erasedRegions.end(), localErasedRegions.begin(), localErasedRegions.end());
+    eraserPoints.insert(eraserPoints.end(), currentEraserStroke.begin(), currentEraserStroke.end());
+    currentEraserStroke.clear();
+
+    if (onErased)
+        onErased();
 }
 
 
@@ -205,6 +195,7 @@ void DrawGrid::paint(juce::Graphics& g)
     float w = (float)getWidth();
     float h = (float)getHeight();
 
+
     g.setColour(juce::Colours::grey.withAlpha(0.3f));
     for (int i = 0; i <= numVertDivs; ++i)
         g.drawLine(w * i / (float)numVertDivs, 0.0f, w * i / (float)numVertDivs, h);
@@ -212,7 +203,7 @@ void DrawGrid::paint(juce::Graphics& g)
     for (int i = 0; i <= numHorDivs; ++i)
         g.drawLine(0.0f, h * i / (float)numHorDivs, w, h * i / (float)numHorDivs);
 
-    if (!erasedRanges.empty())
+    if (!erasedRegions.empty())
     {
         g.setColour(juce::Colours::transparentWhite.withAlpha(0.f));
         for (const auto& ep : eraserPoints)
@@ -266,28 +257,44 @@ void DrawGrid::paint(juce::Graphics& g)
                       2.0f);
     }
 
-    if (playheadIndex >= 0 && pitchCurveRef != nullptr && !pitchCurveRef->empty())
+    if (!resampledCurve.empty())
     {
-        int clampedIndex = juce::jlimit(0, (int)pitchCurveRef->size() - 1, playheadIndex);
-        const auto& pt = (*pitchCurveRef)[clampedIndex];
+        const auto& curve = resampledCurve;
+        int n = (int)curve.size();
+        float floatIndex = playheadPhase * (n - 1);
+        int indexA = (int)std::floor(floatIndex);
+        int indexB = std::min(indexA + 1, n - 1);
+        float t = floatIndex - indexA;
 
-        float x = pt.normalizedX * getWidth();
-        float y = juce::jmap(pt.pitch, -12.0f, 12.0f, (float)getHeight(), 0.0f);
+        const auto& ptA = curve[indexA];
+        const auto& ptB = curve[indexB];
 
-        g.setColour(juce::Colours::red.withAlpha(0.8f));
+        float pitch = juce::jmap(t, 0.0f, 1.0f, ptA.pitch, ptB.pitch);
+        float xNorm = juce::jmap(t, 0.0f, 1.0f, ptA.normalizedX, ptB.normalizedX);
+        float x = xNorm * getWidth();
+        float y = juce::jmap(pitch, -12.0f, 12.0f, (float)getHeight(), 0.0f);
+
+        auto cursorColor = pointInErasedRegion(xNorm, pitch)
+                           ? juce::Colours::grey.withAlpha(0.6f)
+                           : juce::Colours::red.withAlpha(0.8f);
+
+        g.setColour(cursorColor);
         g.fillEllipse(x - 4, y - 4, 8.0f, 8.0f);
     }
+
 }
 
-void DrawGrid::setPlayheadIndex(int index)
+void DrawGrid::setPlayheadPhase(float phase)
 {
-    playheadIndex = index;
+    playheadPhase = juce::jlimit(0.0f, 1.0f, phase);
     repaint();
 }
+
 
 void DrawGrid::setPitchCurveReference(const std::vector<CurvePoint>* externalCurve)
 {
     pitchCurveRef = externalCurve;
+    
     repaint();
 }
 
@@ -318,11 +325,11 @@ void DrawGrid::mouseDown(const juce::MouseEvent& e)
     {
         curves.clear();
         eraserPoints.clear();
-        erasedRanges.clear();
+        erasedRegions.clear();
         currentCurve.points.clear();
         currentCurve.path.clear();
         fullPitchCurve.clear();
-        erasedRanges.clear();
+        erasedCurves.clear();
         
         if (onErased)
                 onErased();
@@ -452,6 +459,17 @@ void DrawGrid::mouseUp(const juce::MouseEvent&)
         onCurveFinished();
 }
 
+bool DrawGrid::pointInErasedRegion(float xNorm, float pitch) const
+{
+    for (const auto& region : erasedRegions)
+    {
+        if (xNorm >= region.xMin && xNorm <= region.xMax &&
+            pitch >= region.yMin && pitch <= region.yMax)
+            return true;
+    }
+    return false;
+}
+
 
 
 
@@ -502,7 +520,7 @@ void DrawGrid::setPitchCurve(const std::vector<CurvePoint>& newCurve)
     }
 }
 
-DrawGrid::Curve DrawGrid::buildCurveFromPoints(const std::vector<CurvePoint>& points)
+Curve DrawGrid::buildCurveFromPoints(const std::vector<CurvePoint>& points)
 {
     Curve c;
     c.points = points;
@@ -527,6 +545,13 @@ std::vector<CurvePoint> DrawGrid::getFullPitchCurve() const
 {
     return fullPitchCurve;
 }
+
+void DrawGrid::setResampledCurve(const std::vector<CurvePoint>& resampled)
+{
+    resampledCurve = resampled;
+    repaint();
+}
+
 
 void DrawGrid::setMode(DrawMode mode)
 {
@@ -556,7 +581,7 @@ void DrawGrid::reset()
 {
     curves.clear();
     eraserPoints.clear();
-    erasedRanges.clear();
+    erasedRegions.clear();
     erasedCurves.clear();
     fullPitchCurve.clear();
     currentCurve.points.clear();

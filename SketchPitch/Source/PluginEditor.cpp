@@ -124,16 +124,12 @@ void GrannyDrawAudioProcessorEditor::timerCallback()
     if (curveLength == 0)
         return;
 
-    int index = static_cast<int>(processor.getPlayheadPhase() * curveLength);
-    index = juce::jlimit(0, static_cast<int>(curveLength) - 1, index);
-
     pitchGrid.setPlayheadPhase(processor.getPlayheadPhase());
-
-
+    
     if (processor.needsCurveUpdate.exchange(false))
-    {
-        pitchGrid.setPitchCurve(curve);
-    }
+        {
+            pitchGrid.setPitchCurve(processor.getPitchCurve());
+        }
 }
 
 

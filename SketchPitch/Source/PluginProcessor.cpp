@@ -221,7 +221,6 @@ void GrannyDrawAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
         
         float normPhase = static_cast<float>(phase);
         bool isMuted = isInErasedRange(normPhase);
-        DBG("Playhead Phase: " << normPhase << " -> Muted? " << (isMuted ? "YES" : "NO"));
 
 
         float targetNormX = static_cast<float>(phase);
@@ -314,51 +313,6 @@ void GrannyDrawAudioProcessor::getStateInformation(juce::MemoryBlock& destData)
     copyXmlToBinary(xmlState, destData);
 }
 
-
-void GrannyDrawAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
-{
-    std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
-
-    if (xmlState != nullptr)
-    {
-        if (auto* paramsXml = xmlState->getChildByName(parameters.state.getType()))
-            parameters.replaceState(juce::ValueTree::fromXml(*paramsXml));
-
-        if (auto* curveElement = xmlState->getChildByName("PitchCurve"))
-        {
-            resampledCurve.clear();
-            for (auto* pointElement : curveElement->getChildIterator())
-            {
-                if (pointElement->hasTagName("Point"))
-                {
-                    CurvePoint cp;
-                    cp.normalizedX = (float)pointElement->getDoubleAttribute("x", 0.0);
-                    cp.pitch = (float)pointElement->getDoubleAttribute("pitch", 0.0);
-                    pitchCurve.push_back(cp);
-                }
-            }
-        }
-
-        if (auto* erasedElement = xmlState->getChildByName("ErasedRanges"))
-        {
-            erasedRanges.clear();
-            for (auto* rangeElement : erasedElement->getChildIterator())
-            {
-                if (rangeElement->hasTagName("Range"))
-                {
-                    float start = (float)rangeElement->getDoubleAttribute("start", 0.0);
-                    float end   = (float)rangeElement->getDoubleAttribute("end", 0.0);
-                    float yMin  = (float)rangeElement->getDoubleAttribute("yMin", -12.0);
-                    float yMax  = (float)rangeElement->getDoubleAttribute("yMax", 12.0);
-                    erasedRanges.emplace_back(ErasedRegion{ start, end, yMin, yMax });
-                }
-            }
-        }
-    }
-
-    needsCurveUpdate = true;
-}
-
 std::vector<CurvePoint> resamplePitchCurve(const std::vector<CurvePoint>& input, size_t numSamples = 512)
 {
     std::vector<CurvePoint> resampled;
@@ -394,11 +348,58 @@ std::vector<CurvePoint> resamplePitchCurve(const std::vector<CurvePoint>& input,
     return resampled;
 }
 
+void GrannyDrawAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
+{
+    std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+
+    if (xmlState != nullptr)
+    {
+        if (auto* paramsXml = xmlState->getChildByName(parameters.state.getType()))
+            parameters.replaceState(juce::ValueTree::fromXml(*paramsXml));
+
+        if (auto* curveElement = xmlState->getChildByName("PitchCurve"))
+        {
+            resampledCurve.clear();
+            for (auto* pointElement : curveElement->getChildIterator())
+            {
+                if (pointElement->hasTagName("Point"))
+                {
+                    CurvePoint cp;
+                    cp.normalizedX = (float)pointElement->getDoubleAttribute("x", 0.0);
+                    cp.pitch = (float)pointElement->getDoubleAttribute("pitch", 0.0);
+                    pitchCurve.push_back(cp);
+                }
+            }
+            
+            resampledCurve = resamplePitchCurve(pitchCurve);
+        }
+
+        if (auto* erasedElement = xmlState->getChildByName("ErasedRanges"))
+        {
+            erasedRanges.clear();
+            for (auto* rangeElement : erasedElement->getChildIterator())
+            {
+                if (rangeElement->hasTagName("Range"))
+                {
+                    float start = (float)rangeElement->getDoubleAttribute("start", 0.0);
+                    float end   = (float)rangeElement->getDoubleAttribute("end", 0.0);
+                    float yMin  = (float)rangeElement->getDoubleAttribute("yMin", -12.0);
+                    float yMax  = (float)rangeElement->getDoubleAttribute("yMax", 12.0);
+                    erasedRanges.emplace_back(ErasedRegion{ start, end, yMin, yMax });
+                }
+            }
+        }
+    }
+
+    needsCurveUpdate = true;
+}
+
 
 void GrannyDrawAudioProcessor::setPitchCurve(const std::vector<CurvePoint>& newCurve)
 {
     pitchCurve = newCurve;
     resampledCurve = resamplePitchCurve(newCurve);
+    needsCurveUpdate = true;
 }
 
 std::vector<CurvePoint> GrannyDrawAudioProcessor::getPitchCurve() const
@@ -424,12 +425,7 @@ size_t GrannyDrawAudioProcessor::getPitchCurveLength() const
 void GrannyDrawAudioProcessor::setErasedRanges(const std::vector<ErasedRegion>& newRanges)
 {
     erasedRanges = newRanges;
-    
-    DBG("=== Erased Ranges Set ===");
-        for (const auto& r : erasedRanges)
-        {
-            DBG("ErasedRange -> X:[" << r.xMin << ", " << r.xMax << "]  Y:[" << r.yMin << ", " << r.yMax << "]");
-        }
+    needsCurveUpdate = true;
 }
 
 const std::vector<CurvePoint>& GrannyDrawAudioProcessor::getResampledPitchCurve() const

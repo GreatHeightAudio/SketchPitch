@@ -190,6 +190,9 @@ void DrawGrid::paint(juce::Graphics& g)
 {
     g.fillAll(juce::Colour(0xfffdf5e6));
 
+    DBG("resampledCurve size: " << resampledCurve.size());
+    DBG("playheadPhase: " << playheadPhase);
+    
     const int numHorDivs = 12;
     const int numVertDivs = 16;
     float w = (float)getWidth();
@@ -275,11 +278,13 @@ void DrawGrid::paint(juce::Graphics& g)
         float y = juce::jmap(pitch, -12.0f, 12.0f, (float)getHeight(), 0.0f);
 
         auto cursorColor = pointInErasedRegion(xNorm, pitch)
-                           ? juce::Colours::grey.withAlpha(0.6f)
-                           : juce::Colours::red.withAlpha(0.8f);
+                           ? juce::Colours::red.withAlpha(0.8f)
+                           : juce::Colours::grey.withAlpha(0.6f);
 
         g.setColour(cursorColor);
         g.fillEllipse(x - 4, y - 4, 8.0f, 8.0f);
+        
+        DBG("Cursor x: " << x << ", y: " << y);
     }
 
 }
@@ -516,6 +521,7 @@ void DrawGrid::setPitchCurve(const std::vector<CurvePoint>& newCurve)
         curves.clear();
         curves.push_back(curve);
         fullPitchCurve = newCurve;
+        resampledCurve = newCurve;
         repaint();
     }
 }

@@ -153,6 +153,11 @@ std::vector<Curve> DrawGrid::eraseSegmentsFromCurves(const std::vector<Curve>& i
             }
         }
         erasedOut->insert(erasedOut->end(), merged.begin(), merged.end());
+//        if (erasedOut)
+//        {
+//            // Just append all detected regions
+//            erasedOut->insert(erasedOut->end(), localErasedRegions.begin(), localErasedRegions.end());
+//        }
     }
 
     return resultCurves;
@@ -163,7 +168,7 @@ void DrawGrid::applyLiveEraser()
     std::vector<ErasedRegion> tempRegions;
     curves = eraseSegmentsFromCurves(curvesBeforeEraser, currentEraserStroke, 6.0f, &tempRegions, getWidth(), getHeight());
 
-    erasedRegions = tempRegions;
+    erasedRegions.insert(erasedRegions.end(), tempRegions.begin(), tempRegions.end());
     if (onErased)
         onErased();
 
@@ -189,7 +194,7 @@ void DrawGrid::applyVisualEraser()
 void DrawGrid::paint(juce::Graphics& g)
 {
     g.fillAll(juce::Colour(0xfffdf5e6));
-
+    
     DBG("resampledCurve size: " << resampledCurve.size());
     DBG("playheadPhase: " << playheadPhase);
     
@@ -197,15 +202,15 @@ void DrawGrid::paint(juce::Graphics& g)
     const int numVertDivs = 16;
     float w = (float)getWidth();
     float h = (float)getHeight();
-
-
+    
+    
     g.setColour(juce::Colours::grey.withAlpha(0.3f));
     for (int i = 0; i <= numVertDivs; ++i)
         g.drawLine(w * i / (float)numVertDivs, 0.0f, w * i / (float)numVertDivs, h);
-
+    
     for (int i = 0; i <= numHorDivs; ++i)
         g.drawLine(0.0f, h * i / (float)numHorDivs, w, h * i / (float)numHorDivs);
-
+    
     if (!erasedRegions.empty())
     {
         g.setColour(juce::Colours::transparentWhite.withAlpha(0.f));
@@ -216,31 +221,31 @@ void DrawGrid::paint(juce::Graphics& g)
             g.fillEllipse(x - 1.5f, y - 1.5f, 3.0f, 3.0f);
         }
     }
-
+    
     // Normal curves
     g.setColour(juce::Colour(0xff3b3b3b).withAlpha(0.9f));
     for (const auto& curve : curves)
         g.strokePath(curve.path, juce::PathStrokeType(2.0f));
-
+    
     // Erased curves
     g.setColour(juce::Colours::darkred.withAlpha(0.3f));
     for (const auto& curve : erasedCurves)
         g.strokePath(curve.path, juce::PathStrokeType(2.0f));
-
+    
     if ((currentMode == DrawMode::Solo || currentMode == DrawMode::Layer) &&
         !currentCurve.points.empty())
     {
         g.strokePath(currentCurve.path, juce::PathStrokeType(2.0f));
     }
-
+    
     g.setColour(juce::Colours::grey.withAlpha(0.3f));
     float centerY = getHeight() / 2.0f;
     g.drawLine(0.f, centerY, (float)getWidth(), centerY, 2.0f);
-
+    
     g.setColour(juce::Colours::black);
     g.setFont(12.0f);
     const int margin = 8;
-
+    
     for (int i = -12; i <= 12; i += 4)
     {
         float normalizedY = juce::jmap((float)i, -12.0f, 12.0f, 1.0f, 0.0f);
@@ -248,7 +253,7 @@ void DrawGrid::paint(juce::Graphics& g)
         y = juce::jlimit(0.0f + margin, (float)getHeight() - margin, y);
         g.drawText(juce::String(i), 2, (int)(y - 6), 40, 12, juce::Justification::centredLeft);
     }
-
+    
     if (currentMode == DrawMode::Erase)
     {
         const float radius = 6.0f;
@@ -259,34 +264,28 @@ void DrawGrid::paint(juce::Graphics& g)
                       radius * 2.0f,
                       2.0f);
     }
-
+    
     if (!resampledCurve.empty())
     {
-        const auto& curve = resampledCurve;
-        int n = (int)curve.size();
+        int n = (int)resampledCurve.size();
         float floatIndex = playheadPhase * (n - 1);
         int indexA = (int)std::floor(floatIndex);
         int indexB = std::min(indexA + 1, n - 1);
         float t = floatIndex - indexA;
-
-        const auto& ptA = curve[indexA];
-        const auto& ptB = curve[indexB];
-
-        float pitch = juce::jmap(t, 0.0f, 1.0f, ptA.pitch, ptB.pitch);
-        float xNorm = juce::jmap(t, 0.0f, 1.0f, ptA.normalizedX, ptB.normalizedX);
-        float x = xNorm * getWidth();
-        float y = juce::jmap(pitch, -12.0f, 12.0f, (float)getHeight(), 0.0f);
-
-        auto cursorColor = pointInErasedRegion(xNorm, pitch)
-                           ? juce::Colours::red.withAlpha(0.8f)
-                           : juce::Colours::grey.withAlpha(0.6f);
-
+        
+        float interpX = juce::jmap(t, 0.0f, 1.0f, resampledCurve[indexA].normalizedX, resampledCurve[indexB].normalizedX);
+        float interpPitch = juce::jmap(t, 0.0f, 1.0f, resampledCurve[indexA].pitch, resampledCurve[indexB].pitch);
+        
+        float x = interpX * getWidth();
+        float y = juce::jmap(interpPitch, -12.0f, 12.0f, (float)getHeight(), 0.0f);
+        
+        auto cursorColor = pointInErasedRegion(interpX, interpPitch)
+        ? juce::Colours::red.withAlpha(0.8f)
+        : juce::Colours::grey.withAlpha(0.6f);
+        
         g.setColour(cursorColor);
         g.fillEllipse(x - 4, y - 4, 8.0f, 8.0f);
-        
-        DBG("Cursor x: " << x << ", y: " << y);
     }
-
 }
 
 void DrawGrid::setPlayheadPhase(float phase)
@@ -502,6 +501,8 @@ std::vector<CurvePoint> DrawGrid::getPitchCurve() const
 
 void DrawGrid::setPitchCurve(const std::vector<CurvePoint>& newCurve)
 {
+    
+    DBG("setPitchCurve called, size: " << newCurve.size());
     Curve curve;
     curve.points = newCurve;
 
@@ -554,6 +555,7 @@ std::vector<CurvePoint> DrawGrid::getFullPitchCurve() const
 
 void DrawGrid::setResampledCurve(const std::vector<CurvePoint>& resampled)
 {
+    DBG("resamplePitchCurve called, input size: " << resampled.size());
     resampledCurve = resampled;
     repaint();
 }

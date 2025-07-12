@@ -91,7 +91,7 @@ private:
     struct MuteState {
         bool isMuted = false;
         int muteCounter = 0;
-        static constexpr int minHoldSamples = 512;
+        static constexpr int minHoldSamples = 32;
     };
 
     std::vector<MuteState> muteStates;

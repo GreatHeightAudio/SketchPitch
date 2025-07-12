@@ -125,11 +125,6 @@ void GrannyDrawAudioProcessorEditor::timerCallback()
         return;
 
     pitchGrid.setPlayheadPhase(processor.getPlayheadPhase());
-    
-    if (processor.needsCurveUpdate.exchange(false))
-        {
-            pitchGrid.setPitchCurve(processor.getPitchCurve());
-        }
 }
 
 
@@ -141,6 +136,7 @@ void GrannyDrawAudioProcessorEditor::sendPitchCurve()
     processor.setPitchCurve(fullCurve);
     processor.setErasedRanges(pitchGrid.getErasedRegions());
     pitchGrid.setPitchCurveReference(&processor.getResampledPitchCurve());
+    pitchGrid.setResampledCurve(processor.getResampledPitchCurve());
     auto curveLength = processor.getPitchCurveLength();
     startTimerHz(static_cast<int>(curveLength / 2));
 }
